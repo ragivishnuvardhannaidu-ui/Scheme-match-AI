@@ -1,0 +1,1642 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SchemeMatch AI — Voice Assistant &amp; Live Session</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with custom theme config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "on-secondary-fixed-variant": "#005049",
+            "background": "#f8f9ff",
+            "primary-fixed": "#d9e2ff",
+            "on-secondary": "#ffffff",
+            "surface-tint": "#465d91",
+            "on-secondary-container": "#006f66",
+            "on-tertiary-fixed-variant": "#005137",
+            "surface": "#f8f9ff",
+            "primary": "#00163d",
+            "on-surface": "#0b1c30",
+            "on-primary-container": "#7c94cb",
+            "on-error": "#ffffff",
+            "on-primary-fixed-variant": "#2d4678",
+            "surface-container": "#e5eeff",
+            "error-container": "#ffdad6",
+            "outline": "#747780",
+            "surface-variant": "#d3e4fe",
+            "error": "#ba1a1a",
+            "tertiary-fixed-dim": "#68dba9",
+            "secondary": "#006a61",
+            "on-secondary-fixed": "#00201d",
+            "inverse-surface": "#213145",
+            "on-background": "#0b1c30",
+            "on-primary-fixed": "#001944",
+            "tertiary-fixed": "#85f8c4",
+            "outline-variant": "#c4c6d0",
+            "primary-fixed-dim": "#afc6ff",
+            "on-error-container": "#93000a",
+            "surface-bright": "#f8f9ff",
+            "tertiary-container": "#003422",
+            "on-tertiary-fixed": "#002114",
+            "surface-dim": "#cbdbf5",
+            "inverse-on-surface": "#eaf1ff",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed": "#89f5e7",
+            "surface-container-high": "#dce9ff",
+            "secondary-fixed-dim": "#6bd8cb",
+            "on-surface-variant": "#44464f",
+            "surface-container-low": "#eff4ff",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#d3e4fe",
+            "primary-container": "#0f2b5c",
+            "inverse-primary": "#afc6ff",
+            "tertiary": "#001d11",
+            "on-tertiary-container": "#2aa779",
+            "secondary-container": "#86f2e4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-desktop": "1.5rem",
+            "space-xl": "2rem",
+            "space-xs": "0.5rem",
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "space-2xl": "3rem",
+            "space-2xs": "0.25rem",
+            "space-3xl": "4rem",
+            "container-max": "80rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "display-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["1rem", { "lineHeight": "1.5rem", "fontWeight": "600" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "fontWeight": "400" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "display-lg": ["3.25rem", { "lineHeight": "3.75rem", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "body-sm": ["0.875rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "fontWeight": "600" }],
+            "body-md": ["1rem", { "lineHeight": "1.5rem", "fontWeight": "400" }],
+            "display-sm": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "fontWeight": "600" }],
+            "headline-lg": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.015em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-filled {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Keyframes for voice waveform & pulse */
+    @keyframes pulse-wave {
+      0%, 100% { height: 8px; }
+      50% { height: 32px; }
+    }
+    @keyframes pulse-halo {
+      0% { transform: scale(0.95); opacity: 0.7; }
+      50% { transform: scale(1.12); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.7; }
+    }
+    @keyframes orb-glow {
+      0%, 100% { filter: drop-shadow(0 0 16px rgba(13, 148, 136, 0.45)) drop-shadow(0 0 32px rgba(15, 43, 92, 0.35)); }
+      50% { filter: drop-shadow(0 0 28px rgba(13, 148, 136, 0.75)) drop-shadow(0 0 45px rgba(15, 43, 92, 0.5)); }
+    }
+
+    .wave-bar-1 { animation: pulse-wave 1.1s ease-in-out infinite 0.1s; }
+    .wave-bar-2 { animation: pulse-wave 1.3s ease-in-out infinite 0.25s; }
+    .wave-bar-3 { animation: pulse-wave 0.9s ease-in-out infinite 0.4s; }
+    .wave-bar-4 { animation: pulse-wave 1.4s ease-in-out infinite 0.15s; }
+    .wave-bar-5 { animation: pulse-wave 1.0s ease-in-out infinite 0.3s; }
+    .wave-bar-6 { animation: pulse-wave 1.2s ease-in-out infinite 0.05s; }
+    .wave-bar-7 { animation: pulse-wave 0.85s ease-in-out infinite 0.2s; }
+    .wave-bar-8 { animation: pulse-wave 1.15s ease-in-out infinite 0.35s; }
+
+    .pulse-halo-anim { animation: pulse-halo 2.5s infinite ease-in-out; }
+    .orb-glow-anim { animation: orb-glow 3s infinite ease-in-out; }
+  </style>
+<style data-stitch-css-vh="
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  ">
+    body {
+      min-height: max(884px, 884px);
+    }
+  </style>
+  <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}[type='text'],input:where(:not([type])),[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select{-webkit-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0px;padding-top:0.5rem;padding-right:0.75rem;padding-bottom:0.5rem;padding-left:0.75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000;}[type='text']:focus, input:where(:not([type])):focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);border-color:#2563eb}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-year-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-meridiem-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");background-position:right 0.5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;print-color-adjust:exact}[multiple],[size]:where(select:not([size="1"])){background-image:initial;background-position:initial;background-repeat:unset;background-size:initial;padding-right:0.75rem;print-color-adjust:unset}[type='checkbox'],[type='radio']{-webkit-appearance:none;appearance:none;padding:0;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}[type='checkbox']{border-radius:0px}[type='radio']{border-radius:100%}[type='checkbox']:focus,[type='radio']:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}[type='checkbox']:checked,[type='radio']:checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat}[type='checkbox']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='checkbox']:checked{-webkit-appearance:auto;appearance:auto}}[type='radio']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='radio']:checked{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:checked:hover,[type='checkbox']:checked:focus,[type='radio']:checked:hover,[type='radio']:checked:focus{border-color:transparent;background-color:currentColor}[type='checkbox']:indeterminate{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat;}@media (forced-colors: active) {[type='checkbox']:indeterminate{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus{border-color:transparent;background-color:currentColor}[type='file']{background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}[type='file']:focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.-inset-2{inset:-0.5rem}.inset-0{inset:0px}.-bottom-16{bottom:-4rem}.-left-16{left:-4rem}.-right-16{right:-4rem}.-top-16{top:-4rem}.bottom-0{bottom:0px}.left-0{left:0px}.right-0{right:0px}.top-0{top:0px}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-1{margin-top:0.25rem;margin-bottom:0.25rem}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.ml-1{margin-left:0.25rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-2\.5{margin-top:0.625rem}.mt-3{margin-top:0.75rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-12{height:3rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-2\.5{height:0.625rem}.h-24{height:6rem}.h-3{height:0.75rem}.h-32{height:8rem}.h-4{height:1rem}.h-44{height:11rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-full{height:100%}.min-h-\[884px\]{min-height:884px}.w-1{width:0.25rem}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-12{width:3rem}.w-16{width:4rem}.w-2\.5{width:0.625rem}.w-2\/3{width:66.666667%}.w-24{width:6rem}.w-32{width:8rem}.w-44{width:11rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-full{width:100%}.max-w-\[420px\]{max-width:420px}.flex-1{flex:1 1 0%}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-start{justify-content:flex-start}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-around{justify-content:space-around}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-4{border-width:4px}.border-x{border-left-width:1px;border-right-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-outline-variant{--tw-border-opacity:1;border-color:rgb(196 198 208 / var(--tw-border-opacity, 1))}.border-outline-variant\/20{border-color:rgb(196 198 208 / 0.2)}.border-outline-variant\/30{border-color:rgb(196 198 208 / 0.3)}.border-outline-variant\/40{border-color:rgb(196 198 208 / 0.4)}.border-primary\/20{border-color:rgb(0 22 61 / 0.2)}.border-secondary\/20{border-color:rgb(0 106 97 / 0.2)}.border-secondary\/30{border-color:rgb(0 106 97 / 0.3)}.border-secondary\/40{border-color:rgb(0 106 97 / 0.4)}.border-surface-container-lowest{--tw-border-opacity:1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.bg-background{--tw-bg-opacity:1;background-color:rgb(248 249 255 / var(--tw-bg-opacity, 1))}.bg-on-primary{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-primary{--tw-bg-opacity:1;background-color:rgb(0 22 61 / var(--tw-bg-opacity, 1))}.bg-primary-container{--tw-bg-opacity:1;background-color:rgb(15 43 92 / var(--tw-bg-opacity, 1))}.bg-secondary{--tw-bg-opacity:1;background-color:rgb(0 106 97 / var(--tw-bg-opacity, 1))}.bg-secondary-container{--tw-bg-opacity:1;background-color:rgb(134 242 228 / var(--tw-bg-opacity, 1))}.bg-secondary-container\/10{background-color:rgb(134 242 228 / 0.1)}.bg-secondary-container\/20{background-color:rgb(134 242 228 / 0.2)}.bg-secondary-container\/50{background-color:rgb(134 242 228 / 0.5)}.bg-secondary-container\/60{background-color:rgb(134 242 228 / 0.6)}.bg-secondary-fixed{--tw-bg-opacity:1;background-color:rgb(137 245 231 / var(--tw-bg-opacity, 1))}.bg-secondary\/20{background-color:rgb(0 106 97 / 0.2)}.bg-secondary\/60{background-color:rgb(0 106 97 / 0.6)}.bg-secondary\/70{background-color:rgb(0 106 97 / 0.7)}.bg-surface{--tw-bg-opacity:1;background-color:rgb(248 249 255 / var(--tw-bg-opacity, 1))}.bg-surface-container{--tw-bg-opacity:1;background-color:rgb(229 238 255 / var(--tw-bg-opacity, 1))}.bg-surface-container-high{--tw-bg-opacity:1;background-color:rgb(220 233 255 / var(--tw-bg-opacity, 1))}.bg-surface-container-low{--tw-bg-opacity:1;background-color:rgb(239 244 255 / var(--tw-bg-opacity, 1))}.bg-surface-container-low\/70{background-color:rgb(239 244 255 / 0.7)}.bg-surface-container-lowest{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-surface-container-lowest\/60{background-color:rgb(255 255 255 / 0.6)}.bg-surface-container-lowest\/95{background-color:rgb(255 255 255 / 0.95)}.bg-surface-variant\/40{background-color:rgb(211 228 254 / 0.4)}.bg-opacity-80{--tw-bg-opacity:0.8}.bg-gradient-to-tr{background-image:linear-gradient(to top right, var(--tw-gradient-stops))}.from-primary{--tw-gradient-from:#00163d var(--tw-gradient-from-position);--tw-gradient-to:rgb(0 22 61 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-primary-container{--tw-gradient-to:rgb(15 43 92 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #0f2b5c var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-secondary{--tw-gradient-to:#006a61 var(--tw-gradient-to-position)}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-gutter-mobile{padding-left:1rem;padding-right:1rem}.px-space-sm{padding-left:0.75rem;padding-right:0.75rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-space-2xs{padding-top:0.25rem;padding-bottom:0.25rem}.py-space-xs{padding-top:0.5rem;padding-bottom:0.5rem}.pb-1{padding-bottom:0.25rem}.pb-2{padding-bottom:0.5rem}.pb-24{padding-bottom:6rem}.pt-1{padding-top:0.25rem}.pt-2{padding-top:0.5rem}.pt-2\.5{padding-top:0.625rem}.pt-3{padding-top:0.75rem}.pt-4{padding-top:1rem}.text-left{text-align:left}.text-right{text-align:right}.font-body-md{font-family:Inter}.font-body-sm{font-family:Inter}.font-headline-sm{font-family:Plus Jakarta Sans}.font-label-md{font-family:Inter}.font-label-sm{font-family:Inter}.text-\[0\.65rem\]{font-size:0.65rem}.text-\[0\.68rem\]{font-size:0.68rem}.text-\[0\.6rem\]{font-size:0.6rem}.text-\[0\.75rem\]{font-size:0.75rem}.text-\[0\.7rem\]{font-size:0.7rem}.text-\[0\.95rem\]{font-size:0.95rem}.text-\[0\.9rem\]{font-size:0.9rem}.text-\[1\.1rem\]{font-size:1.1rem}.text-\[1\.25rem\]{font-size:1.25rem}.text-\[1\.2rem\]{font-size:1.2rem}.text-\[1\.3rem\]{font-size:1.3rem}.text-\[1\.4rem\]{font-size:1.4rem}.text-\[1rem\]{font-size:1rem}.text-\[2rem\]{font-size:2rem}.text-body-md{font-size:1rem;line-height:1.5rem;font-weight:400}.text-body-sm{font-size:0.875rem;line-height:1.25rem;font-weight:400}.text-headline-sm{font-size:1.25rem;line-height:1.75rem;font-weight:600}.text-label-lg{font-size:1rem;line-height:1.5rem;font-weight:600}.text-label-md{font-size:0.875rem;line-height:1.25rem;font-weight:600}.text-label-sm{font-size:0.75rem;line-height:1rem;letter-spacing:0.02em;font-weight:600}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.text-error{--tw-text-opacity:1;color:rgb(186 26 26 / var(--tw-text-opacity, 1))}.text-on-primary{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-on-primary-container{--tw-text-opacity:1;color:rgb(124 148 203 / var(--tw-text-opacity, 1))}.text-on-secondary{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-on-secondary-container{--tw-text-opacity:1;color:rgb(0 111 102 / var(--tw-text-opacity, 1))}.text-on-surface{--tw-text-opacity:1;color:rgb(11 28 48 / var(--tw-text-opacity, 1))}.text-on-surface-variant{--tw-text-opacity:1;color:rgb(68 70 79 / var(--tw-text-opacity, 1))}.text-on-surface-variant\/80{color:rgb(68 70 79 / 0.8)}.text-outline{--tw-text-opacity:1;color:rgb(116 119 128 / var(--tw-text-opacity, 1))}.text-outline-variant{--tw-text-opacity:1;color:rgb(196 198 208 / var(--tw-text-opacity, 1))}.text-primary{--tw-text-opacity:1;color:rgb(0 22 61 / var(--tw-text-opacity, 1))}.text-secondary{--tw-text-opacity:1;color:rgb(0 106 97 / var(--tw-text-opacity, 1))}.text-secondary-container{--tw-text-opacity:1;color:rgb(134 242 228 / var(--tw-text-opacity, 1))}.text-secondary-fixed{--tw-text-opacity:1;color:rgb(137 245 231 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-75{opacity:0.75}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-shadow{transition-property:box-shadow;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.hover\:border-secondary\/50:hover{border-color:rgb(0 106 97 / 0.5)}.hover\:bg-surface-container:hover{--tw-bg-opacity:1;background-color:rgb(229 238 255 / var(--tw-bg-opacity, 1))}.hover\:bg-surface-container-high:hover{--tw-bg-opacity:1;background-color:rgb(220 233 255 / var(--tw-bg-opacity, 1))}.hover\:bg-surface-container-low:hover{--tw-bg-opacity:1;background-color:rgb(239 244 255 / var(--tw-bg-opacity, 1))}.hover\:bg-surface-variant:hover{--tw-bg-opacity:1;background-color:rgb(211 228 254 / var(--tw-bg-opacity, 1))}.hover\:text-on-surface:hover{--tw-text-opacity:1;color:rgb(11 28 48 / var(--tw-text-opacity, 1))}.hover\:text-primary:hover{--tw-text-opacity:1;color:rgb(0 22 61 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.hover\:shadow-md:hover{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:translate-x-0\.5{--tw-translate-x:0.125rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:text-secondary{--tw-text-opacity:1;color:rgb(0 106 97 / var(--tw-text-opacity, 1))}</style></head>
+<body class="bg-surface text-on-surface antialiased flex flex-col items-center justify-start min-h-[884px]" data-stitch-vh="min-h-[884px]===min-h-screen" data-mode="connect">
+<!-- Mobile Frame Container (Max 430px for authentic high-fidelity phone experience) -->
+<div class="w-full max-w-[420px] min-h-[884px] bg-background flex flex-col relative shadow-2xl border-x border-outline-variant/30 pb-24" data-stitch-vh="min-h-[884px]===min-h-screen">
+<!-- Top App Bar (SchemeMatch Shared TopAppBar with voice session context) -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md px-gutter-mobile h-14 flex items-center justify-between shadow-sm">
+<a href="/index.html" class="flex items-center gap-2 hover:opacity-90 transition-opacity cursor-pointer" title="Go to Main Landing Page">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[1.25rem]">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight leading-none">SchemeMate AI</span>
+<span class="font-label-sm text-[0.65rem] text-secondary flex items-center gap-1 leading-tight font-semibold mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+            Live Voice Session
+          </span>
+</div>
+</a>
+<!-- Trailing Action: Language indicator & audio toggle -->
+<div class="flex items-center gap-1">
+<div class="flex items-center bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/40 gap-1 text-[0.7rem] font-bold">
+<span class="material-symbols-outlined text-[0.95rem] text-secondary">translate</span>
+<button class="lang-chip-btn px-1.5 py-0.5 rounded-full text-secondary font-extrabold bg-surface-container-lowest shadow-2xs cursor-pointer" data-lang="en-IN">EN</button>
+<button class="lang-chip-btn px-1.5 py-0.5 rounded-full text-on-surface-variant hover:text-primary cursor-pointer" data-lang="hi-IN">हिंदी</button>
+<button class="lang-chip-btn px-1.5 py-0.5 rounded-full text-on-surface-variant hover:text-primary cursor-pointer" data-lang="te-IN">తెలుగు</button>
+<button class="lang-chip-btn px-1.5 py-0.5 rounded-full text-on-surface-variant hover:text-primary cursor-pointer" data-lang="mr-IN">मराठी</button>
+</div>
+<button id="btn-audio-settings-hdr" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" title="Audio Settings">
+<span class="material-symbols-outlined text-[1.1rem]">volume_up</span>
+</button>
+
+<!-- R.Vishnu Vardhan Avatar & Pointer Hover Preview -->
+<div class="relative group cursor-pointer" onclick="window.location.href='/schemematch_ai_entrepreneur_profile_eligibility/code.html'">
+  <div class="w-7 h-7 rounded-full ring-2 ring-secondary overflow-hidden shrink-0">
+    <img src="/assets/msme_entrepreneur_portrait.png" alt="R.Vishnu Vardhan" class="w-full h-full object-cover">
+  </div>
+  <!-- Pointer Hover Preview Card -->
+  <div class="absolute right-0 top-9 w-60 bg-surface-container-lowest border-2 border-secondary p-2.5 rounded-xl shadow-2xl z-50 hidden group-hover:block transition-all text-left">
+    <div class="flex items-center gap-2 mb-1.5 pb-1.5 border-b border-outline-variant/30">
+      <img src="/assets/msme_entrepreneur_portrait.png" class="w-8 h-8 rounded-full object-cover border border-secondary">
+      <div>
+        <h4 class="font-bold text-xs text-primary leading-tight">R.Vishnu Vardhan</h4>
+        <span class="text-[8px] text-secondary font-bold">Verified Entrepreneur</span>
+      </div>
+    </div>
+    <div class="text-[9px] space-y-0.5 text-on-surface-variant">
+      <div class="flex justify-between"><span>Profile:</span><strong class="text-emerald-700">85% Complete</strong></div>
+      <div class="flex justify-between"><span>Location:</span><strong class="text-primary">Nashik Rural</strong></div>
+    </div>
+    <div class="mt-1.5 pt-1.5 border-t border-outline-variant/30 text-center">
+      <span class="text-[9px] font-bold text-secondary flex items-center justify-center gap-1">
+        <span class="material-symbols-outlined text-[11px]">touch_app</span> Open Profile Page
+      </span>
+    </div>
+  </div>
+</div>
+</div>
+</header>
+<!-- Session Mode Selector & Status Header -->
+<div class="px-gutter-mobile pt-3 pb-2 bg-surface-container-lowest/60 border-b border-outline-variant/20">
+<!-- Mode Horizontal Scroll/Pills -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md whitespace-nowrap shadow-sm">
+<span class="material-symbols-outlined text-[1rem] text-secondary-container">record_voice_over</span>
+          Real-time Voice Call
+        </button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[1rem]">forum</span>
+          Interactive Q&amp;A
+        </button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md whitespace-nowrap transition-colors">
+<span class="material-symbols-outlined text-[1rem]">edit_document</span>
+          Form Auto-Fill
+        </button>
+</div>
+<!-- Assistant Status Sub-banner -->
+<div class="mt-2.5 flex items-center justify-between bg-surface-container px-3 py-2 rounded-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[1.1rem]">hearing</span>
+<span id="status-sub-banner" class="font-label-sm text-label-sm text-on-surface font-medium">Listening in English, Hindi, Telugu &amp; Marathi... Speak freely</span>
+</div>
+<span id="session-timer" class="text-[0.7rem] font-bold text-secondary bg-surface-container-lowest px-2 py-0.5 rounded-full shadow-2xs">00:42</span>
+</div>
+</div>
+<!-- Main Dynamic Canvas -->
+<main class="flex-1 px-gutter-mobile pt-4 space-y-4">
+<!-- Central Animated Voice Waveform & Orb Section -->
+<div class="relative bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-5 flex flex-col items-center shadow-sm overflow-hidden">
+<!-- Subtle Ambient Background Gradient -->
+<div class="absolute -top-16 -right-16 w-44 h-44 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-16 -left-16 w-44 h-44 bg-surface-variant/40 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Listening Status Pill -->
+<div class="inline-flex items-center gap-1.5 bg-surface-container-low border border-secondary/20 px-3 py-1 rounded-full mb-4">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+</span>
+<span id="listening-status-pill" class="font-label-sm text-label-sm text-secondary font-bold tracking-wide">Listening to User...</span>
+<span class="font-label-sm text-[0.7rem] text-on-surface-variant/80 ml-1">Live 48kHz</span>
+</div>
+<!-- Dynamic AI Voice Orb Visualization with Generated Visualizer Photo -->
+<div class="relative w-full h-36 flex items-center justify-center my-1 rounded-xl overflow-hidden border border-outline-variant/30 shadow-md">
+  <img src="/assets/voice_ai_banner.png" alt="Voice AI Visualizer" class="absolute inset-0 w-full h-full object-cover opacity-60">
+  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+  
+  <div class="relative z-10 flex flex-col items-center">
+    <!-- Central Core Gradient Orb -->
+    <button id="btn-voice-orb" class="orb-glow-anim w-20 h-20 rounded-full bg-gradient-to-tr from-primary via-primary-container to-secondary flex flex-col items-center justify-center text-on-primary shadow-2xl relative cursor-pointer active:scale-95 transition-transform border-2 border-teal-300/40" title="Tap to Start / Stop Voice Recording">
+      <span class="material-symbols-outlined text-[1.8rem] text-secondary-fixed">graphic_eq</span>
+      <div class="flex items-center gap-1 mt-0.5">
+        <span class="w-1 h-2 bg-on-primary rounded-full wave-bar-1"></span>
+        <span class="w-1 h-4 bg-secondary-fixed rounded-full wave-bar-2"></span>
+        <span class="w-1 h-3 bg-on-primary rounded-full wave-bar-3"></span>
+        <span class="w-1 h-5 bg-secondary-fixed rounded-full wave-bar-4"></span>
+        <span class="w-1 h-2 bg-on-primary rounded-full wave-bar-5"></span>
+      </div>
+    </button>
+  </div>
+</div>
+</div>
+
+<!-- Interactive Bar Graph Card: Top Scheme Match Analytics -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 p-3.5 space-y-2 shadow-sm">
+  <div class="flex items-center justify-between border-b border-outline-variant/30 pb-2">
+    <div class="flex items-center gap-1.5">
+      <span class="material-symbols-outlined text-secondary text-[1rem]">bar_chart</span>
+      <span class="font-headline-sm text-xs font-bold text-primary">Live Match Confidence Bar Graph</span>
+    </div>
+    <span class="text-[0.65rem] text-secondary font-bold bg-secondary-container/40 px-2 py-0.5 rounded-full">AI Ranked</span>
+  </div>
+  
+  <div class="space-y-2 pt-1 text-[0.72rem]">
+    <!-- Bar 1 -->
+    <div>
+      <div class="flex justify-between items-center mb-1">
+        <span class="font-bold text-primary">PMEGP Capital Subsidy</span>
+        <span class="font-bold text-emerald-700">94% Match (35% Grant)</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+        <div class="bg-emerald-600 h-full rounded-full transition-all duration-500" style="width: 94%;"></div>
+      </div>
+    </div>
+    <!-- Bar 2 -->
+    <div>
+      <div class="flex justify-between items-center mb-1">
+        <span class="font-bold text-primary">CGTMSE Collateral-Free Loan</span>
+        <span class="font-bold text-teal-700">90% Match (₹2 Crore Limit)</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+        <div class="bg-teal-500 h-full rounded-full transition-all duration-500" style="width: 90%;"></div>
+      </div>
+    </div>
+    <!-- Bar 3 -->
+    <div>
+      <div class="flex justify-between items-center mb-1">
+        <span class="font-bold text-primary">Mudra Yojana (Tarun)</span>
+        <span class="font-bold text-blue-700">89% Match (₹10 Lakhs)</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+        <div class="bg-blue-600 h-full rounded-full transition-all duration-500" style="width: 89%;"></div>
+      </div>
+    </div>
+    <!-- Bar 4 -->
+    <div>
+      <div class="flex justify-between items-center mb-1">
+        <span class="font-bold text-primary">Stand-Up India Scheme</span>
+        <span class="font-bold text-indigo-700">85% Match (Greenfield)</span>
+      </div>
+      <div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+        <div class="bg-indigo-600 h-full rounded-full transition-all duration-500" style="width: 85%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Active Frequency Bars Indicator -->
+<div class="flex items-center justify-center gap-1.5 h-8 mt-3 mb-2 px-4 w-full">
+<div class="w-1.5 bg-secondary/60 rounded-full wave-bar-1"></div>
+<div class="w-1.5 bg-secondary rounded-full wave-bar-2"></div>
+<div class="w-1.5 bg-primary rounded-full wave-bar-3"></div>
+<div class="w-1.5 bg-secondary-container bg-opacity-80 rounded-full wave-bar-4"></div>
+<div class="w-1.5 bg-primary-container rounded-full wave-bar-5"></div>
+<div class="w-1.5 bg-secondary rounded-full wave-bar-6"></div>
+<div class="w-1.5 bg-primary rounded-full wave-bar-7"></div>
+<div class="w-1.5 bg-secondary/70 rounded-full wave-bar-8"></div>
+<div class="w-1.5 bg-primary-container rounded-full wave-bar-2"></div>
+<div class="w-1.5 bg-secondary rounded-full wave-bar-4"></div>
+<div class="w-1.5 bg-primary rounded-full wave-bar-1"></div>
+</div>
+<!-- Live Speech Recognition Transcription Preview -->
+<div class="w-full bg-surface-container-low/70 border border-outline-variant/30 rounded-xl p-3.5 text-left transition-all">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-sm text-[0.7rem] uppercase tracking-wider text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[0.95rem]">record_voice_over</span>
+              Live Transcription (Marathi)
+            </span>
+<span class="font-label-sm text-[0.65rem] text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded">Marathi Auto-detected</span>
+</div>
+<p id="transcription-native" class="font-headline-sm text-body-md font-semibold text-primary leading-snug">
+            "मला खाद्य प्रक्रिया उद्योगासाठी सबसिडी हवी आहे, कोणती योजना योग्य ठरेल?"
+          </p>
+<div class="mt-2 pt-2 border-t border-outline-variant/30 flex items-start gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[0.95rem] text-outline mt-0.5">translate</span>
+<p id="transcription-translated" class="font-body-sm text-body-sm italic leading-tight text-on-surface-variant">
+              "I need a subsidy for a food processing unit, which scheme is suitable?"
+            </p>
+</div>
+</div>
+</div>
+<!-- Real-time AI Reasoning & Instant Voice Response Card -->
+<div class="bg-surface-container-lowest rounded-2xl border-2 border-secondary/30 p-4 shadow-sm relative overflow-hidden">
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-secondary flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined text-[1.1rem]">smart_toy</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-label-lg font-bold text-primary leading-tight">SchemeMate AI Reasoning</h3>
+<p class="font-label-sm text-[0.7rem] text-on-surface-variant">Verified against 680+ Central &amp; State Schemes</p>
+</div>
+</div>
+<!-- 94% Direct Match Tag -->
+<span id="ai-match-tag" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[0.9rem] text-secondary">verified</span>
+            94% Match
+          </span>
+</div>
+<!-- AI Voice Synthesized Statement -->
+<p id="ai-reasoning-body" class="font-body-md text-body-md text-on-surface leading-relaxed mt-2">
+          "Based on your rural Nashik profile and food processing enterprise, you qualify for the <strong class="text-primary font-bold">PMEGP scheme with up to 35% capital subsidy (₹17.5 Lakhs grant)</strong>. Would you like me to auto-fill the Project Report (DPR) or explain document requirements?"
+        </p>
+<!-- Audio Visualizer & Player Controls within Card -->
+<div class="mt-3 bg-surface-container-low rounded-xl p-3 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button id="btn-play-audio" class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-sm active:scale-95 transition-transform cursor-pointer" title="Play / Pause AI Audio">
+<span class="material-symbols-outlined text-[1.1rem]">volume_up</span>
+</button>
+<div class="flex flex-col">
+<span id="audio-title-label" class="font-label-sm text-label-sm font-bold text-primary">Playing AI Explanation</span>
+<span id="audio-sub-label" class="font-body-sm text-[0.7rem] text-on-surface-variant">Spoken in Natural Marathi Voice</span>
+</div>
+</div>
+<!-- Speed Selector -->
+<div class="flex items-center gap-1 bg-surface-container-lowest px-2 py-1 rounded-lg border border-outline-variant/40">
+<button id="btn-speed-toggle" class="font-label-sm text-xs font-bold text-primary cursor-pointer hover:bg-surface-container px-1 py-0.5 rounded">1.0x</button>
+<span class="text-outline-variant text-xs">|</span>
+<button class="font-label-sm text-xs text-on-surface-variant hover:text-primary">1.2x</button>
+</div>
+</div>
+<!-- Mini Playback Progress Bar -->
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div id="audio-progress-bar" class="bg-secondary h-full rounded-full transition-all duration-300" style="width: 65%;"></div>
+</div>
+<div class="flex flex-col gap-1 text-[0.65rem] text-on-surface-variant font-medium">
+<div class="flex justify-between items-center">
+<span>00:18 / 00:27</span>
+<span class="font-bold text-primary">Replay Voice in:</span>
+</div>
+<div class="flex items-center gap-1.5 pt-0.5">
+<button class="replay-lang-btn flex-1 py-0.5 px-1 rounded bg-surface-container-lowest border border-outline-variant/30 text-primary font-bold text-center hover:bg-surface-container cursor-pointer" data-lang="en-IN">🇬🇧 English</button>
+<button class="replay-lang-btn flex-1 py-0.5 px-1 rounded bg-surface-container-lowest border border-outline-variant/30 text-secondary font-bold text-center hover:bg-surface-container cursor-pointer" data-lang="hi-IN">🇮🇳 हिंदी</button>
+<button class="replay-lang-btn flex-1 py-0.5 px-1 rounded bg-surface-container-lowest border border-outline-variant/30 text-secondary font-bold text-center hover:bg-surface-container cursor-pointer" data-lang="te-IN">🇮🇳 తెలుగు</button>
+<button class="replay-lang-btn flex-1 py-0.5 px-1 rounded bg-surface-container-lowest border border-outline-variant/30 text-secondary font-bold text-center hover:bg-surface-container cursor-pointer" data-lang="mr-IN">🇮🇳 मराठी</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Location Pointer & District Fake Data Widget -->
+<div class="bg-surface-container-lowest rounded-2xl border border-secondary/40 p-4 shadow-sm relative overflow-hidden">
+  <div class="flex items-center justify-between mb-3 border-b border-outline-variant/30 pb-2">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-lg bg-primary-container text-secondary-container flex items-center justify-center">
+        <span class="material-symbols-outlined text-[1.1rem]">location_on</span>
+      </div>
+      <div>
+        <h3 class="font-headline-sm text-label-md font-bold text-primary leading-tight">Interactive District Pointer & Subsidy Map</h3>
+        <p class="font-label-sm text-[0.68rem] text-on-surface-variant">Tap map or district chips to relocate pointer & update fake data</p>
+      </div>
+    </div>
+    <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[0.65rem] font-bold">Interactive</span>
+  </div>
+
+  <!-- Clickable Interactive Map Preview with Relocating Pointer Pin -->
+  <div id="district-map-container" class="relative w-full h-44 rounded-xl bg-slate-900 border border-outline-variant/40 overflow-hidden cursor-crosshair shadow-inner group">
+    <!-- Stylized Grid/Map Background SVG -->
+    <svg class="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid-pattern" width="24" height="24" patternUnits="userSpaceOnUse">
+          <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#64748b" stroke-width="0.5" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+      <!-- Contour Lines for Map effect -->
+      <path d="M10 30 Q 90 10, 180 50 T 360 80" fill="none" stroke="#006a61" stroke-width="1.5" opacity="0.6"/>
+      <path d="M30 110 Q 150 90, 240 140 T 400 120" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.5"/>
+    </svg>
+
+    <!-- District Hotspot Markers (Fake Location Targets) -->
+    <button type="button" class="map-district-btn absolute top-[25%] left-[20%] w-6 h-6 rounded-full bg-teal-500/30 border border-teal-400 flex items-center justify-center text-white text-[9px] font-bold hover:scale-125 transition-transform" data-district="nashik" data-x="20%" data-y="25%" title="Nashik Rural">N</button>
+    <button type="button" class="map-district-btn absolute top-[55%] left-[45%] w-6 h-6 rounded-full bg-blue-500/30 border border-blue-400 flex items-center justify-center text-white text-[9px] font-bold hover:scale-125 transition-transform" data-district="pune" data-x="45%" data-y="55%" title="Pune Industrial">P</button>
+    <button type="button" class="map-district-btn absolute top-[30%] left-[75%] w-6 h-6 rounded-full bg-emerald-500/30 border border-emerald-400 flex items-center justify-center text-white text-[9px] font-bold hover:scale-125 transition-transform" data-district="vizag" data-x="75%" data-y="30%" title="Visakhapatnam Port">V</button>
+    <button type="button" class="map-district-btn absolute top-[70%] left-[80%] w-6 h-6 rounded-full bg-amber-500/30 border border-amber-400 flex items-center justify-center text-white text-[9px] font-bold hover:scale-125 transition-transform" data-district="hyderabad" data-x="80%" data-y="70%" title="Hyderabad Metro">H</button>
+    <button type="button" class="map-district-btn absolute top-[75%] left-[25%] w-6 h-6 rounded-full bg-purple-500/30 border border-purple-400 flex items-center justify-center text-white text-[9px] font-bold hover:scale-125 transition-transform" data-district="sambhajinagar" data-x="25%" data-y="75%" title="Chhatrapati Sambhajinagar">S</button>
+
+    <!-- Animated Relocating Pointer Pin -->
+    <div id="map-pointer-pin" class="absolute top-[25%] left-[20%] -translate-x-1/2 -translate-y-full transition-all duration-500 ease-out z-20 pointer-events-none flex flex-col items-center">
+      <div class="px-2 py-0.5 rounded-md bg-secondary text-white text-[10px] font-bold shadow-lg whitespace-nowrap mb-0.5 flex items-center gap-1 border border-white/40">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-ping"></span>
+        <span id="map-pointer-label">Nashik Rural Zone</span>
+      </div>
+      <div class="relative">
+        <span class="material-symbols-outlined text-[2rem] text-teal-400 drop-shadow-md animate-bounce">location_on</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- District Quick Selector Chips -->
+  <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar my-3">
+    <button type="button" class="district-chip-btn px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-sm text-xs font-bold whitespace-nowrap border border-secondary/40 active:scale-95 cursor-pointer" data-district="nashik" data-x="20%" data-y="25%">📍 Nashik (Rural)</button>
+    <button type="button" class="district-chip-btn px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant hover:text-primary font-label-sm text-xs font-semibold whitespace-nowrap active:scale-95 cursor-pointer" data-district="pune" data-x="45%" data-y="55%">📍 Pune (Auto Cluster)</button>
+    <button type="button" class="district-chip-btn px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant hover:text-primary font-label-sm text-xs font-semibold whitespace-nowrap active:scale-95 cursor-pointer" data-district="vizag" data-x="75%" data-y="30%">📍 Visakhapatnam</button>
+    <button type="button" class="district-chip-btn px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant hover:text-primary font-label-sm text-xs font-semibold whitespace-nowrap active:scale-95 cursor-pointer" data-district="hyderabad" data-x="80%" data-y="70%">📍 Hyderabad</button>
+    <button type="button" class="district-chip-btn px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant hover:text-primary font-label-sm text-xs font-semibold whitespace-nowrap active:scale-95 cursor-pointer" data-district="sambhajinagar" data-x="25%" data-y="75%">📍 Sambhajinagar</button>
+  </div>
+
+  <!-- Relocated Pointer Dynamic Fake Data Card -->
+  <div id="pointer-fake-data-card" class="bg-surface-container-low/90 rounded-xl p-3 border border-outline-variant/40 space-y-2">
+    <div class="flex items-center justify-between">
+      <span class="text-xs font-bold text-primary flex items-center gap-1">
+        <span class="material-symbols-outlined text-[0.95rem] text-secondary">domain</span>
+        <span id="fake-district-title">Nashik Rural Agro Belt</span>
+      </span>
+      <span id="fake-subsidy-rate" class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[0.7rem]">35% Capital Subsidy</span>
+    </div>
+    <div class="grid grid-cols-2 gap-2 text-[0.72rem]">
+      <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/30">
+        <span class="text-on-surface-variant block text-[0.65rem]">Max Grant Ceiling</span>
+        <strong id="fake-grant-cap" class="text-primary font-bold">₹17.5 Lakhs Grant</strong>
+      </div>
+      <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/30">
+        <span class="text-on-surface-variant block text-[0.65rem]">Active Nodal Bank</span>
+        <strong id="fake-nodal-bank" class="text-secondary font-bold">Bank of Maharashtra (Nashik)</strong>
+      </div>
+      <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/30">
+        <span class="text-on-surface-variant block text-[0.65rem]">District DIC Officer</span>
+        <strong id="fake-dic-officer" class="text-primary font-bold">Shri S. V. Kulkarni</strong>
+      </div>
+      <div class="bg-surface-container-lowest p-2 rounded-lg border border-outline-variant/30">
+        <span class="text-on-surface-variant block text-[0.65rem]">PMEGP Approval Rate</span>
+        <strong id="fake-approval-rate" class="text-emerald-700 font-bold">96.4% Fast-track</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Registered Entrepreneurs & Allotted Govt Schemes Showcase -->
+<div class="bg-surface-container-lowest rounded-2xl border-2 border-emerald-600/30 p-4 shadow-sm space-y-3">
+  <div class="flex items-center justify-between border-b border-outline-variant/30 pb-2">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center">
+        <span class="material-symbols-outlined text-[1.1rem]">how_to_reg</span>
+      </div>
+      <div>
+        <h3 class="font-headline-sm text-label-md font-bold text-primary leading-tight">Registered Profiles & Allotted Schemes</h3>
+        <p class="font-label-sm text-[0.68rem] text-on-surface-variant">4 Registered Entrepreneurs & Allotted Scheme Subsidies</p>
+      </div>
+    </div>
+    <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-[0.65rem] font-bold">App Verified</span>
+  </div>
+
+  <div class="space-y-2.5">
+    <!-- Registered Person 1: R.Vishnu Vardhan -->
+    <div class="registered-profile-card bg-surface-container-low/70 hover:bg-surface-container p-3 rounded-xl border border-outline-variant/40 transition-all cursor-pointer group" data-district="nashik" data-x="38%" data-y="52%">
+      <div class="flex items-start justify-between gap-2">
+        <div class="flex items-center gap-2.5">
+          <img src="/assets/msme_entrepreneur_portrait.png" class="w-9 h-9 rounded-full object-cover border-2 border-emerald-600">
+          <div>
+            <h4 class="font-bold text-xs text-primary group-hover:text-secondary flex items-center gap-1">
+              R.Vishnu Vardhan <span class="text-[9px] bg-emerald-100 text-emerald-800 font-extrabold px-1.5 py-0.2 rounded">Nashik</span>
+            </h4>
+            <span class="text-[10px] text-on-surface-variant font-medium">Agro-Food Processing Unit • Registered</span>
+          </div>
+        </div>
+        <span class="text-[10px] font-bold bg-emerald-600 text-white px-2 py-0.5 rounded-full shadow-2xs">Sanctioned</span>
+      </div>
+      <div class="mt-2 pt-2 border-t border-outline-variant/30 flex items-center justify-between text-[11px]">
+        <span class="text-on-surface-variant">Allotted Scheme: <strong class="text-primary">PMEGP 35% Capital Subsidy</strong></span>
+        <strong class="text-emerald-700 font-extrabold">₹17.5 Lakhs Grant</strong>
+      </div>
+    </div>
+
+    <!-- Registered Person 2: Smt. Sunita Deshmukh -->
+    <div class="registered-profile-card bg-surface-container-low/70 hover:bg-surface-container p-3 rounded-xl border border-outline-variant/40 transition-all cursor-pointer group" data-district="sambhajinagar" data-x="48%" data-y="48%">
+      <div class="flex items-start justify-between gap-2">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold text-xs border-2 border-teal-400">
+            SD
+          </div>
+          <div>
+            <h4 class="font-bold text-xs text-primary group-hover:text-secondary flex items-center gap-1">
+              Smt. Sunita Deshmukh <span class="text-[9px] bg-teal-100 text-teal-800 font-extrabold px-1.5 py-0.2 rounded">Sambhajinagar</span>
+            </h4>
+            <span class="text-[10px] text-on-surface-variant font-medium">Rural Textile & Garment Hub • Registered</span>
+          </div>
+        </div>
+        <span class="text-[10px] font-bold bg-teal-600 text-white px-2 py-0.5 rounded-full shadow-2xs">Allotted</span>
+      </div>
+      <div class="mt-2 pt-2 border-t border-outline-variant/30 flex items-center justify-between text-[11px]">
+        <span class="text-on-surface-variant">Allotted Scheme: <strong class="text-primary">CGTMSE Guarantee</strong></span>
+        <strong class="text-teal-700 font-extrabold">₹50.0 Lakhs Loan</strong>
+      </div>
+    </div>
+
+    <!-- Registered Person 3: Shri K. Ramakrishna -->
+    <div class="registered-profile-card bg-surface-container-low/70 hover:bg-surface-container p-3 rounded-xl border border-outline-variant/40 transition-all cursor-pointer group" data-district="vizag" data-x="70%" data-y="65%">
+      <div class="flex items-start justify-between gap-2">
+        <div class="flex items-center gap-2.5">
+          <img src="/assets/food_processing_unit.png" class="w-9 h-9 rounded-full object-cover border-2 border-blue-600">
+          <div>
+            <h4 class="font-bold text-xs text-primary group-hover:text-secondary flex items-center gap-1">
+              Shri K. Ramakrishna <span class="text-[9px] bg-blue-100 text-blue-800 font-extrabold px-1.5 py-0.2 rounded">Vizag Port</span>
+            </h4>
+            <span class="text-[10px] text-on-surface-variant font-medium">Marine Seafood Processing • Registered</span>
+          </div>
+        </div>
+        <span class="text-[10px] font-bold bg-blue-600 text-white px-2 py-0.5 rounded-full shadow-2xs">Disbursed</span>
+      </div>
+      <div class="mt-2 pt-2 border-t border-outline-variant/30 flex items-center justify-between text-[11px]">
+        <span class="text-on-surface-variant">Allotted Scheme: <strong class="text-primary">PMMSY Seafood Grant</strong></span>
+        <strong class="text-blue-700 font-extrabold">₹15.0 Lakhs Grant</strong>
+      </div>
+    </div>
+
+    <!-- Registered Person 4: Dr. Srinivas Rao -->
+    <div class="registered-profile-card bg-surface-container-low/70 hover:bg-surface-container p-3 rounded-xl border border-outline-variant/40 transition-all cursor-pointer group" data-district="hyderabad" data-x="58%" data-y="75%">
+      <div class="flex items-start justify-between gap-2">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xs border-2 border-indigo-400">
+            SR
+          </div>
+          <div>
+            <h4 class="font-bold text-xs text-primary group-hover:text-secondary flex items-center gap-1">
+              Dr. Srinivas Rao <span class="text-[9px] bg-indigo-100 text-indigo-800 font-extrabold px-1.5 py-0.2 rounded">Hyderabad Tech</span>
+            </h4>
+            <span class="text-[10px] text-on-surface-variant font-medium">Bio-Tech & Pharma Lab • Registered</span>
+          </div>
+        </div>
+        <span class="text-[10px] font-bold bg-indigo-600 text-white px-2 py-0.5 rounded-full shadow-2xs">Approved</span>
+      </div>
+      <div class="mt-2 pt-2 border-t border-outline-variant/30 flex items-center justify-between text-[11px]">
+        <span class="text-on-surface-variant">Allotted Scheme: <strong class="text-primary">Mudra & Tech Subvention</strong></span>
+        <strong class="text-indigo-700 font-extrabold">₹10.0 Lakhs Seed</strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Live Action Cards generated dynamically by the Voice Assistant -->
+<div class="space-y-3">
+<div class="flex items-center justify-between px-1">
+<span class="font-headline-sm text-label-md font-bold text-primary flex items-center gap-1.5">
+<span class="font-headline-sm text-label-md font-bold text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[1.1rem]">auto_awesome</span>
+            Instant Scheme Action
+          </span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Auto-generated</span>
+</div>
+<!-- Scheme Quick-Card: PMEGP -->
+<div class="bg-surface-container-lowest rounded-xl border border-secondary/40 p-3.5 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between gap-2">
+<div class="flex-1">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-primary-container font-label-sm text-[0.68rem] font-bold">MSME Ministry</span>
+<span class="px-2 py-0.5 rounded bg-secondary-container/60 text-secondary font-label-sm text-[0.68rem] font-bold">Rural Special</span>
+</div>
+<h4 id="action-scheme-title" class="font-headline-sm text-label-lg font-bold text-primary leading-snug">Prime Minister's Employment Generation Programme (PMEGP)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Agro-Food Processing Unit Setup</p>
+</div>
+<div class="text-right">
+<span id="action-grant-amount" class="font-headline-sm text-headline-sm font-bold text-primary block leading-tight">₹17.5L</span>
+<span class="font-label-sm text-[0.65rem] text-secondary font-bold">Max 35% Grant</span>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-outline-variant/30 flex items-center gap-2">
+<button id="btn-apply-guidance" class="flex-1 h-10 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-[1rem]">mic</span>
+              Apply with Voice Guidance
+            </button>
+<button class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors" title="View Scheme Details">
+<span class="material-symbols-outlined text-[1.2rem]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Document Assistance Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 p-3.5 shadow-sm flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[1.3rem]">description</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-label-md font-bold text-primary leading-tight">AI DPR Generator Ready</h4>
+<p class="font-body-sm text-[0.75rem] text-on-surface-variant">Complete bank project report via 2 min voice interview</p>
+</div>
+</div>
+<button class="px-3 py-2 rounded-lg bg-surface-container-high text-primary font-label-sm text-label-sm font-bold whitespace-nowrap hover:bg-surface-variant active:scale-95 transition-all">
+            Start Interview
+          </button>
+</div>
+</div>
+<!-- Live Suggested Voice Queries / Quick Prompts -->
+<div class="space-y-2 pt-1">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-md text-label-md font-bold text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[1rem] text-outline">lightbulb</span>
+            Quick Voice Inquiries
+          </span>
+<span class="font-label-sm text-[0.7rem] text-on-surface-variant">Tap to ask</span>
+</div>
+<div class="grid grid-cols-1 gap-2">
+<button class="quick-prompt-btn flex items-center justify-between p-2.5 rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-left hover:border-secondary/50 hover:bg-surface-container-low transition-colors group cursor-pointer" data-query="How much subsidy will I get for 20 Lakhs loan?">
+<div class="flex items-center gap-2.5">
+<div class="w-6 h-6 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[0.95rem]">mic</span>
+</div>
+<span class="font-body-md text-body-sm font-medium text-on-surface">"How much subsidy will I get for ₹20 Lakhs loan?"</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[1.1rem] group-hover:text-secondary group-hover:translate-x-0.5 transition-all">chevron_right</span>
+</button>
+<button class="quick-prompt-btn flex items-center justify-between p-2.5 rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-left hover:border-secondary/50 hover:bg-surface-container-low transition-colors group cursor-pointer" data-query="List missing documents for PMEGP food unit">
+<div class="flex items-center gap-2.5">
+<div class="w-6 h-6 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[0.95rem]">mic</span>
+</div>
+<span class="font-body-md text-body-sm font-medium text-on-surface">"List missing documents for PMEGP food unit"</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[1.1rem] group-hover:text-secondary group-hover:translate-x-0.5 transition-all">chevron_right</span>
+</button>
+<button class="quick-prompt-btn flex items-center justify-between p-2.5 rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-left hover:border-secondary/50 hover:bg-surface-container-low transition-colors group cursor-pointer" data-query="Explain 35% rural subsidy eligibility rules">
+<div class="flex items-center gap-2.5">
+<div class="w-6 h-6 rounded-full bg-secondary-container/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[0.95rem]">mic</span>
+</div>
+<span class="font-body-md text-body-sm font-medium text-on-surface">"Explain 35% rural subsidy eligibility rules"</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[1.1rem] group-hover:text-secondary group-hover:translate-x-0.5 transition-all">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Call & Audio Controls Dock / Panel -->
+<div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/40 p-4 shadow-md space-y-3">
+<div class="flex items-center justify-around py-1">
+<!-- Text Keyboard Toggle -->
+<button id="btn-keyboard-toggle" class="w-12 h-12 rounded-full bg-surface-container flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-95 transition-transform cursor-pointer" title="Type Question / Keyboard Mode">
+<span class="material-symbols-outlined text-[1.3rem]">keyboard</span>
+<span class="text-[0.6rem] font-semibold mt-0.5">Type</span>
+</button>
+<!-- Main Pulsing Mic Action Button -->
+<div class="relative flex items-center justify-center">
+<div class="absolute -inset-2 rounded-full bg-secondary/20 animate-ping"></div>
+<button id="btn-main-mic" class="relative w-16 h-16 rounded-full bg-secondary text-on-secondary shadow-lg flex flex-col items-center justify-center active:scale-95 transition-transform border-4 border-surface-container-lowest cursor-pointer" title="Start / Stop Listening">
+<span class="material-symbols-outlined text-[2rem]">mic</span>
+</button>
+</div>
+<!-- Speakerphone Toggle -->
+<button id="btn-speaker-toggle" class="w-12 h-12 rounded-full bg-surface-container flex flex-col items-center justify-center text-secondary active:scale-95 transition-transform cursor-pointer" title="Toggle Speaker Mute/Unmute">
+<span class="material-symbols-outlined text-[1.3rem]">volume_up</span>
+<span class="text-[0.6rem] font-semibold mt-0.5">Speaker</span>
+</button>
+</div>
+<!-- End / Minimize Action Bar -->
+<div class="pt-2 border-t border-outline-variant/30 flex items-center justify-between">
+<button id="btn-end-session" class="text-error font-label-md text-label-sm font-semibold flex items-center gap-1 hover:underline cursor-pointer">
+<span class="material-symbols-outlined text-[1.1rem]">call_end</span>
+            End Call &amp; Save Summary
+          </button>
+<button class="text-on-surface-variant font-label-sm text-label-sm font-medium flex items-center gap-1 hover:text-primary">
+<span class="material-symbols-outlined text-[1.1rem]">pause_circle</span>
+            Hold Session
+          </button>
+</div>
+<!-- Accessibility & Privacy Trust Assurance Reassurance -->
+<div class="bg-surface-container-low/70 rounded-lg p-2.5 flex items-start gap-2 border border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary text-[1rem] mt-0.5">verified_user</span>
+<p class="font-body-sm text-[0.68rem] text-on-surface-variant leading-snug">
+<strong>DPDP Act Compliant:</strong> Voice queries are processed through sovereign secure MSME cloud nodes. Audio streams are encrypted and never stored without your explicit consent.
+          </p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Execution of Shared Component with 'Assistant' Active) -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-[420px] mx-auto z-50 flex justify-around items-center px-gutter-mobile py-space-xs pb-safe h-16 bg-surface-container-lowest shadow-lg border-t border-outline-variant/30">
+<!-- Tab 1: Discover -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-2xs transition-all duration-200 hover:bg-surface-container-high rounded-full" href="/schemematch_ai_home_discovery/code.html">
+<span class="material-symbols-outlined text-[1.4rem]">explore</span>
+<span class="font-label-sm text-label-sm mt-0.5">Discover</span>
+</a>
+<!-- Tab 2: Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-2xs transition-all duration-200 hover:bg-surface-container-high rounded-full" href="/schemematch_ai_entrepreneur_profile_eligibility/code.html">
+<span class="material-symbols-outlined text-[1.4rem]">person_outline</span>
+<span class="font-label-sm text-label-sm mt-0.5">Profile</span>
+</a>
+<!-- Tab 3: Matches -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-2xs transition-all duration-200 hover:bg-surface-container-high rounded-full" href="/schemematch_ai_match_results_dashboard/code.html">
+<span class="material-symbols-outlined text-[1.4rem]">verified</span>
+<span class="font-label-sm text-label-sm mt-0.5">Matches</span>
+</a>
+<!-- Tab 4: Assistant (Active Mint Pill matching UI screenshot) -->
+<a class="flex flex-col items-center justify-center bg-[#5eead4] text-[#042f2e] font-extrabold rounded-full px-4 py-1 shadow-sm transition-all duration-200" href="/schemematch_ai_ai_voice_assistant/code.html">
+<span class="material-symbols-outlined material-symbols-filled text-[1.4rem]">mic</span>
+<span class="font-label-sm text-label-sm font-bold mt-0.5">Assistant</span>
+</a>
+<!-- Tab 5: Admin (Inactive) -->
+<a class="flex flex-col items-center justify-center text-purple-700 font-bold px-space-sm py-space-2xs transition-all duration-200 hover:bg-purple-50 rounded-full" href="/schemematch_ai_admin_blockchain_portal/code.html">
+<span class="material-symbols-outlined text-[1.4rem]">enhanced_encryption</span>
+<span class="font-label-sm text-label-sm mt-0.5">Admin</span>
+</a>
+</nav>
+</div>
+
+<!-- Slide-up Text Chat Drawer Modal -->
+<div id="text-chat-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex-col justify-end transition-opacity duration-300">
+  <div class="w-full max-w-[420px] mx-auto bg-surface-container-lowest rounded-t-3xl p-4 shadow-2xl flex flex-col space-y-3 border-t border-outline-variant/40 animate-in slide-in-from-bottom duration-300">
+    <div class="flex items-center justify-between border-b border-outline-variant/30 pb-2">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary">forum</span>
+        <h3 class="font-headline-sm text-label-lg font-bold text-primary">Type Your Voice Query</h3>
+      </div>
+      <button id="btn-close-chat" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary">
+        <span class="material-symbols-outlined text-[1.2rem]">close</span>
+      </button>
+    </div>
+    <div class="space-y-2">
+      <label class="font-label-sm text-xs text-on-surface-variant font-medium">Ask SchemeMate AI anything about MSME loans, subsidies, or DPR requirements:</label>
+      <div class="relative flex items-center">
+        <input id="chat-input-field" type="text" placeholder="e.g. Subsidy for ₹20 Lakhs food processing unit" class="w-full h-12 pl-4 pr-12 rounded-xl bg-surface-container-low border border-outline-variant/50 text-body-md text-on-surface focus:outline-none focus:border-secondary">
+        <button id="btn-send-chat" class="absolute right-2 w-9 h-9 rounded-lg bg-secondary text-on-secondary flex items-center justify-center shadow hover:bg-secondary/90 transition-transform active:scale-95">
+          <span class="material-symbols-outlined text-[1.2rem]">send</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Session Summary & Download Modal -->
+<div id="session-summary-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-4">
+  <div class="w-full max-w-[400px] bg-surface-container-lowest rounded-2xl p-5 shadow-2xl flex flex-col space-y-4 border border-outline-variant/40 relative">
+    <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary">description</span>
+        <h3 class="font-headline-sm text-label-lg font-bold text-primary">Voice Session Summary</h3>
+      </div>
+      <button id="btn-close-summary" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+        <span class="material-symbols-outlined text-[1.2rem]">close</span>
+      </button>
+    </div>
+    <div class="space-y-3 max-h-[350px] overflow-y-auto pr-1">
+      <div class="bg-surface-container-low p-3 rounded-xl border border-secondary/20">
+        <span class="text-xs font-bold text-secondary uppercase tracking-wider block">Matched Scheme</span>
+        <p class="font-headline-sm text-sm font-bold text-primary mt-0.5">PMEGP — Agro-Food Processing Unit</p>
+        <p class="text-xs text-on-surface-variant mt-1">Subsidy Rate: <strong>35% Capital Grant (Rural Nashik)</strong></p>
+        <p class="text-xs text-on-surface-variant">Max Subsidy Amount: <strong>₹17.5 Lakhs</strong></p>
+      </div>
+
+      <div class="bg-surface-container-low p-3 rounded-xl border border-outline-variant/30 space-y-1">
+        <span class="text-xs font-bold text-primary uppercase tracking-wider block">Session Insights</span>
+        <ul class="text-xs text-on-surface-variant space-y-1 list-disc pl-4">
+          <li>User expressed need for ₹20L food processing machinery.</li>
+          <li>Applicant category: Rural OBC Entrepreneur.</li>
+          <li>DPR Auto-Filler checklist ready for submission.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-2 flex items-center gap-2">
+      <button id="btn-download-summary" class="flex-1 h-11 rounded-xl bg-secondary text-on-secondary font-label-md text-sm font-bold flex items-center justify-center gap-2 shadow hover:bg-secondary/90 transition-all active:scale-95">
+        <span class="material-symbols-outlined text-[1.1rem]">download</span>
+        Download PDF Summary
+      </button>
+      <button id="btn-done-summary" class="px-4 h-11 rounded-xl bg-surface-container text-primary font-label-md text-sm font-bold hover:bg-surface-container-high">
+        Done
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Interactive AI Voice & Chat JavaScript Engine -->
+<script>
+  (function() {
+    // --- State Variables ---
+    let isListening = false;
+    let isSpeaking = false;
+    let isMuted = false;
+    let currentLang = 'en-IN'; // Default English: 'en-IN', 'hi-IN', 'te-IN', 'mr-IN'
+    let currentSpeed = 1.0;
+    let recognition = null;
+    let currentUtterance = null;
+
+    // Language Metadata Mapping
+    const langConfig = {
+      'en-IN': {
+        name: 'English',
+        badge: 'English Auto-detected',
+        voiceLabel: 'Spoken in Natural English Voice',
+        listeningMsg: 'Listening in English... Speak freely',
+        transcribeHeader: 'Live Transcription (English)',
+        defaultReasoning: '"Based on your Andhra Pradesh profile (Visakhapatnam/Guntur/Vijayawada) and food processing enterprise, you qualify for the <strong class=\"text-primary font-bold\">PMEGP & AP Food Processing Policy with up to 35% capital subsidy (₹17.5 Lakhs grant)</strong>. Would you like me to auto-fill the Project Report (DPR) or explain document requirements?"',
+        defaultNative: '"I need a subsidy for a food processing unit in rural Nashik, which scheme is suitable?"',
+        defaultTrans: '"I need a subsidy for a food processing unit in rural Nashik, which scheme is suitable?"',
+        speechText: "Based on your rural Nashik profile and food processing enterprise, you qualify for the PMEGP scheme with up to 35 percent capital subsidy, which provides up to 17.5 Lakhs grant. Would you like me to auto-fill the Project Report or explain document requirements?"
+      },
+      'hi-IN': {
+        name: 'हिंदी (Hindi)',
+        badge: 'हिंदी (Hindi) Auto-detected',
+        voiceLabel: 'Spoken in Natural Hindi Voice (हिंदी)',
+        listeningMsg: 'हिंदी में सुन रहे हैं... निसंकोच बोलें',
+        transcribeHeader: 'सजीव प्रतिलेखन (हिंदी)',
+        defaultReasoning: '"आपकी ग्रामीण नासिक प्रोफाइल और खाद्य प्रसंस्करण उद्योग के आधार पर, आप <strong class=\"text-primary font-bold\">35% पूंजीगत सब्सिडी (₹17.5 लाख अनुदान) के साथ PMEGP योजना</strong> के लिए पात्र हैं। क्या आप चाहते हैं कि मैं प्रोजेक्ट रिपोर्ट (DPR) ऑटो-फिल करूं या दस्तावेजों की आवश्यकताएं समझाऊं?"',
+        defaultNative: '"मुझे खाद्य प्रसंस्करण इकाई के लिए सब्सिडी चाहिए, कौन सी योजना उपयुक्त होगी?"',
+        defaultTrans: '"I need a subsidy for a food processing unit, which scheme is suitable?"',
+        speechText: "आपकी ग्रामीण नासिक प्रोफाइल और खाद्य प्रसंस्करण उद्योग के आधार पर, आप PMEGP योजना के तहत 35 प्रतिशत पूंजीगत सब्सिडी यानी 17.5 लाख रुपये अनुदान के पात्र हैं। क्या आप प्रोजेक्ट रिपोर्ट ऑटो-फिल करना चाहते हैं?"
+      },
+      'te-IN': {
+        name: 'తెలుగు (Telugu)',
+        badge: 'తెలుగు (Telugu) Auto-detected',
+        voiceLabel: 'Spoken in Natural Telugu Voice (తెలుగు)',
+        listeningMsg: 'తెలుగులో వింటున్నాము... ధైర్యంగా మాట్లాడండి',
+        transcribeHeader: 'లైవ్ ట్రాన్స్‌క్రిప్షన్ (తెలుగు)',
+        defaultReasoning: '"మీ ఆంధ్రా ప్రదేశ్ (విశాఖపట్నం / గుంటూరు / విజయవాడ) ప్రొఫైల్ మరియు ఆహార ప్రాసెసింగ్ పరిశ్రమ ఆధారంగా, మీరు <strong class=\"text-primary font-bold\">35% మూలధన సబ్సిడీ (₹17.5 లక్షల గ్రాంట్) తో PMEGP & YSR నవోదయ పథకాలకి</strong> అర్హులు. నేను ప్రాజెక్ట్ రిపోర్ట్ (DPR)ను ఆటో-ఫిల్ చేయాలా లేదా పత్రాల వివరాలను వివరించాలా?"',
+        defaultNative: '"నాకు ఫుడ్ ప్రాసెసింగ్ యూనిట్ కోసం సబ్సిడీ కావాలి, ఏ పథకం తగినది?"',
+        defaultTrans: '"I need a subsidy for a food processing unit, which scheme is suitable?"',
+        speechText: "మీ గ్రామీణ నాశిక్ ప్రొఫైల్ మరియు ఆహార ప్రాసెసింగ్ పరిశ్రమ ఆధారంగా, మీరు PMEGP పథకం కింద 35 శాతం మూలధన సబ్సిడీ అంటే 17.5 లక్షల గ్రాంట్‌కు అర్హులు."
+      },
+      'mr-IN': {
+        name: 'मराठी (Marathi)',
+        badge: 'मराठी (Marathi) Auto-detected',
+        voiceLabel: 'Spoken in Natural Marathi Voice (मराठी)',
+        listeningMsg: 'मराठीमध्ये ऐकत आहोत... मोकळेपणाने बोला',
+        transcribeHeader: 'थेट प्रतिलेखन (मराठी)',
+        defaultReasoning: '"तुमच्या ग्रामीण नाशिक प्रोफाइल आणि अन्न प्रक्रिया उद्योगाच्या आधारे, तुम्ही <strong class=\"text-primary font-bold\">३५% पर्यंत भांडवली सबसिडी (₹१७.५ लाख अनुदान) सह PMEGP योजनेसाठी</strong> पात्र आहात. मी प्रोजेक्ट रिपोर्ट (DPR) ऑटो-फिल करू की कागदपत्रांच्या आवश्यकता स्पष्ट करू?"',
+        defaultNative: '"मला खाद्य प्रक्रिया उद्योगासाठी सबसिडी हवी आहे, कोणती योजना योग्य ठरेल?"',
+        defaultTrans: '"I need a subsidy for a food processing unit, which scheme is suitable?"',
+        speechText: "तुमच्या ग्रामीण नाशिक प्रोफाइल आणि अन्न प्रक्रिया उद्योगाच्या आधारे, तुम्ही ३५ टक्के भांडवली सबसिडी म्हणजेच १७.५ लाख रुपये अनुदानासह PMEGP योजनेसाठी पात्र आहात."
+      }
+    };
+
+    // --- DOM Elements ---
+    const langChipBtns = document.querySelectorAll('.lang-chip-btn');
+    const statusSubBanner = document.getElementById('status-sub-banner');
+    const listeningStatusPill = document.getElementById('listening-status-pill');
+    const btnVoiceOrb = document.getElementById('btn-voice-orb');
+    const btnMainMic = document.getElementById('btn-main-mic');
+    const btnSpeakerToggle = document.getElementById('btn-speaker-toggle');
+    const btnKeyboardToggle = document.getElementById('btn-keyboard-toggle');
+    const btnEndSession = document.getElementById('btn-end-session');
+
+    const transcriptionBadge = document.getElementById('transcription-badge');
+    const transcriptionNative = document.getElementById('transcription-native');
+    const transcriptionTranslated = document.getElementById('transcription-translated');
+
+    const aiMatchTag = document.getElementById('ai-match-tag');
+    const aiReasoningBody = document.getElementById('ai-reasoning-body');
+    
+    const btnPlayAudio = document.getElementById('btn-play-audio');
+    const audioTitleLabel = document.getElementById('audio-title-label');
+    const audioSubLabel = document.getElementById('audio-sub-label');
+    const audioProgressBar = document.getElementById('audio-progress-bar');
+    const btnSpeedToggle = document.getElementById('btn-speed-toggle');
+
+    const replayLangBtns = document.querySelectorAll('.replay-lang-btn');
+
+    const actionSchemeTitle = document.getElementById('action-scheme-title');
+    const actionGrantAmount = document.getElementById('action-grant-amount');
+    const btnApplyGuidance = document.getElementById('btn-apply-guidance');
+
+    const textChatModal = document.getElementById('text-chat-modal');
+    const btnCloseChat = document.getElementById('btn-close-chat');
+    const chatInputField = document.getElementById('chat-input-field');
+    const btnSendChat = document.getElementById('btn-send-chat');
+
+    const sessionSummaryModal = document.getElementById('session-summary-modal');
+    const btnCloseSummary = document.getElementById('btn-close-summary');
+    const btnDownloadSummary = document.getElementById('btn-download-summary');
+    const btnDoneSummary = document.getElementById('btn-done-summary');
+
+    const quickPromptBtns = document.querySelectorAll('.quick-prompt-btn');
+
+    // --- Knowledge Base Multilingual QA Engine ---
+    const knowledgeBase = [
+      {
+        keywords: ['subsidy', 'subsidies', '20', 'loan', '20L', 'lakhs', 'सबसिडी', 'अनुदान', 'लोन', 'సబ్సిడీ'],
+        'en-IN': {
+          text: "For your ₹20 Lakhs food processing project in rural Nashik, you qualify for 35% PMEGP capital subsidy providing ₹17.5 Lakhs grant.",
+          trans: "For your ₹20 Lakhs food processing project in rural Nashik, you qualify for 35% PMEGP capital subsidy providing ₹17.5 Lakhs grant.",
+          reasoning: 'Based on your rural Nashik profile and food processing enterprise, you qualify for the <strong class="text-primary font-bold">PMEGP scheme with up to 35% capital subsidy (₹17.5 Lakhs grant)</strong>. Would you like me to auto-fill the Project Report (DPR) or explain document requirements?'
+        },
+        'hi-IN': {
+          text: "आपकी ग्रामीण नासिक प्रोफाइल के आधार पर, आप PMEGP योजना के तहत 35% पूंजीगत सब्सिडी (₹17.5 लाख अनुदान) के पात्र हैं।",
+          trans: "Based on your rural Nashik profile, you qualify for 35% capital subsidy (₹17.5 Lakhs grant) under PMEGP scheme.",
+          reasoning: 'आपकी ग्रामीण नासिक प्रोफाइल और खाद्य प्रसंस्करण उद्योग के आधार पर, आप <strong class="text-primary font-bold">35% पूंजीगत सब्सिडी (₹17.5 लाख अनुदान) के साथ PMEGP योजना</strong> के लिए पात्र हैं।'
+        },
+        'te-IN': {
+          text: "మీ గ్రామీణ నాశిక్ ప్రొఫైల్ ఆధారంగా, మీరు PMEGP పథకం కింద 35% మూలధన సబ్సిడీ (₹17.5 లక్షల గ్రాంట్)కి అర్హులు.",
+          trans: "Based on your rural Nashik profile, you qualify for 35% capital subsidy (₹17.5 Lakhs grant) under PMEGP scheme.",
+          reasoning: 'మీ గ్రామీణ నాశిక్ ప్రొఫైల్ మరియు ఆహార ప్రాసెసింగ్ పరిశ్రమ ఆధారంగా, మీరు <strong class="text-primary font-bold">35% మూలధన సబ్సిడీ (₹17.5 లక్షల గ్రాంట్) తో PMEGP పథకానికి</strong> అర్హులు.'
+        },
+        'mr-IN': {
+          text: "तुमच्या ग्रामीण नाशिक प्रोफाइलनुसार, तुम्ही PMEGP योजनेअंतर्गत ३५% भांडवली सबसिडी (₹१७.५ लाख अनुदान) साठी पात्र आहात.",
+          trans: "Based on your rural Nashik profile, you qualify for 35% capital subsidy (₹17.5 Lakhs grant) under PMEGP scheme.",
+          reasoning: 'तुमच्या ग्रामीण नाशिक प्रोफाइल आणि अन्न प्रक्रिया उद्योगाच्या आधारे, तुम्ही <strong class="text-primary font-bold">३५% पर्यंत भांडवली सबसिडी (₹१७.५ लाख अनुदान) सह PMEGP योजनेसाठी</strong> पात्र आहात.'
+        },
+        matchScore: "94% Match",
+        schemeTitle: "Prime Minister's Employment Generation Programme (PMEGP)",
+        grantAmount: "₹17.5L Grant"
+      },
+      {
+        keywords: ['document', 'documents', 'missing', 'paper', 'कागदपत्रे', 'दस्तावेज', 'పత్రాలు', 'list'],
+        'en-IN': {
+          text: "Required PMEGP Documents: 1. Aadhaar Card, 2. PAN Card, 3. Gram Panchayat Certificate, 4. 6-Month Bank Statement, and 5. AI Generated Project Report (DPR).",
+          trans: "Required PMEGP Documents: 1. Aadhaar Card, 2. PAN Card, 3. Gram Panchayat Certificate, 4. 6-Month Bank Statement, and 5. AI Generated Project Report (DPR).",
+          reasoning: 'Document Checklist Verified: <strong class="text-primary font-bold">5 of 7 key documents are verified</strong> via DigiLocker & Panchayat records. DPR report is ready to auto-fill.'
+        },
+        'hi-IN': {
+          text: "आवश्यक दस्तावेज़: १. आधार कार्ड, २. पैन कार्ड, ३. ग्राम पंचायत प्रमाण पत्र, ४. बैंक स्टेटमेंट, ५. प्रोजेक्ट रिपोर्ट (DPR)।",
+          trans: "Required Documents: 1. Aadhaar, 2. PAN, 3. Gram Panchayat Certificate, 4. Bank Statement, 5. Project Report (DPR).",
+          reasoning: 'दस्तावेज़ सूची सत्यापित: <strong class="text-primary font-bold">7 में से 5 मुख्य दस्तावेज़ सत्यापित हैं</strong>। आपकी DPR रिपोर्ट ऑटो-फिल के लिए तैयार है।'
+        },
+        'te-IN': {
+          text: "అవసరమైన పత్రాలు: 1. ఆధార్ కార్డ్, 2. పాన్ కార్డ్, 3. గ్రామ పంచాయితీ సర్టిఫికేట్, 4. బ్యాంక్ స్టేట్‌మెంట్, 5. ప్రాజెక్ట్ రిపోర్ట్ (DPR).",
+          trans: "Required Documents: 1. Aadhaar, 2. PAN, 3. Gram Panchayat Certificate, 4. Bank Statement, 5. Project Report (DPR).",
+          reasoning: 'పత్రాల తనిఖీ పూర్తయింది: <strong class="text-primary font-bold">7 లో 5 ప్రధాన పత్రాలు ధృవీకరించబడ్డాయి</strong>. మీ DPR నివేదిక సిద్ధంగా ఉంది.'
+        },
+        'mr-IN': {
+          text: "आवश्यक कागदपत्रे: १. आधार कार्ड, २. पॅन कार्ड, ३. ग्रामपंचायत दाखला, ४. बँक स्टेटमेंट, ५. प्रोजेक्ट रिपोर्ट (DPR).",
+          trans: "Required Documents: 1. Aadhaar, 2. PAN, 3. Gram Panchayat Certificate, 4. Bank Statement, 5. Project Report (DPR).",
+          reasoning: 'कागदपत्रे पडताळणी: <strong class="text-primary font-bold">७ पैकी ५ मुख्य कागदपत्रे पडताळली आहेत</strong>. तुमची DPR रिपोर्ट ऑटो-फिलसाठी तयार आहे.'
+        },
+        matchScore: "95% Match",
+        schemeTitle: "PMEGP Document Compliance Portal",
+        grantAmount: "5/7 Ready"
+      }
+    ];
+
+    // --- Switch Active Language ---
+    function setLanguage(langCode) {
+      currentLang = langCode;
+      const config = langConfig[langCode] || langConfig['en-IN'];
+
+      // Update Toolbar Chip Active State
+      langChipBtns.forEach(btn => {
+        if (btn.getAttribute('data-lang') === langCode) {
+          btn.classList.add('text-secondary', 'font-extrabold', 'bg-surface-container-lowest', 'shadow-2xs');
+          btn.classList.remove('text-on-surface-variant');
+        } else {
+          btn.classList.remove('text-secondary', 'font-extrabold', 'bg-surface-container-lowest', 'shadow-2xs');
+          btn.classList.add('text-on-surface-variant');
+        }
+      });
+
+      // Update Labels & Messages
+      if (statusSubBanner) statusSubBanner.textContent = config.listeningMsg;
+      if (transcriptionBadge) transcriptionBadge.textContent = config.badge;
+      if (audioSubLabel) audioSubLabel.textContent = config.voiceLabel;
+      
+      if (aiReasoningBody) aiReasoningBody.innerHTML = config.defaultReasoning;
+      if (transcriptionNative) transcriptionNative.innerHTML = config.defaultNative;
+      if (transcriptionTranslated) transcriptionTranslated.innerHTML = config.defaultTrans;
+
+      if (recognition) recognition.lang = currentLang;
+    }
+
+    // --- Web Speech Recognition Setup ---
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = true;
+      recognition.lang = currentLang;
+
+      recognition.onstart = function() {
+        isListening = true;
+        updateUIListeningState(true);
+      };
+
+      recognition.onresult = function(event) {
+        let interimTranscript = '';
+        let finalTranscript = '';
+
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+          }
+        }
+
+        const textToShow = finalTranscript || interimTranscript;
+        if (textToShow) {
+          transcriptionNative.textContent = `"${textToShow}"`;
+          transcriptionTranslated.textContent = `Processing in ${langConfig[currentLang].name}...`;
+        }
+
+        if (finalTranscript) {
+          processUserQuery(finalTranscript);
+        }
+      };
+
+      recognition.onerror = function(event) {
+        console.warn('Speech recognition error:', event.error);
+        isListening = false;
+        updateUIListeningState(false);
+      };
+
+      recognition.onend = function() {
+        isListening = false;
+        updateUIListeningState(false);
+      };
+    }
+
+    // --- Update UI Listening States ---
+    function updateUIListeningState(listening) {
+      if (listening) {
+        if (listeningStatusPill) listeningStatusPill.textContent = `Listening in ${langConfig[currentLang].name}...`;
+        if (btnMainMic) {
+          btnMainMic.classList.add('bg-error', 'animate-pulse');
+          btnMainMic.classList.remove('bg-secondary');
+        }
+      } else {
+        if (listeningStatusPill) listeningStatusPill.textContent = "Voice Session Connected";
+        if (btnMainMic) {
+          btnMainMic.classList.remove('bg-error', 'animate-pulse');
+          btnMainMic.classList.add('bg-secondary');
+        }
+      }
+    }
+
+    // --- Toggle Speech Recognition ---
+    function toggleListening() {
+      if (!recognition) {
+        alert("Speech Recognition is supported via text chat input in this browser environment. Use the Keyboard button!");
+        openChatModal();
+        return;
+      }
+      if (isListening) {
+        recognition.stop();
+      } else {
+        if (isSpeaking) {
+          window.speechSynthesis.cancel();
+          isSpeaking = false;
+        }
+        recognition.lang = currentLang;
+        try {
+          recognition.start();
+        } catch(e) {
+          recognition.stop();
+        }
+      }
+    }
+
+    // --- Process User Queries ---
+    function processUserQuery(queryText) {
+      const lower = queryText.toLowerCase();
+      let matched = knowledgeBase.find(kb => kb.keywords.some(kw => lower.includes(kw.toLowerCase())));
+
+      let langData;
+      let score = "94% Match";
+      let sTitle = "Prime Minister's Employment Generation Programme (PMEGP)";
+      let sGrant = "₹17.5L Grant";
+
+      if (matched) {
+        langData = matched[currentLang] || matched['en-IN'];
+        score = matched.matchScore;
+        sTitle = matched.schemeTitle;
+        sGrant = matched.grantAmount;
+      } else {
+        const cfg = langConfig[currentLang] || langConfig['en-IN'];
+        langData = {
+          text: `Based on your rural Nashik profile and food processing enterprise, you qualify for the PMEGP scheme with up to 35 percent capital subsidy, which provides up to 17.5 Lakhs grant.`,
+          trans: `Query processed: "${queryText}"`,
+          reasoning: `Based on your rural Nashik profile and food processing enterprise, you qualify for the <strong class="text-primary font-bold">PMEGP scheme with up to 35% capital subsidy (₹17.5 Lakhs grant)</strong>. Would you like me to auto-fill the Project Report (DPR) or explain document requirements?`
+        };
+      }
+
+      // Update UI Text
+      if (transcriptionNative) transcriptionNative.textContent = `"${queryText}"`;
+      if (transcriptionTranslated) transcriptionTranslated.textContent = `"${langData.trans}"`;
+      if (aiReasoningBody) aiReasoningBody.innerHTML = `"${langData.reasoning}"`;
+      if (aiMatchTag) aiMatchTag.innerHTML = `<span class="material-symbols-outlined text-[0.9rem] text-secondary">verified</span> ${score}`;
+
+      if (actionSchemeTitle) actionSchemeTitle.textContent = sTitle;
+      if (actionGrantAmount) actionGrantAmount.textContent = sGrant;
+
+      // Speak Response in active language
+      speakResponse(langData.text, currentLang);
+    }
+
+    // --- Web Speech Synthesis (TTS) ---
+    function speakResponse(text, langCode) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Reset ongoing speech
+
+        const langToUse = langCode || currentLang;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = langToUse;
+        utterance.rate = currentSpeed;
+
+        utterance.onstart = function() {
+          isSpeaking = true;
+          if (audioTitleLabel) audioTitleLabel.textContent = "Playing AI Explanation";
+          if (audioSubLabel) audioSubLabel.textContent = (langConfig[langToUse] || langConfig['en-IN']).voiceLabel;
+          if (audioProgressBar) audioProgressBar.style.width = "25%";
+        };
+
+        utterance.onend = function() {
+          isSpeaking = false;
+          if (audioTitleLabel) audioTitleLabel.textContent = "AI Explanation Completed";
+          if (audioProgressBar) audioProgressBar.style.width = "100%";
+        };
+
+        utterance.onerror = function() {
+          isSpeaking = false;
+        };
+
+        currentUtterance = utterance;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    // --- Attach Language Selector Chips Event ---
+    langChipBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const lang = this.getAttribute('data-lang');
+        setLanguage(lang);
+      });
+    });
+
+    // --- Attach Language Replay Buttons Event ---
+    replayLangBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const lang = this.getAttribute('data-lang');
+        setLanguage(lang);
+        const cfg = langConfig[lang];
+        speakResponse(cfg.speechText, lang);
+      });
+    });
+
+    // --- Play / Pause Audio Button ---
+    if (btnPlayAudio) {
+      btnPlayAudio.addEventListener('click', function() {
+        if ('speechSynthesis' in window) {
+          if (window.speechSynthesis.speaking) {
+            if (window.speechSynthesis.paused) {
+              window.speechSynthesis.resume();
+              isSpeaking = true;
+              if (audioTitleLabel) audioTitleLabel.textContent = "Playing AI Explanation";
+            } else {
+              window.speechSynthesis.pause();
+              isSpeaking = false;
+              if (audioTitleLabel) audioTitleLabel.textContent = "Audio Paused";
+            }
+          } else {
+            const cfg = langConfig[currentLang];
+            speakResponse(cfg.speechText, currentLang);
+          }
+        }
+      });
+    }
+
+    // --- Playback Speed Control ---
+    if (btnSpeedToggle) {
+      btnSpeedToggle.addEventListener('click', function() {
+        if (currentSpeed === 1.0) currentSpeed = 1.2;
+        else if (currentSpeed === 1.2) currentSpeed = 1.5;
+        else currentSpeed = 1.0;
+        btnSpeedToggle.textContent = `${currentSpeed.toFixed(1)}x`;
+      });
+    }
+
+    // --- Quick Prompt Buttons ---
+    quickPromptBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const query = this.getAttribute('data-query');
+        if (query) {
+          processUserQuery(query);
+        }
+      });
+    });
+
+    // --- Button Event Listeners for Recording ---
+    if (btnVoiceOrb) btnVoiceOrb.addEventListener('click', toggleListening);
+    if (btnMainMic) btnMainMic.addEventListener('click', toggleListening);
+
+    // --- Keyboard Chat Drawer Modal ---
+    function openChatModal() {
+      if (textChatModal) {
+        textChatModal.classList.remove('hidden');
+        textChatModal.classList.add('flex');
+      }
+      if (chatInputField) chatInputField.focus();
+    }
+    function closeChatModal() {
+      if (textChatModal) {
+        textChatModal.classList.add('hidden');
+        textChatModal.classList.remove('flex');
+      }
+    }
+
+    if (btnKeyboardToggle) btnKeyboardToggle.addEventListener('click', openChatModal);
+    if (btnCloseChat) btnCloseChat.addEventListener('click', closeChatModal);
+
+    if (btnSendChat) {
+      btnSendChat.addEventListener('click', function() {
+        const val = chatInputField.value.trim();
+        if (val) {
+          processUserQuery(val);
+          chatInputField.value = '';
+          closeChatModal();
+        }
+      });
+    }
+
+    if (chatInputField) {
+      chatInputField.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          const val = chatInputField.value.trim();
+          if (val) {
+            processUserQuery(val);
+            chatInputField.value = '';
+            closeChatModal();
+          }
+        }
+      });
+    }
+
+    // --- Session Summary Modal ---
+    function openSummaryModal() {
+      if (sessionSummaryModal) {
+        sessionSummaryModal.classList.remove('hidden');
+        sessionSummaryModal.classList.add('flex');
+      }
+    }
+    function closeSummaryModal() {
+      if (sessionSummaryModal) {
+        sessionSummaryModal.classList.add('hidden');
+        sessionSummaryModal.classList.remove('flex');
+      }
+    }
+
+    if (btnEndSession) btnEndSession.addEventListener('click', openSummaryModal);
+    if (btnCloseSummary) btnCloseSummary.addEventListener('click', closeSummaryModal);
+    if (btnDoneSummary) btnDoneSummary.addEventListener('click', closeSummaryModal);
+
+    if (btnDownloadSummary) {
+      btnDownloadSummary.addEventListener('click', function() {
+        const summaryText = `
+=====================================================
+SCHEMEMATCH AI — MULTILINGUAL VOICE SESSION REPORT
+=====================================================
+Date: ${new Date().toLocaleDateString('en-IN')}
+Applicant Profile: Rural OBC Entrepreneur (Nashik District)
+Business Sector: Agro-Food Processing Unit
+
+RECOMMENDED SCHEME MATCH:
+- Scheme Name: Prime Minister's Employment Generation Programme (PMEGP)
+- Ministry: Ministry of MSME, Govt of India
+- Subsidy Rate: 35% Capital Subsidy (Rural Category)
+- Subsidy Amount: Up to ₹17.5 Lakhs Grant
+
+MULTILINGUAL SUPPORT ENABLED:
+- Supported Voices: English (en-IN), Hindi (hi-IN), Telugu (te-IN), Marathi (mr-IN)
+
+VERIFIED DOCUMENTS:
+1. Aadhaar Card (DigiLocker Verified)
+2. PAN Card (Verified)
+3. Caste Certificate (OBC Verified)
+4. Gram Panchayat Rural Certificate
+5. Bank Statement (6 Months Uploaded)
+
+=====================================================
+Generated by SchemeMatch AI Sovereign Multilingual Engine
+        `.trim();
+
+        const blob = new Blob([summaryText], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'SchemeMatch_Multilingual_Voice_Summary.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    // Speaker Mute Toggle
+    if (btnSpeakerToggle) {
+      btnSpeakerToggle.addEventListener('click', function() {
+        isMuted = !isMuted;
+        if (isMuted) {
+          if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+          btnSpeakerToggle.classList.add('text-error');
+          btnSpeakerToggle.classList.remove('text-secondary');
+        } else {
+          btnSpeakerToggle.classList.remove('text-error');
+          btnSpeakerToggle.classList.add('text-secondary');
+        }
+      });
+    }
+
+    // --- Interactive Map Pointer Relocation & Fake Data Logic ---
+    const mapPointerPin = document.getElementById('map-pointer-pin');
+    const mapPointerLabel = document.getElementById('map-pointer-label');
+    const mapContainer = document.getElementById('district-map-container');
+    const fakeDistrictTitle = document.getElementById('fake-district-title');
+    const fakeSubsidyRate = document.getElementById('fake-subsidy-rate');
+    const fakeGrantCap = document.getElementById('fake-grant-cap');
+    const fakeNodalBank = document.getElementById('fake-nodal-bank');
+    const fakeDicOfficer = document.getElementById('fake-dic-officer');
+    const fakeApprovalRate = document.getElementById('fake-approval-rate');
+    const mapDistrictBtns = document.querySelectorAll('.map-district-btn');
+    const districtChipBtns = document.querySelectorAll('.district-chip-btn');
+
+    const districtFakeData = {
+      nashik: {
+        name: "Nashik Rural Agro Belt",
+        label: "Nashik Rural Zone",
+        subsidy: "35% Capital Subsidy",
+        grant: "₹17.5 Lakhs Grant",
+        bank: "Bank of Maharashtra (Nashik)",
+        officer: "Shri S. V. Kulkarni",
+        approval: "96.4% Fast-track",
+        reasoning: "Location relocated to <strong>Nashik Rural Zone</strong>. You qualify for <strong>35% PMEGP Capital Subsidy (₹17.5 Lakhs)</strong> for food processing via Bank of Maharashtra.",
+        voiceText: "Location relocated to Nashik Rural Zone. 35 percent capital subsidy up to 17.5 Lakhs grant is available."
+      },
+      pune: {
+        name: "Pune Chakan Industrial Corridor",
+        label: "Pune Auto Cluster",
+        subsidy: "25% Capital Subsidy",
+        grant: "₹12.5 Lakhs Grant",
+        bank: "State Bank of India (Pune Main)",
+        officer: "Smt. Archana Deshmukh",
+        approval: "92.8% Verified",
+        reasoning: "Location relocated to <strong>Pune Industrial Zone</strong>. Eligible for <strong>25% Capital Subsidy (₹12.5 Lakhs)</strong> & CGTMSE collateral-free loan.",
+        voiceText: "Location relocated to Pune Industrial Cluster. 25 percent capital subsidy with collateral free loan guarantee is active."
+      },
+      vizag: {
+        name: "Visakhapatnam Port & SEZ Zone",
+        label: "Vizag Marine Cluster",
+        subsidy: "30% Export Subsidy",
+        grant: "₹15.0 Lakhs Grant",
+        bank: "Union Bank of India (Vizag Port)",
+        officer: "Shri K. Ramakrishna",
+        approval: "98.1% Instant",
+        reasoning: "Location relocated to <strong>Visakhapatnam Port Zone</strong>. Qualifies for <strong>30% Marine & Seafood Processing Subsidy (₹15 Lakhs)</strong>.",
+        voiceText: "Location relocated to Visakhapatnam Port Cluster. 30 percent marine and export subsidy is available."
+      },
+      hyderabad: {
+        name: "Hyderabad Genome Valley & Tech Park",
+        label: "Hyderabad Tech Zone",
+        subsidy: "20% Innovation Grant",
+        grant: "₹10.0 Lakhs Grant",
+        bank: "HDFC Bank (Banjara Hills)",
+        officer: "Dr. Srinivas Rao",
+        approval: "91.5% Priority",
+        reasoning: "Location relocated to <strong>Hyderabad Metro Zone</strong>. Eligible for <strong>20% MSME Innovation & Tech Subvention (₹10 Lakhs)</strong>.",
+        voiceText: "Location relocated to Hyderabad Tech Zone. 20 percent tech subvention and seed grant active."
+      },
+      sambhajinagar: {
+        name: "Chhatrapati Sambhajinagar MIDC",
+        label: "Sambhajinagar MIDC Zone",
+        subsidy: "35% Rural Subsidy",
+        grant: "₹17.5 Lakhs Grant",
+        bank: "Bank of Baroda (Waluj MIDC)",
+        officer: "Shri M. P. Patil",
+        approval: "95.2% Fast-track",
+        reasoning: "Location relocated to <strong>Sambhajinagar Industrial Zone</strong>. Eligible for <strong>35% Capital Subsidy (₹17.5 Lakhs)</strong>.",
+        voiceText: "Location relocated to Sambhajinagar MIDC Zone. 35 percent rural subsidy active."
+      }
+    };
+
+    function relocatePointerTo(xPercent, yPercent, districtKey, customName) {
+      if (mapPointerPin) {
+        mapPointerPin.style.left = xPercent;
+        mapPointerPin.style.top = yPercent;
+      }
+      const data = districtFakeData[districtKey] || {
+        name: customName || `Selected Zone (${xPercent}, ${yPercent})`,
+        label: customName || "Custom Region",
+        subsidy: "30% Regional Grant",
+        grant: "₹15.0 Lakhs",
+        bank: "State Nodal Bank Branch",
+        officer: "District DIC Representative",
+        approval: "94.5% Verified",
+        reasoning: `Location relocated to <strong>${customName || 'Selected Region'}</strong>. Custom regional subsidy and grant parameters loaded.`,
+        voiceText: `Location relocated to ${customName || 'selected region'}. Regional subsidy and grant parameters loaded.`
+      };
+
+      if (mapPointerLabel) mapPointerLabel.textContent = data.label;
+      if (fakeDistrictTitle) fakeDistrictTitle.textContent = data.name;
+      if (fakeSubsidyRate) fakeSubsidyRate.textContent = data.subsidy;
+      if (fakeGrantCap) fakeGrantCap.textContent = data.grant;
+      if (fakeNodalBank) fakeNodalBank.textContent = data.bank;
+      if (fakeDicOfficer) fakeDicOfficer.textContent = data.officer;
+      if (fakeApprovalRate) fakeApprovalRate.textContent = data.approval;
+
+      if (aiReasoningBody) aiReasoningBody.innerHTML = `"${data.reasoning}"`;
+      if (transcriptionNative) transcriptionNative.textContent = `"Relocated pointer to ${data.name}"`;
+      if (transcriptionTranslated) transcriptionTranslated.textContent = `"Updating district scheme metrics for ${data.label}..."`;
+
+      speakResponse(data.voiceText, currentLang);
+    }
+
+    // Attach click events to hotspot map buttons
+    mapDistrictBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const dist = this.getAttribute('data-district');
+        const x = this.getAttribute('data-x');
+        const y = this.getAttribute('data-y');
+        relocatePointerTo(x, y, dist);
+      });
+    });
+
+    // Attach click events to district chip buttons
+    districtChipBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        districtChipBtns.forEach(b => {
+          b.classList.remove('bg-primary-container', 'text-on-primary');
+          b.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+        });
+        this.classList.add('bg-primary-container', 'text-on-primary');
+        this.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+
+        const dist = this.getAttribute('data-district');
+        const x = this.getAttribute('data-x');
+        const y = this.getAttribute('data-y');
+        relocatePointerTo(x, y, dist);
+      });
+    });
+
+    // Attach click events to registered entrepreneur profile cards
+    const registeredProfileCards = document.querySelectorAll('.registered-profile-card');
+    registeredProfileCards.forEach(card => {
+      card.addEventListener('click', function() {
+        registeredProfileCards.forEach(c => c.classList.remove('ring-2', 'ring-emerald-600', 'bg-emerald-50/50'));
+        this.classList.add('ring-2', 'ring-emerald-600', 'bg-emerald-50/50');
+        const dist = this.getAttribute('data-district');
+        const x = this.getAttribute('data-x');
+        const y = this.getAttribute('data-y');
+        relocatePointerTo(x, y, dist);
+      });
+    });
+
+    // Click anywhere on map container to relocate pointer pin to exact mouse location
+    if (mapContainer) {
+      mapContainer.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const clickY = e.clientY - rect.top;
+        const xPct = Math.round((clickX / rect.width) * 100) + '%';
+        const yPct = Math.round((clickY / rect.height) * 100) + '%';
+        relocatePointerTo(xPct, yPct, 'custom', `Pin Location (${xPct}, ${yPct})`);
+      });
+    }
+
+    // Initial default language setup to English
+    setLanguage('en-IN');
+
+  })();
+</script>
+
+<!-- Universal Login Modal Overlay -->
+<div id="universal-login-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-4 transition-all">
+  <div class="bg-surface-container-lowest text-on-surface rounded-3xl max-w-md w-full p-6 shadow-2xl border border-outline-variant/40 relative">
+    <!-- Close Button -->
+    <button onclick="closeUniversalLoginModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary">
+      <span class="material-symbols-outlined text-[1.2rem]">close</span>
+    </button>
+    
+    <!-- Header -->
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow">
+        <span class="material-symbols-outlined text-2xl">account_balance</span>
+      </div>
+      <div>
+        <h3 class="font-headline-sm text-label-lg font-bold text-primary">SchemeMatch AI Portal Login</h3>
+        <p class="text-label-sm text-[0.7rem] text-on-surface-variant">Enterprise MSME Scheme & Subsidy Portal</p>
+      </div>
+    </div>
+
+    <!-- Active Account Badge -->
+    <div class="bg-surface-container-low p-3 rounded-xl border border-secondary/30 mb-4 flex items-center gap-3">
+      <img src="/assets/msme_entrepreneur_portrait.png" class="w-10 h-10 rounded-full object-cover border-2 border-secondary shrink-0">
+      <div>
+        <h4 id="auth-user-name" class="font-bold text-xs text-primary">R.Vishnu Vardhan</h4>
+        <span class="text-[10px] text-secondary font-bold">Verified Account • Nashik Agro Zone</span>
+      </div>
+    </div>
+
+    <!-- Login Form -->
+    <form onsubmit="handleUniversalLoginSubmit(event)" class="space-y-3.5">
+      <div>
+        <label class="block text-xs font-bold text-primary mb-1">Mobile Number / Udyam ID</label>
+        <div class="relative">
+          <input type="text" id="univ-login-mobile" value="+91 98765 43210" required class="w-full h-11 pl-10 pr-3 rounded-xl border border-outline-variant/60 bg-surface-container-low text-xs font-bold text-primary focus:outline-none focus:border-secondary">
+          <span class="material-symbols-outlined absolute left-3 top-3 text-outline text-lg">smartphone</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-primary mb-1">4-Digit OTP / PIN</label>
+        <div class="relative">
+          <input type="password" id="univ-login-otp" value="5678" maxlength="6" required class="w-full h-11 pl-10 pr-3 rounded-xl border border-outline-variant/60 bg-surface-container-low text-xs font-bold text-primary focus:outline-none focus:border-secondary tracking-widest">
+          <span class="material-symbols-outlined absolute left-3 top-3 text-outline text-lg">lock</span>
+        </div>
+      </div>
+
+      <!-- Quick Switch Registered Account Presets -->
+      <div class="space-y-1 pt-1">
+        <span class="text-[10px] text-on-surface-variant font-medium">Or Switch Registered Beneficiary Account:</span>
+        <div class="grid grid-cols-2 gap-1.5 text-[10px]">
+          <button type="button" onclick="switchPresetAccount('R.Vishnu Vardhan', '+91 98765 43210')" class="p-1.5 rounded bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-left font-bold text-primary truncate">
+            R.Vishnu Vardhan
+          </button>
+          <button type="button" onclick="switchPresetAccount('Sunita Deshmukh', '+91 91234 56789')" class="p-1.5 rounded bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-left font-bold text-primary truncate">
+            Sunita Deshmukh
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" id="btn-univ-login-submit" class="w-full h-11 bg-primary text-on-primary font-label-md text-label-md font-bold rounded-xl shadow-md hover:bg-primary-container active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer mt-2">
+        <span id="univ-login-btn-txt">Log In & Continue →</span>
+      </button>
+    </form>
+
+    <div id="univ-login-success-msg" class="hidden mt-3 p-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-label-sm text-xs font-bold text-center">
+      Authenticated! Session Active.
+    </div>
+  </div>
+</div>
+
+<script>
+  function openUniversalLoginModal() {
+    const modal = document.getElementById('universal-login-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+  }
+  function closeUniversalLoginModal() {
+    const modal = document.getElementById('universal-login-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  }
+  function switchPresetAccount(name, mobile) {
+    const nameEl = document.getElementById('auth-user-name');
+    const mobEl = document.getElementById('univ-login-mobile');
+    if (nameEl) nameEl.textContent = name;
+    if (mobEl) mobEl.value = mobile;
+  }
+  function handleUniversalLoginSubmit(e) {
+    e.preventDefault();
+    const btnTxt = document.getElementById('univ-login-btn-txt');
+    const msg = document.getElementById('univ-login-success-msg');
+    if (btnTxt) btnTxt.textContent = "Verifying Credentials...";
+    setTimeout(() => {
+      if (btnTxt) btnTxt.textContent = "Authenticated!";
+      if (msg) msg.classList.remove('hidden');
+      sessionStorage.setItem('userLoggedIn', 'true');
+      setTimeout(() => {
+        closeUniversalLoginModal();
+      }, 700);
+    }, 500);
+  }
+</script>
+</body></html>

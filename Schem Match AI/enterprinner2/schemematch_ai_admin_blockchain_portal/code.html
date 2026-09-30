@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Blockchain Audit Portal — SchemeMatch AI</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#00163d",
+            "primary-container": "#0f2b5c",
+            secondary: "#006a61",
+            "secondary-container": "#86f2e4",
+            background: "#f8f9ff",
+            surface: "#ffffff",
+            blockchain: "#0284c7"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .material-symbols-filled {
+      font-variation-settings: 'FILL' 1, 'wght' 400;
+    }
+
+    @keyframes block-pulse {
+
+      0%,
+      100% {
+        border-color: rgba(2, 132, 199, 0.4);
+        box-shadow: 0 0 15px rgba(2, 132, 199, 0.1);
+      }
+
+      50% {
+        border-color: rgba(2, 132, 199, 0.9);
+        box-shadow: 0 0 25px rgba(2, 132, 199, 0.3);
+      }
+    }
+
+    .block-active {
+      animation: block-pulse 2.5s infinite ease-in-out;
+    }
+
+    @keyframes orb-spin {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: rotate(180deg) scale(1.08);
+      }
+
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
+    }
+
+    .orb-anim {
+      animation: orb-spin 6s infinite linear;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-slate-800 min-h-screen flex flex-col selection:bg-sky-600 selection:text-white">
+
+  <!-- Header Bar -->
+  <header class="bg-surface border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/index.html"
+          class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shadow hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-2xl">security</span>
+        </a>
+        <div>
+          <h1 class="font-bold text-lg text-primary leading-tight flex items-center gap-2">
+            SchemeMatch AI Admin Portal
+            <span
+              class="px-2 py-0.5 rounded-full bg-sky-100 text-sky-800 font-extrabold text-[10px] border border-sky-300">
+              Blockchain Secured
+            </span>
+          </h1>
+          <p class="text-xs text-secondary font-semibold">Government Nodal Audit & Scheme Allotment Management</p>
+        </div>
+      </div>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-3">
+        <div
+          class="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-semibold text-emerald-800">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          Ledger Height: #84,920 (100% Synced)
+        </div>
+
+        <button onclick="openUniversalLoginModal()"
+          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200 cursor-pointer">
+          <span class="material-symbols-outlined text-sm">manage_accounts</span>
+          <span>Admin Auth</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Body Canvas -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6 space-y-8">
+
+    <!-- Top Summary Banner -->
+    <div
+      class="bg-gradient-to-r from-primary via-primary-container to-sky-900 text-white rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      <div class="lg:col-span-8 space-y-3 relative z-10">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur border border-white/20 text-xs font-medium text-sky-200">
+          <span class="material-symbols-outlined text-sm">token</span>
+          SHA-256 Immutable Audit Trail Active
+        </div>
+        <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight">Admin Scheme Allotment & Blockchain Audit Console
+        </h2>
+        <p class="text-slate-200 text-xs md:text-sm leading-relaxed max-w-2xl">
+          Real-time oversight of all government scheme approvals and rejections. Every sanction letter, subsidy grant,
+          and rejection reason is cryptographically hashed and verified on the sovereign MSME blockchain ledger.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-3">
+          <button onclick="scrollToSection('blockchain-ledger')"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs shadow-lg transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-sm">link</span>
+            Inspect Blockchain Ledger
+          </button>
+          <button onclick="openAdminVoiceModal()"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-xs border border-white/20 transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-sm">record_voice_over</span>
+            Launch Admin AI Voice Chat
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Column -->
+      <div class="lg:col-span-4 grid grid-cols-2 gap-3 relative z-10 text-center">
+        <div class="bg-white/10 backdrop-blur border border-white/15 p-4 rounded-2xl">
+          <span class="text-xs text-sky-200 block font-medium">Allotted Grants</span>
+          <strong class="text-2xl font-extrabold text-emerald-400">₹92.5 Lakhs</strong>
+          <span class="text-[10px] text-slate-300 block mt-0.5">4 Sanctioned Units</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/15 p-4 rounded-2xl">
+          <span class="text-xs text-sky-200 block font-medium">Rejections Audited</span>
+          <strong class="text-2xl font-extrabold text-rose-400">4 Cases</strong>
+          <span class="text-[10px] text-slate-300 block mt-0.5">With Reasons & Hashes</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur border border-white/15 p-4 rounded-2xl col-span-2">
+          <span class="text-xs text-sky-200 block font-medium">Blockchain Consensus</span>
+          <strong class="text-sm font-bold text-white flex items-center justify-center gap-1 mt-1">
+            <span class="material-symbols-outlined text-emerald-400 text-base">verified</span>
+            Zero Modification Discrepancies
+          </strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADMIN AI VOICE ASSISTANT BAR -->
+    <div
+      class="bg-surface rounded-2xl p-5 border-2 border-sky-500/40 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div
+          class="w-12 h-12 rounded-2xl bg-sky-600 text-white flex items-center justify-center font-bold shadow-md shrink-0 orb-anim">
+          <span class="material-symbols-outlined text-2xl">smart_toy</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+            Admin AI Voice Chat & Audit Assistant
+            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">Voice & Speech
+              Enabled</span>
+          </h3>
+          <p class="text-xs text-slate-500">Ask the Admin AI voice assistant about rejection causes, on-chain hash
+            verification, or applicant scheme allotments.</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 shrink-0 w-full md:w-auto">
+        <button onclick="askAdminVoice('Why was Suresh Kumar rejected?')"
+          class="flex-1 md:flex-none px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors text-left cursor-pointer">
+          "Why was Suresh Kumar rejected?"
+        </button>
+        <button onclick="openAdminVoiceModal()"
+          class="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-base">mic</span>
+          Start Voice Chat
+        </button>
+      </div>
+    </div>
+
+    <!-- BLOCKCHAIN IMMUTABLE LEDGER VISUALIZER SECTION -->
+    <div id="blockchain-ledger" class="bg-surface rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="text-lg font-bold text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-sky-600">link</span>
+            Enterprise MSME Blockchain Immutable Audit Ledger
+          </h3>
+          <p class="text-xs text-slate-500">Live blocks containing cryptographic proofs of scheme approvals and
+            audit-logged rejection rationale</p>
+        </div>
+        <span class="text-xs font-bold text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
+          Network Protocol: MSME-Chain v2.4
+        </span>
+      </div>
+
+      <!-- Blockchain Blocks Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pt-2">
+        <!-- Block 1 -->
+        <div
+          class="bg-slate-900 text-white p-4 rounded-2xl border-2 border-emerald-500/50 block-active flex flex-col justify-between space-y-3 relative">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span class="text-xs font-bold text-emerald-400">Block #84920</span>
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">SANCTION
+              PROOF</span>
+          </div>
+          <div class="text-xs space-y-1">
+            <p class="text-slate-300 font-semibold">R.Vishnu Vardhan</p>
+            <p class="text-[11px] text-emerald-400 font-bold">PMEGP 35% Subsidy (₹17.5L)</p>
+            <p class="text-[9px] text-slate-400 truncate">Hash: 0x7f8a3b9e4c1d2e5f6a7b8c9d0e1f</p>
+          </div>
+          <div class="pt-2 border-t border-slate-800 text-[10px] text-slate-400 flex justify-between">
+            <span>Nodal: Bank of Maha</span>
+            <span class="text-emerald-400 font-bold">Verified ✓</span>
+          </div>
+        </div>
+
+        <!-- Block 2 -->
+        <div
+          class="bg-slate-900 text-white p-4 rounded-2xl border-2 border-rose-500/50 flex flex-col justify-between space-y-3 relative">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span class="text-xs font-bold text-rose-400">Block #84919</span>
+            <span class="text-[10px] bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded font-bold">REJECTION LOG</span>
+          </div>
+          <div class="text-xs space-y-1">
+            <p class="text-slate-300 font-semibold">Suresh Kumar</p>
+            <p class="text-[11px] text-rose-400 font-bold">Mudra Loan (DSCR Ratio Exceeded)</p>
+            <p class="text-[9px] text-slate-400 truncate">Hash: 0x3c2d8e1f5a4b9c0d1e2f3a4b</p>
+          </div>
+          <div class="pt-2 border-t border-slate-800 text-[10px] text-slate-400 flex justify-between">
+            <span>Cause: Debt >65%</span>
+            <span class="text-rose-400 font-bold">On-Chain Audit ✓</span>
+          </div>
+        </div>
+
+        <!-- Block 3 -->
+        <div
+          class="bg-slate-900 text-white p-4 rounded-2xl border-2 border-emerald-500/50 flex flex-col justify-between space-y-3 relative">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span class="text-xs font-bold text-emerald-400">Block #84918</span>
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">SANCTION
+              PROOF</span>
+          </div>
+          <div class="text-xs space-y-1">
+            <p class="text-slate-300 font-semibold">Sunita Deshmukh</p>
+            <p class="text-[11px] text-teal-400 font-bold">CGTMSE Guarantee (₹50.0L)</p>
+            <p class="text-[9px] text-slate-400 truncate">Hash: 0x9a4b2d7c1e5f8a3b9c0d1e2f</p>
+          </div>
+          <div class="pt-2 border-t border-slate-800 text-[10px] text-slate-400 flex justify-between">
+            <span>Nodal: Bank of Baroda</span>
+            <span class="text-emerald-400 font-bold">Verified ✓</span>
+          </div>
+        </div>
+
+        <!-- Block 4 -->
+        <div
+          class="bg-slate-900 text-white p-4 rounded-2xl border-2 border-rose-500/50 flex flex-col justify-between space-y-3 relative">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span class="text-xs font-bold text-rose-400">Block #84917</span>
+            <span class="text-[10px] bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded font-bold">REJECTION LOG</span>
+          </div>
+          <div class="text-xs space-y-1">
+            <p class="text-slate-300 font-semibold">Ramesh Patel</p>
+            <p class="text-[11px] text-rose-400 font-bold">Stand-Up India (Non-Greenfield)</p>
+            <p class="text-[9px] text-slate-400 truncate">Hash: 0x1f5e4a8b3c2d9e0f1a2b3c4d</p>
+          </div>
+          <div class="pt-2 border-t border-slate-800 text-[10px] text-slate-400 flex justify-between">
+            <span>Cause: Existing Firm</span>
+            <span class="text-rose-400 font-bold">On-Chain Audit ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAILED APPLICATION TABLE: ALLOTTED vs REJECTED -->
+    <div class="bg-surface rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="text-lg font-bold text-primary flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary">analytics</span>
+            Scheme Applications Audit Registry (Allotted & Rejected)
+          </h3>
+          <p class="text-xs text-slate-500">Filter and audit complete applicant history with explicit approval details
+            and rejection grounds</p>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="flex items-center gap-2 text-xs font-semibold">
+          <button onclick="filterTable('all')"
+            class="tab-filter-btn px-3 py-1.5 rounded-full bg-primary text-white font-bold cursor-pointer"
+            data-filter="all">All (8)</button>
+          <button onclick="filterTable('allotted')"
+            class="tab-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer"
+            data-filter="allotted">Allotted (4)</button>
+          <button onclick="filterTable('rejected')"
+            class="tab-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 cursor-pointer"
+            data-filter="rejected">Rejected (4)</button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
+              <th class="p-3">Applicant & Unit Details</th>
+              <th class="p-3">District & Location</th>
+              <th class="p-3">Applied Scheme</th>
+              <th class="p-3">Status & Grant / Reason</th>
+              <th class="p-3">Blockchain Hash</th>
+              <th class="p-3 text-right">Audit Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+
+            <!-- Row 1: ALLOTTED R.Vishnu Vardhan -->
+            <tr class="table-row-item row-allotted hover:bg-slate-50 transition-colors">
+              <td class="p-3 flex items-center gap-2.5">
+                <img src="/assets/msme_entrepreneur_portrait.png"
+                  class="w-8 h-8 rounded-full object-cover border border-emerald-600">
+                <div>
+                  <strong class="text-slate-900 font-bold block">R.Vishnu Vardhan</strong>
+                  <span class="text-[10px] text-slate-500">Agro-Food Processing Plant</span>
+                </div>
+              </td>
+              <td class="p-3 font-semibold text-slate-700">Nashik Rural Agro Zone</td>
+              <td class="p-3 font-bold text-primary">PMEGP 35% Capital Subsidy</td>
+              <td class="p-3">
+                <span
+                  class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px] inline-block mb-0.5">SANCTIONED
+                  & ALLOTTED</span>
+                <span class="block text-emerald-700 font-extrabold text-xs">₹17.5 Lakhs Grant Allotted</span>
+              </td>
+              <td class="p-3 text-[10px] font-mono text-slate-500">0x7f8a3b9e4c1d2e5f</td>
+              <td class="p-3 text-right">
+                <button
+                  onclick="speakAuditDetail('R.Vishnu Vardhan', 'PMEGP 35% Capital Subsidy', '₹17.5 Lakhs Grant Allotted via Bank of Maharashtra')"
+                  class="px-2.5 py-1 rounded bg-sky-50 text-sky-700 font-bold hover:bg-sky-100 cursor-pointer">
+                  Listen Audit
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 2: REJECTED Suresh Kumar -->
+            <tr class="table-row-item row-rejected hover:bg-slate-50 transition-colors">
+              <td class="p-3 flex items-center gap-2.5">
+                <div
+                  class="w-8 h-8 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-xs border border-rose-300">
+                  SK</div>
+                <div>
+                  <strong class="text-slate-900 font-bold block">Suresh Kumar</strong>
+                  <span class="text-[10px] text-slate-500">Auto Components Machine Shop</span>
+                </div>
+              </td>
+              <td class="p-3 font-semibold text-slate-700">Pune Chakan MIDC</td>
+              <td class="p-3 font-bold text-primary">Mudra Yojana (Tarun Loan)</td>
+              <td class="p-3">
+                <span
+                  class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 font-bold text-[10px] inline-block mb-0.5">APPLICATION
+                  REJECTED</span>
+                <span class="block text-rose-700 font-medium text-[11px]">Reason: Debt Service Ratio DSCR &lt; 1.1
+                  (Existing Debt &gt; 65%).</span>
+              </td>
+              <td class="p-3 text-[10px] font-mono text-slate-500">0x3c2d8e1f5a4b9c0d</td>
+              <td class="p-3 text-right">
+                <button
+                  onclick="speakAuditDetail('Suresh Kumar', 'Mudra Loan', 'Application Rejected due to Debt Service Ratio DSCR less than 1.1 with existing debt over 65%')"
+                  class="px-2.5 py-1 rounded bg-rose-50 text-rose-700 font-bold hover:bg-rose-100 cursor-pointer">
+                  Listen Reason
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 3: ALLOTTED Sunita Deshmukh -->
+            <tr class="table-row-item row-allotted hover:bg-slate-50 transition-colors">
+              <td class="p-3 flex items-center gap-2.5">
+                <div
+                  class="w-8 h-8 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold text-xs border border-teal-400">
+                  SD</div>
+                <div>
+                  <strong class="text-slate-900 font-bold block">Smt. Sunita Deshmukh</strong>
+                  <span class="text-[10px] text-slate-500">Rural Textile & Garment Workshop</span>
+                </div>
+              </td>
+              <td class="p-3 font-semibold text-slate-700">Sambhajinagar MIDC</td>
+              <td class="p-3 font-bold text-primary">CGTMSE Collateral-Free Credit</td>
+              <td class="p-3">
+                <span
+                  class="px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 font-bold text-[10px] inline-block mb-0.5">ALLOTTED
+                  & ACTIVE</span>
+                <span class="block text-teal-700 font-extrabold text-xs">₹50.0 Lakhs Collateral-Free Loan</span>
+              </td>
+              <td class="p-3 text-[10px] font-mono text-slate-500">0x9a4b2d7c1e5f8a3b</td>
+              <td class="p-3 text-right">
+                <button
+                  onclick="speakAuditDetail('Smt. Sunita Deshmukh', 'CGTMSE Guarantee', '₹50 Lakhs Collateral-Free Credit Guarantee Allotted via Bank of Baroda')"
+                  class="px-2.5 py-1 rounded bg-sky-50 text-sky-700 font-bold hover:bg-sky-100 cursor-pointer">
+                  Listen Audit
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 4: REJECTED Ramesh Patel -->
+            <tr class="table-row-item row-rejected hover:bg-slate-50 transition-colors">
+              <td class="p-3 flex items-center gap-2.5">
+                <div
+                  class="w-8 h-8 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-xs border border-rose-300">
+                  RP</div>
+                <div>
+                  <strong class="text-slate-900 font-bold block">Ramesh Patel</strong>
+                  <span class="text-[10px] text-slate-500">Chemical Packaging Expansion</span>
+                </div>
+              </td>
+              <td class="p-3 font-semibold text-slate-700">Ahmedabad GIDC</td>
+              <td class="p-3 font-bold text-primary">Stand-Up India Scheme</td>
+              <td class="p-3">
+                <span
+                  class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 font-bold text-[10px] inline-block mb-0.5">APPLICATION
+                  REJECTED</span>
+                <span class="block text-rose-700 font-medium text-[11px]">Reason: Non-Greenfield Unit (Applicant owns
+                  existing registered business).</span>
+              </td>
+              <td class="p-3 text-[10px] font-mono text-slate-500">0x1f5e4a8b3c2d9e0f</td>
+              <td class="p-3 text-right">
+                <button
+                  onclick="speakAuditDetail('Ramesh Patel', 'Stand-Up India Scheme', 'Application Rejected. Reason: Stand-Up India requires a greenfield venture, but applicant owns an existing firm')"
+                  class="px-2.5 py-1 rounded bg-rose-50 text-rose-700 font-bold hover:bg-rose-100 cursor-pointer">
+                  Listen Reason
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 5: ALLOTTED Shri K. Ramakrishna -->
+            <tr class="table-row-item row-allotted hover:bg-slate-50 transition-colors">
+              <td class="p-3 flex items-center gap-2.5">
+                <img src="/assets/food_processing_unit.png"
+                  class="w-8 h-8 rounded-full object-cover border border-blue-600">
+                <div>
+                  <strong class="text-slate-900 font-bold block">Shri K. Ramakrishna</strong>
+                  <span class="text-[10px] text-slate-500">Marine Seafood Cold Chain Unit</span>
+                </div>
+              </td>
+              <td class="p-3 font-semibold text-slate-700">Visakhapatnam Port SEZ</td>
+              <td class="p-3 font-bold text-primary">PMMSY Seafood Export Subsidy</td>
+              <td class="p-3">
+                <span
+                  class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 font-bold text-[10px] inline-block mb-0.5">DISBURSED
+                  ON-CHAIN</span>
+                <span class="block text-blue-700 font-extrabold text-xs">₹15.0 Lakhs Export Grant</span>
+              </td>
+              <td class="p-3 text-[10px] font-mono text-slate-500">0x5c6d7e8f9a0b1c2d</td>
+              <td class="p-3 text-right">
+                <button
+                  onclick="speakAuditDetail('Shri K. Ramakrishna', 'PMMSY Seafood Grant', '₹15 Lakhs Export Subsidy Disbursed via Union Bank of India')"
+                  class="px-2.5 py-1 rounded bg-sky-50 text-sky-700 font-bold hover:bg-sky-100 cursor-pointer">
+                  Listen Audit
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 6: REJECTED Ananya Verma -->
+            <tr class="table-row-item row-rejected hover:bg-slate-50 transition-colors">
+              <td class="p-3 flex items-center gap-2.5">
+                <div
+                  class="w-8 h-8 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-xs border border-rose-300">
+                  AV</div>
+                <div>
+                  <strong class="text-slate-900 font-bold block">Ananya Verma</strong>
+                  <span class="text-[10px] text-slate-500">Handicrafts & E-Commerce Hub</span>
+                </div>
+              </td>
+              <td class="p-3 font-semibold text-slate-700">Lucknow Rural Industrial Park</td>
+              <td class="p-3 font-bold text-primary">PMEGP Micro-Enterprise Grant</td>
+              <td class="p-3">
+                <span
+                  class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 font-bold text-[10px] inline-block mb-0.5">APPLICATION
+                  REJECTED</span>
+                <span class="block text-rose-700 font-medium text-[11px]">Reason: GST Turnover ₹1.8 Cr exceeds
+                  Micro-enterprise PMEGP ceiling (₹1.0 Cr).</span>
+              </td>
+              <td class="p-3 text-[10px] font-mono text-slate-500">0x8e9f0a1b2c3d4e5f</td>
+              <td class="p-3 text-right">
+                <button
+                  onclick="speakAuditDetail('Ananya Verma', 'PMEGP Grant', 'Application Rejected. Reason: Annual GST turnover of 1.8 Crore rupees exceeds Micro-enterprise PMEGP ceiling limit')"
+                  class="px-2.5 py-1 rounded bg-rose-50 text-rose-700 font-bold hover:bg-rose-100 cursor-pointer">
+                  Listen Reason
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 7: ALLOTTED Dr. Srinivas Rao -->
+            <tr class="table-row-item row-allotted hover:bg-slate-50 transition-colors">
+              <td class="p-3 flex items-center gap-2.5">
+                <div
+                  class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xs border border-indigo-400">
+                  SR</div>
+                <div>
+                  <strong class="text-slate-900 font-bold block">Dr. Srinivas Rao</strong>
+                  <span class="text-[10px] text-slate-500">Bio-Tech & Pharma MSME Lab</span>
+                </div>
+              </td>
+              <td class="p-3 font-semibold text-slate-700">Hyderabad Tech Zone</td>
+              <td class="p-3 font-bold text-primary">Mudra & MSME Tech Subvention</td>
+              <td class="p-3">
+                <span
+                  class="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800 font-bold text-[10px] inline-block mb-0.5">SANCTION
+                  APPROVED</span>
+                <span class="block text-indigo-700 font-extrabold text-xs">₹10.0 Lakhs Seed Subvention</span>
+              </td>
+              <td class="p-3 text-[10px] font-mono text-slate-500">0x2a3b4c5d6e7f8a9b</td>
+              <td class="p-3 text-right">
+                <button
+                  onclick="speakAuditDetail('Dr. Srinivas Rao', 'MSME Tech Subvention', '₹10 Lakhs Seed Subvention Sanctioned via HDFC Bank')"
+                  class="px-2.5 py-1 rounded bg-sky-50 text-sky-700 font-bold hover:bg-sky-100 cursor-pointer">
+                  Listen Audit
+                </button>
+              </td>
+            </tr>
+
+            <!-- Row 8: REJECTED Vikram Singh -->
+            <tr class="table-row-item row-rejected hover:bg-slate-50 transition-colors">
+              <td class="p-3 flex items-center gap-2.5">
+                <div
+                  class="w-8 h-8 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-xs border border-rose-300">
+                  VS</div>
+                <div>
+                  <strong class="text-slate-900 font-bold block">Vikram Singh</strong>
+                  <span class="text-[10px] text-slate-500">Stone Processing & Quarrying</span>
+                </div>
+              </td>
+              <td class="p-3 font-semibold text-slate-700">Jaipur Industrial Area</td>
+              <td class="p-3 font-bold text-primary">CLCSS Capital Subsidy</td>
+              <td class="p-3">
+                <span
+                  class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 font-bold text-[10px] inline-block mb-0.5">APPLICATION
+                  REJECTED</span>
+                <span class="block text-rose-700 font-medium text-[11px]">Reason: Incomplete Environmental Clearance
+                  (Pollution Control Board NOC missing).</span>
+              </td>
+              <td class="p-3 text-[10px] font-mono text-slate-500">0x4b5c6d7e8f9a0b1c</td>
+              <td class="p-3 text-right">
+                <button
+                  onclick="speakAuditDetail('Vikram Singh', 'CLCSS Subsidy', 'Application Rejected. Reason: Missing mandatory State Pollution Control Board environmental clearance certificate in DPR')"
+                  class="px-2.5 py-1 rounded bg-rose-50 text-rose-700 font-bold hover:bg-rose-100 cursor-pointer">
+                  Listen Reason
+                </button>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ADMIN AI VOICE CHAT MODAL OVERLAY -->
+  <div id="admin-voice-modal"
+    class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-md hidden items-center justify-center p-4 transition-all">
+    <div class="bg-surface rounded-3xl max-w-lg w-full p-6 shadow-2xl border-2 border-sky-500/40 relative space-y-4">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-sky-600 text-white flex items-center justify-center shadow">
+            <span class="material-symbols-outlined text-2xl">record_voice_over</span>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-base">Admin AI Voice & Speech Assistant</h3>
+            <p class="text-xs text-sky-700 font-semibold">Blockchain Ledger & Rejection Reason Auditor</p>
+          </div>
+        </div>
+        <button onclick="closeAdminVoiceModal()"
+          class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <!-- Live Voice Assistant Canvas -->
+      <div class="bg-slate-900 text-white p-4 rounded-2xl border border-slate-800 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            Listening to Admin Query...
+          </span>
+          <span id="admin-voice-lang"
+            class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-bold">English (IN)</span>
+        </div>
+
+        <!-- Dynamic Speech Display -->
+        <p id="admin-voice-speech-output" class="text-sm font-semibold text-slate-100 leading-snug">
+          "Select or ask any question about allotted grants, rejection audit reasons, or blockchain proof hashes..."
+        </p>
+      </div>
+
+      <!-- Quick Admin Prompts -->
+      <div class="space-y-1.5 text-xs">
+        <span class="font-bold text-slate-700 block">Tap sample audit question to speak:</span>
+        <div class="space-y-1.5">
+          <button onclick="askAdminVoice('Why was Suresh Kumar rejected?')"
+            class="w-full p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left font-medium text-slate-800 flex items-center justify-between cursor-pointer">
+            <span>1. "Why was Suresh Kumar's Mudra loan rejected?"</span>
+            <span class="material-symbols-outlined text-sky-600 text-base">volume_up</span>
+          </button>
+          <button onclick="askAdminVoice('Explain R.Vishnu Vardhan PMEGP allotment')"
+            class="w-full p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left font-medium text-slate-800 flex items-center justify-between cursor-pointer">
+            <span>2. "Details of R.Vishnu Vardhan's ₹17.5L PMEGP Grant"</span>
+            <span class="material-symbols-outlined text-sky-600 text-base">volume_up</span>
+          </button>
+          <button onclick="askAdminVoice('Why was Ramesh Patel rejected?')"
+            class="w-full p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left font-medium text-slate-800 flex items-center justify-between cursor-pointer">
+            <span>3. "Reason for Ramesh Patel's Stand-Up India rejection"</span>
+            <span class="material-symbols-outlined text-sky-600 text-base">volume_up</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Voice Action Controls -->
+      <div class="pt-2 border-t border-slate-200 flex items-center justify-between">
+        <button onclick="toggleAdminMic()" id="btn-admin-mic"
+          class="px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs shadow flex items-center gap-2 cursor-pointer">
+          <span class="material-symbols-outlined text-base">mic</span>
+          <span id="admin-mic-text">Tap Mic & Speak</span>
+        </button>
+        <button onclick="closeAdminVoiceModal()"
+          class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs hover:bg-slate-200">
+          Close Assistant
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UNIVERSAL LOGIN MODAL OVERLAY -->
+  <div id="universal-login-modal"
+    class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-4 transition-all">
+    <div class="bg-surface text-on-surface rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 relative">
+      <button onclick="closeUniversalLoginModal()"
+        class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
+        <span class="material-symbols-outlined text-[1.2rem]">close</span>
+      </button>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shadow">
+          <span class="material-symbols-outlined text-2xl">admin_panel_settings</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-primary">Admin Authentication</h3>
+          <p class="text-xs text-slate-500">Nodal Agency Audit Login</p>
+        </div>
+      </div>
+      <form onsubmit="handleUniversalLoginSubmit(event)" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-bold text-primary mb-1">Admin ID / Mobile</label>
+          <input type="text" id="univ-login-mobile" value="ADMIN-MSME-98765" required
+            class="w-full h-11 px-3 rounded-xl border border-slate-300 text-xs font-bold text-primary">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-primary mb-1">Passcode / PIN</label>
+          <input type="password" id="univ-login-otp" value="5678" required
+            class="w-full h-11 px-3 rounded-xl border border-slate-300 text-xs font-bold text-primary tracking-widest">
+        </div>
+        <button type="submit" id="btn-univ-login-submit"
+          class="w-full h-11 bg-primary text-white font-bold rounded-xl shadow cursor-pointer">
+          <span id="univ-login-btn-txt font-bold">Log In as Admin Officer →</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-surface border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+    SchemeMatch AI Sovereign Admin Blockchain Console • Running on http://localhost:8999/
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const adminVoiceModal = document.getElementById('admin-voice-modal');
+    const adminVoiceOutput = document.getElementById('admin-voice-speech-output');
+    const adminMicText = document.getElementById('admin-mic-text');
+    let isAdminListening = false;
+
+    function openAdminVoiceModal() {
+      if (adminVoiceModal) {
+        adminVoiceModal.classList.remove('hidden');
+        adminVoiceModal.classList.add('flex');
+      }
+    }
+
+    function closeAdminVoiceModal() {
+      if (adminVoiceModal) {
+        adminVoiceModal.classList.add('hidden');
+        adminVoiceModal.classList.remove('flex');
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      }
+    }
+
+    function speakAuditDetail(name, scheme, text) {
+      openAdminVoiceModal();
+      const speechText = `Audit details for ${name}. Scheme: ${scheme}. Status: ${text}. Verified on blockchain block.`;
+      if (adminVoiceOutput) adminVoiceOutput.textContent = `"${speechText}"`;
+      speakText(speechText);
+    }
+
+    function askAdminVoice(queryKey) {
+      openAdminVoiceModal();
+      let responseText = "";
+      if (queryKey.includes("Suresh")) {
+        responseText = "Applicant Suresh Kumar's Mudra loan application was REJECTED because his Debt Service Coverage Ratio DSCR is less than 1.1, with existing business debt exceeding 65 percent. Recorded on Blockchain Block 84919.";
+      } else if (queryKey.includes("Vishnu") || queryKey.includes("PMEGP")) {
+        responseText = "Applicant R.Vishnu Vardhan has been SANCTIONED and ALLOTTED a 35 percent PMEGP Capital Subsidy of 17.5 Lakhs rupees via Bank of Maharashtra. Verified on Blockchain Block 84920.";
+      } else if (queryKey.includes("Ramesh")) {
+        responseText = "Applicant Ramesh Patel's Stand-Up India application was REJECTED because Stand-Up India requires a Greenfield new venture, but applicant owns an existing registered firm. Recorded on Blockchain Block 84917.";
+      } else {
+        responseText = `Querying blockchain audit log for ${queryKey}. All cryptographic hashes verified.`;
+      }
+
+      if (adminVoiceOutput) adminVoiceOutput.textContent = `"${responseText}"`;
+      speakText(responseText);
+    }
+
+    function speakText(txt) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(txt);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function toggleAdminMic() {
+      isAdminListening = !isAdminListening;
+      if (isAdminListening) {
+        if (adminMicText) adminMicText.textContent = "Listening... Speak now";
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+          const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+          const rec = new SpeechRec();
+          rec.lang = 'en-IN';
+          rec.start();
+          rec.onresult = function (e) {
+            const resultTxt = e.results[0][0].transcript;
+            if (adminVoiceOutput) adminVoiceOutput.textContent = `"${resultTxt}"`;
+            askAdminVoice(resultTxt);
+            isAdminListening = false;
+            if (adminMicText) adminMicText.textContent = "Tap Mic & Speak";
+          };
+          rec.onerror = function () {
+            isAdminListening = false;
+            if (adminMicText) adminMicText.textContent = "Tap Mic & Speak";
+          };
+        } else {
+          setTimeout(() => {
+            askAdminVoice("Suresh Kumar");
+            isAdminListening = false;
+            if (adminMicText) adminMicText.textContent = "Tap Mic & Speak";
+          }, 1500);
+        }
+      } else {
+        if (adminMicText) adminMicText.textContent = "Tap Mic & Speak";
+      }
+    }
+
+    function filterTable(category) {
+      const btns = document.querySelectorAll('.tab-filter-btn');
+      btns.forEach(b => {
+        b.classList.remove('bg-primary', 'text-white');
+        b.classList.add('bg-slate-100', 'text-slate-700');
+      });
+      const activeBtn = document.querySelector(`.tab-filter-btn[data-filter="${category}"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-primary', 'text-white');
+        activeBtn.classList.remove('bg-slate-100', 'text-slate-700');
+      }
+
+      const rows = document.querySelectorAll('.table-row-item');
+      rows.forEach(r => {
+        if (category === 'all') {
+          r.classList.remove('hidden');
+        } else if (category === 'allotted') {
+          if (r.classList.contains('row-allotted')) r.classList.remove('hidden');
+          else r.classList.add('hidden');
+        } else if (category === 'rejected') {
+          if (r.classList.contains('row-rejected')) r.classList.remove('hidden');
+          else r.classList.add('hidden');
+        }
+      });
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openUniversalLoginModal() {
+      const modal = document.getElementById('universal-login-modal');
+      if (modal) modal.classList.remove('hidden'), modal.classList.add('flex');
+    }
+    function closeUniversalLoginModal() {
+      const modal = document.getElementById('universal-login-modal');
+      if (modal) modal.classList.add('hidden'), modal.classList.remove('flex');
+    }
+    function handleUniversalLoginSubmit(e) {
+      e.preventDefault();
+      closeUniversalLoginModal();
+    }
+  </script>
+  <!-- Shared Bottom Navigation Bar (Matching exact user UI photo: Discover, Profile, Matches, Assistant, Admin) -->
+  <nav
+    class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-50 flex justify-around items-center px-4 py-2 pb-safe h-16 bg-white/95 backdrop-blur-md shadow-2xl border-t border-slate-200 rounded-t-2xl">
+    <a class="flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition-all"
+      href="/schemematch_ai_home_discovery/code.html">
+      <span class="material-symbols-outlined text-xl">explore</span>
+      <span class="text-[11px] font-semibold mt-0.5">Discover</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition-all"
+      href="/schemematch_ai_entrepreneur_profile_eligibility/code.html">
+      <span class="material-symbols-outlined text-xl">person_outline</span>
+      <span class="text-[11px] font-semibold mt-0.5">Profile</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition-all"
+      href="/schemematch_ai_match_results_dashboard/code.html">
+      <span class="material-symbols-outlined text-xl">verified</span>
+      <span class="text-[11px] font-semibold mt-0.5">Matches</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition-all"
+      href="/schemematch_ai_ai_voice_assistant/code.html">
+      <span class="material-symbols-outlined text-xl">mic</span>
+      <span class="text-[11px] font-semibold mt-0.5">Assistant</span>
+    </a>
+    <a class="flex flex-col items-center justify-center bg-purple-100 text-purple-900 rounded-full px-3 py-1 border border-purple-300 transition-all font-bold"
+      href="/schemematch_ai_admin_blockchain_portal/code.html">
+      <span class="material-symbols-outlined text-xl text-purple-700">enhanced_encryption</span>
+      <span class="text-[11px] font-bold mt-0.5">Admin</span>
+    </a>
+  </nav>
+
+</body>
+
+</html>

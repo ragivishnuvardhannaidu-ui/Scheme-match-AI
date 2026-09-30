@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>SchemeMatch AI - Build Your Entrepreneur Profile</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Material Symbols -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS CDN with forms & container queries -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed": "#001944",
+            "surface-variant": "#d3e4fe",
+            "surface-container-low": "#eff4ff",
+            "surface-container-high": "#dce9ff",
+            "outline-variant": "#c4c6d0",
+            "on-tertiary-fixed-variant": "#005137",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#006f66",
+            "on-primary-fixed-variant": "#2d4678",
+            "background": "#f8f9ff",
+            "surface-tint": "#465d91",
+            "outline": "#747780",
+            "primary-fixed": "#d9e2ff",
+            "surface-dim": "#cbdbf5",
+            "on-primary-container": "#7c94cb",
+            "on-secondary-fixed-variant": "#005049",
+            "tertiary-fixed": "#85f8c4",
+            "secondary-fixed": "#89f5e7",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#6bd8cb",
+            "surface-container-highest": "#d3e4fe",
+            "primary-container": "#0f2b5c",
+            "on-tertiary": "#ffffff",
+            "surface": "#f8f9ff",
+            "tertiary-fixed-dim": "#68dba9",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#002114",
+            "surface-bright": "#f8f9ff",
+            "on-error-container": "#93000a",
+            "on-surface": "#0b1c30",
+            "on-background": "#0b1c30",
+            "inverse-surface": "#213145",
+            "primary": "#00163d",
+            "on-secondary-fixed": "#00201d",
+            "surface-container": "#e5eeff",
+            "primary-fixed-dim": "#afc6ff",
+            "tertiary-container": "#003422",
+            "inverse-on-surface": "#eaf1ff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-container": "#2aa779",
+            "on-surface-variant": "#44464f",
+            "error": "#ba1a1a",
+            "on-primary": "#ffffff",
+            "inverse-primary": "#afc6ff",
+            "secondary": "#006a61",
+            "secondary-container": "#86f2e4",
+            "tertiary": "#001d11"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-2xl": "3rem",
+            "container-max": "80rem",
+            "space-3xl": "4rem",
+            "space-xl": "2rem",
+            "gutter-mobile": "1rem",
+            "gutter-desktop": "1.5rem",
+            "space-xs": "0.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.75rem",
+            "space-2xs": "0.25rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "display-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-lg": ["1rem", { "lineHeight": "1.5rem", "fontWeight": "600" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "fontWeight": "400" }],
+            "display-lg": ["3.25rem", { "lineHeight": "3.75rem", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-md": ["1rem", { "lineHeight": "1.5rem", "fontWeight": "400" }],
+            "display-sm": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["0.875rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "fontWeight": "600" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "headline-md": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      height: 22px;
+      width: 22px;
+      border-radius: 50%;
+      background: #006a61;
+      cursor: pointer;
+      -webkit-appearance: none;
+      box-shadow: 0 2px 6px rgba(0, 106, 97, 0.35);
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background text-on-background min-h-screen flex flex-col antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+  <!-- TopAppBar (from Shared Components JSON) -->
+  <header class="sticky top-0 z-40 bg-surface-container-lowest shadow-sm border-b border-outline-variant">
+    <div
+      class="flex justify-between items-center w-full px-gutter-mobile md:px-gutter-desktop max-w-container-max mx-auto h-14">
+      <div class="flex items-center gap-space-xs">
+        <button aria-label="Go Back"
+          class="p-space-2xs text-primary hover:bg-surface-container-low rounded-full transition-colors" type="button">
+          <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+        </button>
+        <a href="/index.html" class="flex items-center gap-space-2xs hover:opacity-90 transition-opacity cursor-pointer"
+          title="Go to Main Landing Page">
+          <span class="material-symbols-outlined text-primary text-[22px]">account_balance</span>
+          <span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">SchemeMatch AI</span>
+        </a>
+      </div>
+      <!-- Language Selector Action -->
+      <div class="flex items-center gap-space-2xs">
+        <button
+          class="flex items-center gap-space-2xs bg-surface-container px-space-sm py-space-2xs rounded-full hover:bg-surface-container-high transition-colors"
+          type="button">
+          <span class="material-symbols-outlined text-primary text-[18px]">translate</span>
+          <span class="text-label-sm font-label-sm text-primary">English / हिंदी</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Main Canvas -->
+  <main class="flex-1 w-full max-w-3xl mx-auto px-gutter-mobile py-space-lg pb-32">
+    <!-- Page Header -->
+    <section class="mb-space-lg">
+      <div
+        class="flex items-center justify-between gap-4 bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/40 shadow-sm">
+        <div class="space-y-1">
+          <div class="flex items-center gap-space-2xs">
+            <span
+              class="inline-flex items-center px-space-xs py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-container text-on-secondary-container font-semibold">
+              <span class="material-symbols-outlined text-[14px] mr-1"
+                style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+              AI Eligibility Engine
+            </span>
+            <span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Govt. Certified</span>
+          </div>
+          <h1 class="text-headline-lg-mobile font-headline-lg-mobile text-primary tracking-tight font-bold">
+            Build Your Entrepreneur Profile
+          </h1>
+          <p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+            Welcome <strong>R.Vishnu Vardhan</strong>! Complete your profile metrics below.
+          </p>
+        </div>
+        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-secondary shrink-0 shadow-md">
+          <img src="/assets/msme_entrepreneur_portrait.png" alt="R.Vishnu Vardhan" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </section>
+
+    <!-- Recently Registered Regional Allotments Benchmark Card -->
+    <section class="mb-space-md">
+      <div
+        class="bg-surface-container-lowest border-2 border-emerald-600/30 rounded-xl p-space-md shadow-sm space-y-space-xs">
+        <div class="flex items-center justify-between border-b border-outline-variant/30 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-emerald-600 text-[20px]">verified</span>
+            <h3 class="text-headline-sm font-headline-sm text-primary text-sm font-bold">Registered Entrepreneurs &
+              Allotted Schemes in Your District</h3>
+          </div>
+          <span class="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">App Feed</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1 text-xs">
+          <div
+            class="p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <img src="/assets/msme_entrepreneur_portrait.png"
+                class="w-7 h-7 rounded-full object-cover border border-emerald-600">
+              <div>
+                <div class="font-bold text-primary">R.Vishnu Vardhan</div>
+                <div class="text-[10px] text-on-surface-variant">Nashik Agro • PMEGP Allotted</div>
+              </div>
+            </div>
+            <strong class="text-emerald-700 font-extrabold text-xs">₹17.5L Grant</strong>
+          </div>
+
+          <div
+            class="p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/40 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div
+                class="w-7 h-7 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold text-[10px]">
+                SD</div>
+              <div>
+                <div class="font-bold text-primary">Sunita Deshmukh</div>
+                <div class="text-[10px] text-on-surface-variant">Sambhajinagar • CGTMSE Allotted</div>
+              </div>
+            </div>
+            <strong class="text-teal-700 font-extrabold text-xs">₹50.0L Loan</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Multi-Step Interactive Progress Tracker -->
+    <section aria-label="Application Steps" class="mb-space-xl">
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md shadow-sm">
+        <div class="grid grid-cols-4 gap-space-xs relative">
+          <!-- Connector Line Underneath -->
+          <div class="absolute top-4 left-6 right-6 h-0.5 bg-outline-variant -z-0"></div>
+          <div class="absolute top-4 left-6 w-1/3 h-0.5 bg-secondary -z-0"></div>
+          <!-- Step 1: Personal (Completed) -->
+          <div class="flex flex-col items-center text-center relative z-10">
+            <div
+              class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-sm font-bold shadow-sm">
+              <span class="material-symbols-outlined text-[18px]">check</span>
+            </div>
+            <span class="text-label-sm font-label-sm text-primary font-bold mt-1">01 Personal</span>
+            <span class="text-[10px] text-secondary font-medium">Verified</span>
+          </div>
+          <!-- Step 2: Business (Active) -->
+          <div class="flex flex-col items-center text-center relative z-10">
+            <div
+              class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm font-bold ring-4 ring-secondary-container">
+              02
+            </div>
+            <span class="text-label-sm font-label-sm text-primary font-bold mt-1">02 Business</span>
+            <span class="text-[10px] text-secondary font-semibold">Active</span>
+          </div>
+          <!-- Step 3: Financial (Upcoming) -->
+          <div class="flex flex-col items-center text-center relative z-10 opacity-70">
+            <div
+              class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-label-sm font-medium border border-outline-variant">
+              03
+            </div>
+            <span class="text-label-sm font-label-sm text-on-surface-variant font-medium mt-1">03 Financial</span>
+            <span class="text-[10px] text-outline">Pending</span>
+          </div>
+          <!-- Step 4: Goals (Upcoming) -->
+          <div class="flex flex-col items-center text-center relative z-10 opacity-70">
+            <div
+              class="w-8 h-8 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-label-sm font-medium border border-outline-variant">
+              04
+            </div>
+            <span class="text-label-sm font-label-sm text-on-surface-variant font-medium mt-1">04 Goals</span>
+            <span class="text-[10px] text-outline">Pending</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FORM CONTAINER -->
+    <form class="space-y-space-lg" onsubmit="event.preventDefault();">
+      <!-- STEP 1 CARD: Personal & Demographics Information -->
+      <article
+        class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md md:p-space-lg shadow-sm">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-space-sm mb-space-md">
+          <div class="flex items-center gap-3">
+            <div class="relative group shrink-0">
+              <div
+                class="w-12 h-12 rounded-xl overflow-hidden shadow-md border border-blue-200/60 bg-gradient-to-br from-blue-50 to-indigo-100 p-1 flex items-center justify-center">
+                <img src="/assets/demographics_icon.png" alt="Personal & Demographics Logo"
+                  class="w-full h-full object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-105">
+              </div>
+              <span
+                class="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm border border-white">1</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <h2 class="text-headline-sm font-headline-sm text-primary font-bold flex items-center gap-1.5">
+                  Personal &amp; Demographics
+                </h2>
+                <span
+                  class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-[11px] font-semibold shadow-2xs">
+                  <span class="material-symbols-outlined text-[14px] text-blue-600">badge</span>
+                  Identity Logo
+                </span>
+              </div>
+              <p class="text-label-sm font-label-sm text-on-surface-variant">Affirmative criteria for specialized
+                central &amp; state subsidies</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <img src="/assets/demographics_icon.png"
+              class="w-9 h-9 rounded-lg object-cover shadow-sm hidden md:block border border-blue-200 p-0.5 bg-blue-50">
+            <span class="material-symbols-outlined text-secondary text-[24px]"
+              style="font-variation-settings: 'FILL' 1;">verified_user</span>
+          </div>
+        </div>
+        <div class="space-y-space-md">
+          <!-- Full Name of Entrepreneur -->
+          <div>
+            <label class="block text-label-md font-label-md text-primary mb-1" for="applicant-fullname">
+              Full Name of Entrepreneur / Applicant <span class="text-error">*</span>
+            </label>
+            <div class="relative">
+              <input
+                class="w-full h-[50px] pl-10 pr-space-md rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 font-bold"
+                id="applicant-fullname" placeholder="Enter Full Name" type="text" value="R.Vishnu Vardhan" />
+              <span class="material-symbols-outlined absolute left-3 top-3 text-secondary text-[20px]">person</span>
+            </div>
+          </div>
+
+          <!-- Age and Gender Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1" for="applicant-age">
+                Age of Applicant <span class="text-error">*</span>
+              </label>
+              <div class="relative">
+                <input
+                  class="w-full h-[50px] px-space-md rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  id="applicant-age" max="99" min="18" placeholder="e.g. 28" type="number" value="32" />
+                <span class="absolute right-3 top-3 text-label-sm font-label-sm text-on-surface-variant">Years</span>
+              </div>
+            </div>
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1">
+                Gender Identity <span class="text-error">*</span>
+              </label>
+              <div class="grid grid-cols-3 gap-space-xs">
+                <label
+                  class="flex items-center justify-center h-[50px] border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors has-[:checked]:bg-secondary-container has-[:checked]:border-secondary has-[:checked]:text-on-secondary-container font-label-sm">
+                  <input checked="" class="sr-only" name="gender" type="radio" value="Female" />
+                  <span>Female</span>
+                </label>
+                <label
+                  class="flex items-center justify-center h-[50px] border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors has-[:checked]:bg-secondary-container has-[:checked]:border-secondary has-[:checked]:text-on-secondary-container font-label-sm">
+                  <input class="sr-only" name="gender" type="radio" value="Male" />
+                  <span>Male</span>
+                </label>
+                <label
+                  class="flex items-center justify-center h-[50px] border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors has-[:checked]:bg-secondary-container has-[:checked]:border-secondary has-[:checked]:text-on-secondary-container font-label-sm">
+                  <input class="sr-only" name="gender" type="radio" value="Non-binary" />
+                  <span>Other</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Location State & District Dropdowns -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1" for="state-select">State / UT <span
+                  class="text-error">*</span></label>
+              <select
+                class="w-full h-[50px] px-space-md rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20"
+                id="state-select">
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Maharashtra" selected="">Maharashtra</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Gujarat">Gujarat</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1" for="district-select">District <span
+                  class="text-error">*</span></label>
+              <select
+                class="w-full h-[50px] px-space-md rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20"
+                id="district-select">
+                <option value="Visakhapatnam">Visakhapatnam (Port &amp; Industrial Cluster)</option>
+                <option value="Nashik" selected="">Nashik (Agro-Food Processing &amp; Wine Cluster)</option>
+                <option value="Pune">Pune (Auto &amp; Precision Engineering Hub)</option>
+                <option value="Vijayawada">Vijayawada / NTR (Commercial Hub)</option>
+                <option value="Sambhajinagar">Chhatrapati Sambhajinagar (MIDC Cluster)</option>
+                <option value="Tirupati">Tirupati (Electronics &amp; Temple Economy)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Interactive Map Pointer Relocation & Fake Data Card -->
+          <div class="bg-surface-container-low/70 border border-secondary/30 rounded-xl p-3.5 space-y-2 mt-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-[1rem] text-secondary">my_location</span>
+                <span>District Location Pointer Map</span>
+              </span>
+              <span
+                class="text-[10px] text-secondary font-bold bg-surface-container-lowest px-2 py-0.5 rounded-full border border-secondary/20">Click
+                Map to Relocate Pointer</span>
+            </div>
+
+            <div id="eligibility-map-box"
+              class="relative w-full h-36 bg-slate-900 rounded-lg overflow-hidden cursor-pointer border border-outline-variant/40 shadow-inner">
+              <svg class="absolute inset-0 w-full h-full opacity-25" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="grid-pattern-elig" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#94a3b8" stroke-width="0.5" />
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#grid-pattern-elig)" />
+              </svg>
+              <!-- Hotspot Pins -->
+              <div class="absolute top-[30%] left-[25%] w-3 h-3 rounded-full bg-teal-400 animate-ping"></div>
+              <div class="absolute top-[60%] left-[50%] w-3 h-3 rounded-full bg-blue-400"></div>
+              <div class="absolute top-[35%] left-[80%] w-3 h-3 rounded-full bg-emerald-400"></div>
+
+              <!-- Animated Relocating Pointer Pin -->
+              <div id="elig-pointer-pin"
+                class="absolute top-[30%] left-[25%] -translate-x-1/2 -translate-y-full transition-all duration-300 ease-out pointer-events-none flex flex-col items-center">
+                <span id="elig-pin-tag"
+                  class="px-2 py-0.5 rounded bg-secondary text-white text-[9px] font-bold shadow-md whitespace-nowrap mb-0.5">Nashik
+                  Rural Zone</span>
+                <span class="material-symbols-outlined text-[1.6rem] text-teal-300 animate-bounce">location_on</span>
+              </div>
+            </div>
+
+            <!-- Dynamic Fake Data Summary from Pointer Position -->
+            <div
+              class="grid grid-cols-2 gap-2 text-[0.72rem] bg-surface-container-lowest p-2.5 rounded-lg border border-outline-variant/30">
+              <div>
+                <span class="text-on-surface-variant text-[0.65rem] block">Local Nodal DIC Officer:</span>
+                <strong id="elig-fake-officer" class="text-primary font-bold">Shri S. V. Kulkarni</strong>
+              </div>
+              <div>
+                <span class="text-on-surface-variant text-[0.65rem] block">District Subsidy Cap:</span>
+                <strong id="elig-fake-subsidy" class="text-emerald-700 font-bold">35% (Up to ₹17.5L)</strong>
+              </div>
+              <div>
+                <span class="text-on-surface-variant text-[0.65rem] block">Nodal Bank Branch:</span>
+                <strong id="elig-fake-bank" class="text-secondary font-bold">Bank of Maharashtra</strong>
+              </div>
+              <div>
+                <span class="text-on-surface-variant text-[0.65rem] block">Active Scheme Count:</span>
+                <strong id="elig-fake-count" class="text-primary font-bold">42 Verified Schemes</strong>
+              </div>
+            </div>
+          </div>
+          <!-- Social Category (Pills) -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-label-md font-label-md text-primary">
+                Social Category <span class="text-error">*</span>
+              </label>
+              <span class="text-[11px] text-secondary font-semibold">Enables Stand-Up India &amp; PMEGP extra
+                margin</span>
+            </div>
+            <div class="flex flex-wrap gap-space-xs">
+              <label class="cursor-pointer">
+                <input class="sr-only peer" name="social-category" type="radio" value="General" />
+                <span
+                  class="px-space-md py-2 inline-block rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:border-primary-container">General</span>
+              </label>
+              <label class="cursor-pointer">
+                <input checked="" class="sr-only peer" name="social-category" type="radio" value="OBC" />
+                <span
+                  class="px-space-md py-2 inline-block rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:border-primary-container">OBC</span>
+              </label>
+              <label class="cursor-pointer">
+                <input class="sr-only peer" name="social-category" type="radio" value="SC" />
+                <span
+                  class="px-space-md py-2 inline-block rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:border-primary-container">SC</span>
+              </label>
+              <label class="cursor-pointer">
+                <input class="sr-only peer" name="social-category" type="radio" value="ST" />
+                <span
+                  class="px-space-md py-2 inline-block rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:border-primary-container">ST</span>
+              </label>
+              <label class="cursor-pointer">
+                <input class="sr-only peer" name="social-category" type="radio" value="Minorities" />
+                <span
+                  class="px-space-md py-2 inline-block rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:border-primary-container">Minority
+                  Communities</span>
+              </label>
+            </div>
+          </div>
+          <!-- Location Type: Rural vs Urban -->
+          <div>
+            <label class="block text-label-md font-label-md text-primary mb-1">Enterprise Location Type</label>
+            <div class="grid grid-cols-2 gap-space-sm">
+              <label
+                class="flex items-center justify-between p-space-sm rounded-lg border-2 border-secondary bg-surface-container-low cursor-pointer">
+                <div class="flex items-center gap-space-xs">
+                  <input checked="" class="text-secondary focus:ring-secondary" name="location-type" type="radio"
+                    value="Rural" />
+                  <div>
+                    <span class="block text-label-md font-label-md text-primary">Rural</span>
+                    <span class="block text-[11px] text-secondary font-bold font-label-sm">Up to 35% subsidy
+                      (PMEGP)</span>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined text-secondary">nature_people</span>
+              </label>
+              <label
+                class="flex items-center justify-between p-space-sm rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer hover:bg-surface-container-low">
+                <div class="flex items-center gap-space-xs">
+                  <input class="text-secondary focus:ring-secondary" name="location-type" type="radio" value="Urban" />
+                  <div>
+                    <span class="block text-label-md font-label-md text-primary">Urban</span>
+                    <span class="block text-[11px] text-on-surface-variant font-label-sm">Up to 15-25% subsidy</span>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined text-on-surface-variant">apartment</span>
+              </label>
+            </div>
+          </div>
+          <!-- Disability Status & Education Selector -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1">Specially Abled / PwD Status</label>
+              <div
+                class="flex items-center justify-between h-[50px] px-space-md rounded-lg border border-outline-variant bg-surface-container-lowest">
+                <span class="text-body-sm font-body-sm text-on-surface">Person with Disability (40%+)</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input class="sr-only peer" type="checkbox" value="" />
+                  <div
+                    class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary">
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1" for="education-select">Highest
+                Educational Qualification</label>
+              <select
+                class="w-full h-[50px] px-space-md rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary"
+                id="education-select">
+                <option value="10th">Under 10th Standard</option>
+                <option value="12th">10th / 12th Pass</option>
+                <option value="Diploma">ITI / Technical Diploma</option>
+                <option selected="" value="Graduate">Graduate / Degree</option>
+                <option value="Postgraduate">Post Graduate &amp; Above</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </article>
+      <!-- STEP 2 CARD: Business Information -->
+      <article
+        class="bg-surface-container-lowest border-2 border-secondary/40 rounded-xl p-space-md md:p-space-lg shadow-md">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-space-sm mb-space-md">
+          <div class="flex items-center gap-3">
+            <div class="relative group shrink-0">
+              <div
+                class="w-12 h-12 rounded-xl overflow-hidden shadow-md border border-teal-200/60 bg-gradient-to-br from-teal-50 to-emerald-100 p-1 flex items-center justify-center">
+                <img src="/assets/business_info_icon.png" alt="Business Information Logo"
+                  class="w-full h-full object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-105">
+              </div>
+              <span
+                class="absolute -bottom-1 -right-1 w-5 h-5 bg-teal-600 text-white rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm border border-white">2</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <h2 class="text-headline-sm font-headline-sm text-primary font-bold flex items-center gap-1.5">
+                  Business Information
+                </h2>
+                <span
+                  class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-[11px] font-semibold shadow-2xs">
+                  <span class="material-symbols-outlined text-[14px] text-teal-600">domain</span>
+                  Enterprise Icon
+                </span>
+                <span
+                  class="px-2.5 py-0.5 rounded-full text-[11px] bg-secondary-container text-on-secondary-container font-semibold shadow-2xs">Active
+                  Step</span>
+              </div>
+              <p class="text-label-sm font-label-sm text-on-surface-variant">Core sector mapping for MSME &amp; NABARD
+                categories</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <img src="/assets/business_info_icon.png"
+              class="w-9 h-9 rounded-lg object-cover shadow-sm hidden md:block border border-teal-200 p-0.5 bg-teal-50">
+            <span class="material-symbols-outlined text-secondary text-[26px]">storefront</span>
+          </div>
+        </div>
+        <div class="space-y-space-md">
+          <!-- Business Name -->
+          <div>
+            <label class="block text-label-md font-label-md text-primary mb-1" for="business-name">
+              Registered / Proposed Enterprise Name <span class="text-error">*</span>
+            </label>
+            <div class="relative">
+              <input
+                class="w-full h-[52px] pl-10 pr-space-md rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20"
+                id="business-name" placeholder="e.g. Apex Engineering Works" type="text"
+                value="Sai Samarth Agro Food Processors" />
+              <span
+                class="material-symbols-outlined absolute left-3 top-3.5 text-on-surface-variant text-[20px]">badge</span>
+            </div>
+          </div>
+          <!-- Business Type -->
+          <div>
+            <label class="block text-label-md font-label-md text-primary mb-1.5">Business Classification Type <span
+                class="text-error">*</span></label>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-space-xs">
+              <label
+                class="border border-outline-variant rounded-lg p-space-sm text-center cursor-pointer hover:bg-surface-container-low has-[:checked]:bg-primary-container has-[:checked]:text-on-primary transition-all">
+                <input class="sr-only" name="business-type" type="radio" value="Manufacturing" />
+                <span class="material-symbols-outlined block mx-auto mb-1 text-[22px]">precision_manufacturing</span>
+                <span class="text-label-sm font-label-sm block">Manufacturing</span>
+              </label>
+              <label
+                class="border border-outline-variant rounded-lg p-space-sm text-center cursor-pointer hover:bg-surface-container-low has-[:checked]:bg-primary-container has-[:checked]:text-on-primary transition-all">
+                <input class="sr-only" name="business-type" type="radio" value="Services" />
+                <span class="material-symbols-outlined block mx-auto mb-1 text-[22px]">handyman</span>
+                <span class="text-label-sm font-label-sm block">Services</span>
+              </label>
+              <label
+                class="border border-outline-variant rounded-lg p-space-sm text-center cursor-pointer hover:bg-surface-container-low has-[:checked]:bg-primary-container has-[:checked]:text-on-primary transition-all">
+                <input class="sr-only" name="business-type" type="radio" value="Trading" />
+                <span class="material-symbols-outlined block mx-auto mb-1 text-[22px]">store</span>
+                <span class="text-label-sm font-label-sm block">Trading/Retail</span>
+              </label>
+              <label
+                class="border-2 border-secondary bg-secondary-container/30 rounded-lg p-space-sm text-center cursor-pointer has-[:checked]:bg-primary-container has-[:checked]:text-on-primary transition-all">
+                <input checked="" class="sr-only" name="business-type" type="radio" value="Agro" />
+                <span class="material-symbols-outlined block mx-auto mb-1 text-[22px] text-secondary">agriculture</span>
+                <span class="text-label-sm font-label-sm block font-bold">Agro-Processing</span>
+              </label>
+            </div>
+          </div>
+          <!-- Sector & Stage -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1" for="sector-select">Specific Sector /
+                Industry</label>
+              <select
+                class="w-full h-[50px] px-space-md rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary"
+                id="sector-select">
+                <option selected="" value="Food">Food Processing &amp; Packaging</option>
+                <option value="Textiles">Textiles &amp; Handlooms</option>
+                <option value="Renewable">Renewable Energy / Solar</option>
+                <option value="Engineering">Light Engineering &amp; Fabrication</option>
+                <option value="IT">IT &amp; Tech Enabled Services</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1">Business Stage <span
+                  class="text-error">*</span></label>
+              <div class="grid grid-cols-3 gap-1">
+                <label
+                  class="flex flex-col items-center justify-center p-2 rounded-lg border border-outline-variant cursor-pointer has-[:checked]:bg-surface-container-high has-[:checked]:border-primary text-center">
+                  <input class="sr-only" name="biz-stage" type="radio" value="Idea" />
+                  <span class="text-label-sm font-label-sm">Idea</span>
+                  <span class="text-[10px] text-on-surface-variant">New Setup</span>
+                </label>
+                <label
+                  class="flex flex-col items-center justify-center p-2 rounded-lg border border-outline-variant cursor-pointer has-[:checked]:bg-surface-container-high has-[:checked]:border-primary text-center">
+                  <input class="sr-only" name="biz-stage" type="radio" value="Early" />
+                  <span class="text-label-sm font-label-sm">Early Stage</span>
+                  <span class="text-[10px] text-on-surface-variant">&lt; 1 Year</span>
+                </label>
+                <label
+                  class="flex flex-col items-center justify-center p-2 rounded-lg border-2 border-primary bg-surface-container-low cursor-pointer has-[:checked]:bg-surface-container-high has-[:checked]:border-primary text-center">
+                  <input checked="" class="sr-only" name="biz-stage" type="radio" value="Existing" />
+                  <span class="text-label-sm font-label-sm font-bold text-primary">Existing</span>
+                  <span class="text-[10px] text-primary font-medium">1+ Years</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Operational Metrics: Years & Number of Employees -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1" for="years-op">Years in
+                Operation</label>
+              <div class="relative">
+                <input
+                  class="w-full h-[50px] px-space-md rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary"
+                  id="years-op" max="50" min="0" type="number" value="3" />
+                <span class="absolute right-3 top-3.5 text-label-sm font-label-sm text-on-surface-variant">Years</span>
+              </div>
+            </div>
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1" for="employees-count">Number of
+                Full-time Workers</label>
+              <div class="relative">
+                <input
+                  class="w-full h-[50px] px-space-md rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary"
+                  id="employees-count" max="1000" min="0" type="number" value="8" />
+                <span class="absolute right-3 top-3.5 text-label-sm font-label-sm text-on-surface-variant">Staff</span>
+              </div>
+            </div>
+          </div>
+          <!-- Annual Turnover Slider -->
+          <div class="pt-space-xs bg-surface-container-low p-space-md rounded-lg border border-outline-variant">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-label-md font-label-md text-primary font-semibold" for="turnover-slider">Annual
+                Turnover (Last FY)</label>
+              <span class="text-headline-sm font-headline-sm text-primary font-bold">₹18,50,000</span>
+            </div>
+            <input class="w-full h-2 bg-surface-container-highest rounded-lg appearance-none cursor-pointer"
+              id="turnover-slider" max="10000000" min="0" step="50000" type="range" value="1850000" />
+            <div class="flex justify-between text-[11px] text-on-surface-variant mt-1.5 font-label-sm">
+              <span>₹0 (New Venture)</span>
+              <span>₹25 Lakh</span>
+              <span>₹50 Lakh</span>
+              <span>₹1+ Crore</span>
+            </div>
+          </div>
+
+          <!-- Sector Maximum Grant Ticket Size Bar Graph -->
+          <div class="bg-surface-container-lowest border border-secondary/30 rounded-xl p-3.5 space-y-2 mt-3">
+            <div class="flex items-center justify-between border-b border-outline-variant/30 pb-1.5">
+              <span class="text-xs font-bold text-primary flex items-center gap-1">
+                <span class="material-symbols-outlined text-[1rem] text-secondary">bar_chart</span>
+                <span>Max Grant Ticket Size by Sector Bar Graph</span>
+              </span>
+              <span class="text-[0.65rem] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">PMEGP
+                Benchmarks</span>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2 items-end h-28 pt-2">
+              <div class="flex flex-col items-center gap-1 group">
+                <span class="text-[9px] font-bold text-emerald-700">₹50L Max</span>
+                <div
+                  class="w-full bg-emerald-600 rounded-t group-hover:bg-emerald-500 transition-all duration-300 shadow-sm"
+                  style="height: 100%;"></div>
+                <span class="text-[10px] font-bold text-slate-800">Food Mfg</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 group">
+                <span class="text-[9px] font-bold text-teal-700">₹40L Max</span>
+                <div class="w-full bg-teal-500 rounded-t group-hover:bg-teal-400 transition-all duration-300 shadow-sm"
+                  style="height: 80%;"></div>
+                <span class="text-[10px] font-semibold text-slate-800">Engineering</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 group">
+                <span class="text-[9px] font-bold text-blue-700">₹35L Max</span>
+                <div class="w-full bg-blue-600 rounded-t group-hover:bg-blue-500 transition-all duration-300 shadow-sm"
+                  style="height: 70%;"></div>
+                <span class="text-[10px] font-semibold text-slate-800">Textiles</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 group">
+                <span class="text-[9px] font-bold text-indigo-700">₹20L Max</span>
+                <div
+                  class="w-full bg-indigo-600 rounded-t group-hover:bg-indigo-500 transition-all duration-300 shadow-sm"
+                  style="height: 40%;"></div>
+                <span class="text-[10px] font-semibold text-slate-800">Services</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <!-- STEP 3 CARD: Financial & Funding Needs -->
+      <article
+        class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md md:p-space-lg shadow-sm">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-space-sm mb-space-md">
+          <div class="flex items-center gap-3">
+            <div class="relative group shrink-0">
+              <div
+                class="w-12 h-12 rounded-xl overflow-hidden shadow-md border border-amber-200/60 bg-gradient-to-br from-amber-50 to-emerald-100 p-1 flex items-center justify-center">
+                <img src="/assets/financial_needs_icon.png" alt="Financial & Funding Needs Logo"
+                  class="w-full h-full object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-105">
+              </div>
+              <span
+                class="absolute -bottom-1 -right-1 w-5 h-5 bg-amber-600 text-white rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm border border-white">3</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <h2 class="text-headline-sm font-headline-sm text-primary font-bold flex items-center gap-1.5">
+                  Financial &amp; Funding Needs
+                </h2>
+                <span
+                  class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-[11px] font-semibold shadow-2xs">
+                  <span class="material-symbols-outlined text-[14px] text-amber-600">account_balance_wallet</span>
+                  Funding Icon
+                </span>
+              </div>
+              <p class="text-label-sm font-label-sm text-on-surface-variant">Estimate ticket size to filter MUDRA,
+                CGTMSE &amp; State Subsidies</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <img src="/assets/financial_needs_icon.png"
+              class="w-9 h-9 rounded-lg object-cover shadow-sm hidden md:block border border-amber-200 p-0.5 bg-amber-50">
+            <span class="material-symbols-outlined text-secondary text-[26px]">payments</span>
+          </div>
+        </div>
+        <div class="space-y-space-md">
+          <!-- Required Funding Range Slider -->
+          <div class="bg-surface-container-lowest p-space-md rounded-lg border border-outline-variant">
+            <div class="flex justify-between items-center mb-1">
+              <label class="text-label-md font-label-md text-primary font-semibold" for="funding-slider">Required
+                Capital Amount</label>
+              <div
+                class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-md font-label-md font-bold">
+                ₹15,00,000 (Mudra Tarun)
+              </div>
+            </div>
+            <p class="text-body-sm font-body-sm text-on-surface-variant mb-3">Slide to adjust your required assistance
+            </p>
+            <input class="w-full h-2 bg-surface-container-highest rounded-lg appearance-none cursor-pointer"
+              id="funding-slider" max="5000000" min="50000" step="50000" type="range" value="1500000" />
+            <div class="flex justify-between text-[11px] text-on-surface-variant mt-2 font-label-sm">
+              <span>₹50,000 (Shishu)</span>
+              <span>₹5 Lakh (Kishore)</span>
+              <span>₹10-20 Lakh (Tarun)</span>
+              <span>₹50 Lakh+</span>
+            </div>
+          </div>
+          <!-- Funding Type Chips -->
+          <div>
+            <label class="block text-label-md font-label-md text-primary mb-1.5">
+              Preferred Assistance Category (Multiple selection)
+            </label>
+            <div class="flex flex-wrap gap-space-xs">
+              <label class="cursor-pointer">
+                <input checked="" class="sr-only peer" type="checkbox" />
+                <span
+                  class="px-space-md py-2 inline-flex items-center gap-1 rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-colors">
+                  <span class="material-symbols-outlined text-[16px]">account_balance</span>
+                  Collateral-Free Loan
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input checked="" class="sr-only peer" type="checkbox" />
+                <span
+                  class="px-space-md py-2 inline-flex items-center gap-1 rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-colors">
+                  <span class="material-symbols-outlined text-[16px]">savings</span>
+                  Capital Subsidy (25-35%)
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input class="sr-only peer" type="checkbox" />
+                <span
+                  class="px-space-md py-2 inline-flex items-center gap-1 rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-colors">
+                  <span class="material-symbols-outlined text-[16px]">redeem</span>
+                  Govt Grant / Seed Fund
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input checked="" class="sr-only peer" type="checkbox" />
+                <span
+                  class="px-space-md py-2 inline-flex items-center gap-1 rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-colors">
+                  <span class="material-symbols-outlined text-[16px]">settings</span>
+                  Equipment / Machinery Aid
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input class="sr-only peer" type="checkbox" />
+                <span
+                  class="px-space-md py-2 inline-flex items-center gap-1 rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-colors">
+                  <span class="material-symbols-outlined text-[16px]">sync_alt</span>
+                  Working Capital Limit
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input class="sr-only peer" type="checkbox" />
+                <span
+                  class="px-space-md py-2 inline-flex items-center gap-1 rounded-full border border-outline-variant text-label-sm font-label-sm peer-checked:bg-secondary peer-checked:text-on-secondary peer-checked:border-secondary transition-colors">
+                  <span class="material-symbols-outlined text-[16px]">school</span>
+                  Skill Training &amp; Incubation
+                </span>
+              </label>
+            </div>
+          </div>
+          <!-- Existing Loans & CIBIL Indicator -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1" for="existing-loans">Current Active
+                Business Loans</label>
+              <select
+                class="w-full h-[50px] px-space-md rounded-lg border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary"
+                id="existing-loans">
+                <option value="none">No Active Commercial Loans</option>
+                <option value="under5">Below ₹5,00,000</option>
+                <option value="above5">₹5,00,000 to ₹25,00,000</option>
+                <option value="shg">Self Help Group (SHG) Loan</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-label-md font-label-md text-primary mb-1">Approx. CIBIL / Credit Score</label>
+              <div
+                class="flex items-center justify-between h-[50px] px-space-md rounded-lg border border-outline-variant bg-surface-container-lowest">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-secondary"></span>
+                  <span class="text-body-md font-body-md font-semibold text-on-surface">Good (720 - 780)</span>
+                </div>
+                <span class="text-label-sm font-label-sm text-secondary">High Eligibility</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <!-- STEP 4 CARD: Business Goals -->
+      <article
+        class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md md:p-space-lg shadow-sm">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-space-sm mb-space-md">
+          <div class="flex items-center gap-space-xs">
+            <span
+              class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-label-sm font-bold">4</span>
+            <div>
+              <h2 class="text-headline-sm font-headline-sm text-primary">Strategic Business Goals</h2>
+              <p class="text-label-sm font-label-sm text-on-surface-variant">Aligns your roadmap with national priority
+                mission funds</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-secondary">flag</span>
+        </div>
+        <!-- Multi-select goal cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+          <!-- Goal 1 -->
+          <label
+            class="flex items-start p-space-sm rounded-lg border border-outline-variant hover:border-secondary cursor-pointer transition-all has-[:checked]:border-secondary has-[:checked]:bg-surface-container-low">
+            <input checked="" class="mt-1 rounded text-secondary focus:ring-secondary mr-space-xs" type="checkbox" />
+            <div>
+              <span class="text-label-md font-label-md text-primary font-bold block">Start a New Production Unit</span>
+              <span class="text-body-sm font-body-sm text-on-surface-variant">Establish fresh Greenfield manufacturing
+                or processing infrastructure.</span>
+            </div>
+          </label>
+          <!-- Goal 2 -->
+          <label
+            class="flex items-start p-space-sm rounded-lg border border-outline-variant hover:border-secondary cursor-pointer transition-all has-[:checked]:border-secondary has-[:checked]:bg-surface-container-low">
+            <input checked="" class="mt-1 rounded text-secondary focus:ring-secondary mr-space-xs" type="checkbox" />
+            <div>
+              <span class="text-label-md font-label-md text-primary font-bold block">Buy Modern Machinery</span>
+              <span class="text-body-sm font-body-sm text-on-surface-variant">Procure automated processing equipment
+                with CLCSS technology subsidy.</span>
+            </div>
+          </label>
+          <!-- Goal 3 -->
+          <label
+            class="flex items-start p-space-sm rounded-lg border border-outline-variant hover:border-secondary cursor-pointer transition-all has-[:checked]:border-secondary has-[:checked]:bg-surface-container-low">
+            <input class="mt-1 rounded text-secondary focus:ring-secondary mr-space-xs" type="checkbox" />
+            <div>
+              <span class="text-label-md font-label-md text-primary font-bold block">Expand Existing Capacity</span>
+              <span class="text-body-sm font-body-sm text-on-surface-variant">Double manufacturing output to service
+                tier-1 distributors.</span>
+            </div>
+          </label>
+          <!-- Goal 4 -->
+          <label
+            class="flex items-start p-space-sm rounded-lg border border-outline-variant hover:border-secondary cursor-pointer transition-all has-[:checked]:border-secondary has-[:checked]:bg-surface-container-low">
+            <input checked="" class="mt-1 rounded text-secondary focus:ring-secondary mr-space-xs" type="checkbox" />
+            <div>
+              <span class="text-label-md font-label-md text-primary font-bold block">Hire &amp; Upskill Local
+                Workers</span>
+              <span class="text-body-sm font-body-sm text-on-surface-variant">Create rural jobs eligible for National
+                Apprenticeship Promotion.</span>
+            </div>
+          </label>
+          <!-- Goal 5 -->
+          <label
+            class="flex items-start p-space-sm rounded-lg border border-outline-variant hover:border-secondary cursor-pointer transition-all has-[:checked]:border-secondary has-[:checked]:bg-surface-container-low">
+            <input class="mt-1 rounded text-secondary focus:ring-secondary mr-space-xs" type="checkbox" />
+            <div>
+              <span class="text-label-md font-label-md text-primary font-bold block">Digital &amp; Tech
+                Modernization</span>
+              <span class="text-body-sm font-body-sm text-on-surface-variant">Adopt ERP, GST compliance automation, and
+                e-Commerce export setups.</span>
+            </div>
+          </label>
+          <!-- Goal 6 -->
+          <label
+            class="flex items-start p-space-sm rounded-lg border border-outline-variant hover:border-secondary cursor-pointer transition-all has-[:checked]:border-secondary has-[:checked]:bg-surface-container-low">
+            <input class="mt-1 rounded text-secondary focus:ring-secondary mr-space-xs" type="checkbox" />
+            <div>
+              <span class="text-label-md font-label-md text-primary font-bold block">Working Capital Buffer</span>
+              <span class="text-body-sm font-body-sm text-on-surface-variant">Manage cash flow cycles between raw
+                procurement and invoice payments.</span>
+            </div>
+          </label>
+        </div>
+      </article>
+      <!-- Multimodal Voice AI Assist Prompt -->
+      <section
+        class="bg-surface-container-low border border-secondary/30 rounded-xl p-space-md flex items-center justify-between">
+        <div class="flex items-center gap-space-sm">
+          <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-on-secondary shadow-sm">
+            <span class="material-symbols-outlined text-[22px]">mic</span>
+          </div>
+          <div>
+            <h4 class="text-label-md font-label-md text-primary font-bold">Prefer speaking in your local language?</h4>
+            <p class="text-body-sm font-body-sm text-on-surface-variant">Press mic to dictate your business profile in
+              Marathi, Tamil, or Hindi</p>
+          </div>
+        </div>
+        <button
+          class="hidden sm:inline-flex px-space-md py-space-xs rounded-full border border-secondary text-secondary font-label-sm hover:bg-secondary hover:text-on-secondary transition-colors"
+          type="button">
+          <button id="btn-profile-voice-start" type="button"
+            class="w-full h-full flex items-center justify-center font-bold">Start Voice AI (తెలుగు / EN)</button>
+        </button>
+      </section>
+      <!-- REASSURANCE & PRIMARY CTA SECTION -->
+      <section class="pt-space-xs space-y-space-md">
+        <!-- Encrypted Security Notice -->
+        <div
+          class="flex items-start gap-space-xs bg-surface-container-lowest p-space-sm rounded-lg border border-outline-variant text-on-surface-variant">
+          <span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5"
+            style="font-variation-settings: 'FILL' 1;">lock</span>
+          <p class="text-body-sm font-body-sm leading-snug">
+            <strong>Data Sovereignty &amp; Privacy:</strong> Your information is strictly protected and only used for
+            government scheme matching under the Digital Personal Data Protection (DPDP) Act.
+          </p>
+        </div>
+        <!-- Primary CTA Trigger Button -->
+        <button
+          class="w-full h-[54px] bg-primary text-on-primary rounded-lg font-headline-sm text-headline-sm flex items-center justify-center gap-space-xs shadow-md hover:bg-primary-container active:scale-[0.98] transition-all"
+          type="button">
+          <span class="material-symbols-outlined text-secondary-fixed text-[22px]"
+            style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+          <span><a href="/schemematch_ai_match_results_dashboard/code.html"
+              class="w-full flex items-center justify-center gap-2">Analyze My Eligibility →</a></span>
+        </button>
+        <p class="text-center text-label-sm font-label-sm text-outline">
+          Matches will calculate across 140+ Central &amp; State MSME schemes in under 5 seconds.
+        </p>
+      </section>
+    </form>
+  </main>
+  <!-- Footer (from Shared Components JSON) -->
+  <footer
+    class="border-t border-outline-variant bg-surface-container py-space-xl px-gutter-mobile md:px-gutter-desktop">
+    <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+      <div class="text-center md:text-left">
+        <span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">SchemeMatch AI</span>
+        <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+          © 2024 SchemeMatch AI. National Digital Inclusion &amp; MSME Empowerment Initiative.
+        </p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-space-md text-label-sm font-label-sm text-on-surface-variant">
+        <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+        <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+        <a class="hover:text-primary transition-colors" href="#">Helpdesk &amp; Grievances</a>
+        <a class="hover:text-primary transition-colors" href="#">Ministry Guidelines</a>
+      </div>
+    </div>
+  </footer>
+  <!-- BottomNavBar (from Shared Components JSON: Active tab = 'Profile') -->
+  <nav aria-label="Mobile Navigation"
+    class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-mobile py-space-xs pb-safe h-16 bg-surface-container-lowest border-t border-outline-variant shadow-lg">
+    <!-- Tab 1: Discover -->
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-2xs transition-all duration-200 hover:bg-surface-container-high rounded-full"
+      href="/schemematch_ai_home_discovery/code.html">
+      <span class="material-symbols-outlined text-[24px]">explore</span>
+      <span class="text-label-sm font-label-sm">Discover</span>
+    </a>
+    <!-- Tab 2: Profile (ACTIVE) -->
+    <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-space-sm py-space-2xs transition-all duration-200"
+      href="/schemematch_ai_entrepreneur_profile_eligibility/code.html">
+      <span class="material-symbols-outlined text-[24px]"
+        style="font-variation-settings: 'FILL' 1;">person_outline</span>
+      <span class="text-label-sm font-label-sm font-bold">Profile</span>
+    </a>
+    <!-- Tab 3: Matches -->
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-2xs transition-all duration-200 hover:bg-surface-container-high rounded-full"
+      href="/schemematch_ai_match_results_dashboard/code.html">
+      <span class="material-symbols-outlined text-[24px]">verified</span>
+      <span class="text-label-sm font-label-sm">Matches</span>
+    </a>
+    <!-- Tab 4: Assistant -->
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-2xs transition-all duration-200 hover:bg-surface-container-high rounded-full"
+      href="/schemematch_ai_ai_voice_assistant/code.html">
+      <span class="material-symbols-outlined text-[24px]">mic</span>
+      <span class="text-label-sm font-label-sm">Assistant</span>
+    </a>
+    <!-- Tab 5: Admin -->
+    <a class="flex flex-col items-center justify-center text-purple-700 px-space-sm py-space-2xs transition-all duration-200 hover:bg-purple-50 rounded-full font-bold"
+      href="/schemematch_ai_admin_blockchain_portal/code.html">
+      <span class="material-symbols-outlined text-[24px]">enhanced_encryption</span>
+      <span class="text-label-sm font-label-sm">Admin</span>
+    </a>
+  </nav>
+  <!-- Lightweight Inline JS for interactive range feedback -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const fundingSlider = document.getElementById('funding-slider');
+      if (fundingSlider) {
+        fundingSlider.addEventListener('input', (e) => {
+          const val = Number(e.target.value);
+          const formatted = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val);
+          const badge = fundingSlider.parentElement.querySelector('div.bg-secondary-container');
+          if (badge) {
+            let label = 'Custom';
+            if (val <= 50000) label = 'Shishu';
+            else if (val <= 500000) label = 'Kishore';
+            else if (val <= 2000000) label = 'Mudra Tarun';
+            else label = 'CGTMSE / MSME';
+            badge.textContent = `${formatted} (${label})`;
+          }
+        });
+      }
+
+      const turnoverSlider = document.getElementById('turnover-slider');
+      if (turnoverSlider) {
+        turnoverSlider.addEventListener('input', (e) => {
+          const val = Number(e.target.value);
+          const formatted = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val);
+          const display = turnoverSlider.parentElement.querySelector('span.text-headline-sm');
+          if (display) display.textContent = formatted;
+        });
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const stateSelect = document.getElementById('state-select');
+      const districtSelect = document.getElementById('district-select');
+
+      const districtsByState = {
+        "Andhra Pradesh": [
+          { val: "Visakhapatnam", text: "Visakhapatnam (Port & Industrial Cluster)" },
+          { val: "Vijayawada", text: "Vijayawada / NTR (Commercial Hub)" },
+          { val: "Guntur", text: "Guntur (Agro-Food Processing & Spices)" },
+          { val: "Tirupati", text: "Tirupati (Electronics & Temple Economy)" },
+          { val: "Kakinada", text: "Kakinada (Aquaculture & Processing)" },
+          { val: "East Godavari", text: "East Godavari / Rajahmundry" },
+          { val: "Anantapur", text: "Anantapur (Horticulture & Renewable)" },
+          { val: "Chittoor", text: "Chittoor (Food & Dairy Cluster)" },
+          { val: "Kurnool", text: "Kurnool (Textiles & Minerals)" },
+          { val: "Nellore", text: "Nellore (SPSR Nellore)" }
+        ],
+        "Telangana": [
+          { val: "Hyderabad", text: "Hyderabad (Tech & Services Hub)" },
+          { val: "Warangal", text: "Warangal (Textiles & Agro)" },
+          { val: "Nizamabad", text: "Nizamabad (Agricultural Processing)" },
+          { val: "Karimnagar", text: "Karimnagar (Granite & Mfg)" },
+          { val: "Khammam", text: "Khammam (Mining & Agriculture)" }
+        ],
+        "Maharashtra": [
+          { val: "Nashik", text: "Nashik (Agro-Food Processing)" },
+          { val: "Pune", text: "Pune (Engineering & Auto Cluster)" },
+          { val: "Aurangabad", text: "Chhatrapati Sambhajinagar" },
+          { val: "Nagpur", text: "Nagpur (Logistics & Mfg)" },
+          { val: "Kolhapur", text: "Kolhapur (Foundry & Agro)" }
+        ],
+        "Tamil Nadu": [
+          { val: "Chennai", text: "Chennai (Auto & Tech)" },
+          { val: "Coimbatore", text: "Coimbatore (Textiles & Pumps)" },
+          { val: "Madurai", text: "Madurai (Manufacturing)" }
+        ],
+        "Karnataka": [
+          { val: "Bengaluru", text: "Bengaluru (Tech & Innovation)" },
+          { val: "Mysuru", text: "Mysuru (Heritage & Agro)" },
+          { val: "Hubballi", text: "Hubballi-Dharwad (Commercial)" }
+        ]
+      };
+
+      if (stateSelect && districtSelect) {
+        stateSelect.addEventListener('change', (e) => {
+          const state = e.target.value;
+          const dists = districtsByState[state] || districtsByState["Andhra Pradesh"];
+          districtSelect.innerHTML = dists.map(d => `<option value="${d.val}">${d.text}</option>`).join('');
+        });
+      }
+    });
+  </script>
+
+  <!-- Interactive Voice Call & Speech Modal for Profile Page -->
+  <div id="profile-voice-modal"
+    class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex-col justify-end transition-opacity duration-300">
+    <div
+      class="w-full max-w-md mx-auto bg-primary-container text-on-primary rounded-t-3xl p-5 shadow-2xl flex flex-col items-center relative border-t border-white/20">
+      <div class="w-12 h-1.5 bg-white/20 rounded-full mb-3"></div>
+      <div class="flex items-center space-x-2 px-3 py-1 rounded-full bg-black/30 border border-white/10 mb-3">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="font-label-sm text-xs text-secondary-fixed font-bold tracking-wider uppercase">Active Voice Call •
+          Andhra Pradesh MSME</span>
+      </div>
+
+      <div
+        class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shadow-xl border-4 border-primary-container mb-2">
+        <span class="material-symbols-outlined text-3xl">support_agent</span>
+      </div>
+      <h3 class="font-headline-md text-lg font-bold text-white">SchemeMate AI Assistant</h3>
+      <p class="font-body-sm text-xs text-primary-fixed mb-3">Speaking Telugu (తెలుగు), English, Hindi & Marathi</p>
+
+      <!-- Language selection in modal -->
+      <div class="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-full border border-white/15 mb-3 text-xs">
+        <button class="prof-modal-lang font-bold text-secondary-fixed cursor-pointer" data-lang="te-IN">తెలుగు
+          (Telugu)</button>
+        <span class="text-white/40">|</span>
+        <button class="prof-modal-lang font-bold text-white/80 hover:text-white cursor-pointer"
+          data-lang="en-IN">EN</button>
+        <span class="text-white/40">|</span>
+        <button class="prof-modal-lang font-bold text-white/80 hover:text-white cursor-pointer"
+          data-lang="hi-IN">हिंदी</button>
+      </div>
+
+      <!-- Live Transcript Box -->
+      <div class="w-full bg-black/30 rounded-xl p-3 border border-white/15 mb-4 text-center">
+        <p id="prof-voice-transcript" class="text-xs text-slate-200 italic">
+          "నమస్తే! ఆంధ్రా ప్రదేశ్ విశాఖపట్నం / గుంటూరు ప్రొఫైల్ ఆధారంగా, మీరు PMEGP మరియు YSR నవోదయ పథకాల కింద 35%
+          సబ్సిడీకి అర్హులు."
+        </p>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex items-center justify-center space-x-6 w-full pt-1">
+        <button id="btn-prof-mute"
+          class="w-12 h-12 rounded-full bg-white/15 text-white flex items-center justify-center hover:bg-white/25 active:scale-95"
+          type="button">
+          <span class="material-symbols-outlined text-xl">mic</span>
+        </button>
+        <button id="btn-prof-speaker"
+          class="w-12 h-12 rounded-full bg-white/15 text-white flex items-center justify-center hover:bg-white/25 active:scale-95"
+          type="button">
+          <span class="material-symbols-outlined text-xl">volume_up</span>
+        </button>
+        <button id="btn-prof-close-voice"
+          class="w-14 h-14 rounded-full bg-error text-on-error flex items-center justify-center shadow-lg hover:bg-error/90 active:scale-95"
+          type="button">
+          <span class="material-symbols-outlined text-2xl">call_end</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const profVoiceModal = document.getElementById('profile-voice-modal');
+      const btnStartVoice = document.getElementById('btn-profile-voice-start');
+      const btnCloseVoice = document.getElementById('btn-prof-close-voice');
+      const profTranscript = document.getElementById('prof-voice-transcript');
+      const langBtns = document.querySelectorAll('.prof-modal-lang');
+
+      const voiceTexts = {
+        'te-IN': "నమస్తే! ఆంధ్రా ప్రదేశ్ విశాఖపట్నం / గుంటూరు ప్రొఫైల్ ఆధారంగా, మీరు PMEGP మరియు YSR నవోదయ పథకాల కింద 35% మూలధన సబ్సిడీకి అర్హులు.",
+        'en-IN': "Namaste! Based on your Andhra Pradesh Visakhapatnam profile, you qualify for 35% capital subsidy under PMEGP & AP Food Processing policy.",
+        'hi-IN': "नमस्ते! आपकी आंध्र प्रदेश विशाखापत्तनम प्रोफाइल के आधार पर, आप 35% पूंजीगत सब्सिडी के लिए पात्र हैं।"
+      };
+
+      function speakProfText(lang) {
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const text = voiceTexts[lang] || voiceTexts['te-IN'];
+          const synth = new SpeechSynthesisUtterance(text);
+          synth.lang = lang;
+          window.speechSynthesis.speak(synth);
+          if (profTranscript) profTranscript.textContent = `"${text}"`;
+        }
+      }
+
+      if (btnStartVoice) {
+        btnStartVoice.addEventListener('click', () => {
+          if (profVoiceModal) {
+            profVoiceModal.classList.remove('hidden');
+            profVoiceModal.classList.add('flex');
+            speakProfText('te-IN');
+          }
+        });
+      }
+
+      if (btnCloseVoice) {
+        btnCloseVoice.addEventListener('click', () => {
+          if (profVoiceModal) {
+            profVoiceModal.classList.add('hidden');
+            profVoiceModal.classList.remove('flex');
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+          }
+        });
+      }
+
+      langBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+          const lang = this.getAttribute('data-lang');
+          speakProfText(lang);
+        });
+      });
+
+      // --- Map Pointer Relocation & Fake Data Sync for Profile Eligibility ---
+      const eligMapBox = document.getElementById('eligibility-map-box');
+      const eligPointerPin = document.getElementById('elig-pointer-pin');
+      const eligPinTag = document.getElementById('elig-pin-tag');
+      const districtSelect = document.getElementById('district-select');
+      const eligFakeOfficer = document.getElementById('elig-fake-officer');
+      const eligFakeSubsidy = document.getElementById('elig-fake-subsidy');
+      const eligFakeBank = document.getElementById('elig-fake-bank');
+      const eligFakeCount = document.getElementById('elig-fake-count');
+
+      const eligDistrictData = {
+        Nashik: { x: '25%', y: '30%', tag: 'Nashik Rural Zone', officer: 'Shri S. V. Kulkarni', subsidy: '35% (Up to ₹17.5L)', bank: 'Bank of Maharashtra', count: '42 Verified Schemes' },
+        Pune: { x: '50%', y: '60%', tag: 'Pune Auto Cluster', officer: 'Smt. Archana Deshmukh', subsidy: '25% (Up to ₹12.5L)', bank: 'State Bank of India', count: '38 Verified Schemes' },
+        Visakhapatnam: { x: '80%', y: '35%', tag: 'Vizag Port & SEZ', officer: 'Shri K. Ramakrishna', subsidy: '30% (Up to ₹15.0L)', bank: 'Union Bank of India', count: '46 Verified Schemes' },
+        Vijayawada: { x: '70%', y: '50%', tag: 'Vijayawada Trade Hub', officer: 'Shri T. V. Rao', subsidy: '25% (Up to ₹12.5L)', bank: 'Canara Bank', count: '35 Verified Schemes' },
+        Sambhajinagar: { x: '35%', y: '70%', tag: 'Sambhajinagar MIDC', officer: 'Shri M. P. Patil', subsidy: '35% (Up to ₹17.5L)', bank: 'Bank of Baroda', count: '40 Verified Schemes' },
+        Tirupati: { x: '85%', y: '75%', tag: 'Tirupati Tech Zone', officer: 'Smt. N. Lakshmi', subsidy: '25% (Up to ₹10.0L)', bank: 'Indian Bank', count: '32 Verified Schemes' }
+      };
+
+      function updateEligPointer(districtKey, customX, customY) {
+        const data = eligDistrictData[districtKey] || {
+          x: customX || '50%',
+          y: customY || '50%',
+          tag: districtKey || 'Custom Location',
+          officer: 'District DIC Officer',
+          subsidy: '30% Regional Grant',
+          bank: 'Nodal Regional Bank',
+          count: '36 Active Schemes'
+        };
+
+        if (eligPointerPin) {
+          eligPointerPin.style.left = data.x;
+          eligPointerPin.style.top = data.y;
+        }
+        if (eligPinTag) eligPinTag.textContent = data.tag;
+        if (eligFakeOfficer) eligFakeOfficer.textContent = data.officer;
+        if (eligFakeSubsidy) eligFakeSubsidy.textContent = data.subsidy;
+        if (eligFakeBank) eligFakeBank.textContent = data.bank;
+        if (eligFakeCount) eligFakeCount.textContent = data.count;
+      }
+
+      if (districtSelect) {
+        districtSelect.addEventListener('change', function () {
+          updateEligPointer(this.value);
+        });
+      }
+
+      if (eligMapBox) {
+        eligMapBox.addEventListener('click', function (e) {
+          const rect = this.getBoundingClientRect();
+          const clickX = e.clientX - rect.left;
+          const clickY = e.clientY - rect.top;
+          const xPct = Math.round((clickX / rect.width) * 100) + '%';
+          const yPct = Math.round((clickY / rect.height) * 100) + '%';
+          updateEligPointer(`Relocated Pin (${xPct}, ${yPct})`, xPct, yPct);
+        });
+      }
+    })();
+  </script>
+
+  <!-- Universal Login Modal Overlay -->
+  <div id="universal-login-modal"
+    class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-4 transition-all">
+    <div
+      class="bg-surface-container-lowest text-on-surface rounded-3xl max-w-md w-full p-6 shadow-2xl border border-outline-variant/40 relative">
+      <!-- Close Button -->
+      <button onclick="closeUniversalLoginModal()"
+        class="absolute top-4 right-4 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary">
+        <span class="material-symbols-outlined text-[1.2rem]">close</span>
+      </button>
+
+      <!-- Header -->
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow">
+          <span class="material-symbols-outlined text-2xl">account_balance</span>
+        </div>
+        <div>
+          <h3 class="font-headline-sm text-label-lg font-bold text-primary">SchemeMatch AI Portal Login</h3>
+          <p class="text-label-sm text-[0.7rem] text-on-surface-variant">Enterprise MSME Scheme & Subsidy Portal</p>
+        </div>
+      </div>
+
+      <!-- Active Account Badge -->
+      <div class="bg-surface-container-low p-3 rounded-xl border border-secondary/30 mb-4 flex items-center gap-3">
+        <img src="/assets/msme_entrepreneur_portrait.png"
+          class="w-10 h-10 rounded-full object-cover border-2 border-secondary shrink-0">
+        <div>
+          <h4 id="auth-user-name" class="font-bold text-xs text-primary">R.Vishnu Vardhan</h4>
+          <span class="text-[10px] text-secondary font-bold">Verified Account • Nashik Agro Zone</span>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <form onsubmit="handleUniversalLoginSubmit(event)" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-bold text-primary mb-1">Mobile Number / Udyam ID</label>
+          <div class="relative">
+            <input type="text" id="univ-login-mobile" value="+91 98765 43210" required
+              class="w-full h-11 pl-10 pr-3 rounded-xl border border-outline-variant/60 bg-surface-container-low text-xs font-bold text-primary focus:outline-none focus:border-secondary">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-outline text-lg">smartphone</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-primary mb-1">4-Digit OTP / PIN</label>
+          <div class="relative">
+            <input type="password" id="univ-login-otp" value="5678" maxlength="6" required
+              class="w-full h-11 pl-10 pr-3 rounded-xl border border-outline-variant/60 bg-surface-container-low text-xs font-bold text-primary focus:outline-none focus:border-secondary tracking-widest">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-outline text-lg">lock</span>
+          </div>
+        </div>
+
+        <!-- Quick Switch Registered Account Presets -->
+        <div class="space-y-1 pt-1">
+          <span class="text-[10px] text-on-surface-variant font-medium">Or Switch Registered Beneficiary Account:</span>
+          <div class="grid grid-cols-2 gap-1.5 text-[10px]">
+            <button type="button" onclick="switchPresetAccount('R.Vishnu Vardhan', '+91 98765 43210')"
+              class="p-1.5 rounded bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-left font-bold text-primary truncate">
+              R.Vishnu Vardhan
+            </button>
+            <button type="button" onclick="switchPresetAccount('Sunita Deshmukh', '+91 91234 56789')"
+              class="p-1.5 rounded bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-left font-bold text-primary truncate">
+              Sunita Deshmukh
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-univ-login-submit"
+          class="w-full h-11 bg-primary text-on-primary font-label-md text-label-md font-bold rounded-xl shadow-md hover:bg-primary-container active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer mt-2">
+          <span id="univ-login-btn-txt">Log In & Continue →</span>
+        </button>
+      </form>
+
+      <div id="univ-login-success-msg"
+        class="hidden mt-3 p-2.5 rounded-xl bg-secondary-container text-on-secondary-container font-label-sm text-xs font-bold text-center">
+        Authenticated! Session Active.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openUniversalLoginModal() {
+      const modal = document.getElementById('universal-login-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+    function closeUniversalLoginModal() {
+      const modal = document.getElementById('universal-login-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+    function switchPresetAccount(name, mobile) {
+      const nameEl = document.getElementById('auth-user-name');
+      const mobEl = document.getElementById('univ-login-mobile');
+      if (nameEl) nameEl.textContent = name;
+      if (mobEl) mobEl.value = mobile;
+    }
+    function handleUniversalLoginSubmit(e) {
+      e.preventDefault();
+      const btnTxt = document.getElementById('univ-login-btn-txt');
+      const msg = document.getElementById('univ-login-success-msg');
+      if (btnTxt) btnTxt.textContent = "Verifying Credentials...";
+      setTimeout(() => {
+        if (btnTxt) btnTxt.textContent = "Authenticated!";
+        if (msg) msg.classList.remove('hidden');
+        sessionStorage.setItem('userLoggedIn', 'true');
+        setTimeout(() => {
+          closeUniversalLoginModal();
+        }, 700);
+      }, 500);
+    }
+  </script>
+</body>
+
+</html>

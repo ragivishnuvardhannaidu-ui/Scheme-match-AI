@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/admin", "destination": "/schemematch_ai_admin_blockchain_portal/code.html" },
+    { "source": "/schemematch_ai_admin_blockchain_portal", "destination": "/schemematch_ai_admin_blockchain_portal/code.html" },
+    { "source": "/voice", "destination": "/schemematch_ai_ai_voice_assistant/code.html" },
+    { "source": "/schemematch_ai_ai_voice_assistant", "destination": "/schemematch_ai_ai_voice_assistant/code.html" },
+    { "source": "/profile", "destination": "/schemematch_ai_entrepreneur_profile_eligibility/code.html" },
+    { "source": "/schemematch_ai_entrepreneur_profile_eligibility", "destination": "/schemematch_ai_entrepreneur_profile_eligibility/code.html" },
+    { "source": "/discovery", "destination": "/schemematch_ai_home_discovery/code.html" },
+    { "source": "/schemematch_ai_home_discovery", "destination": "/schemematch_ai_home_discovery/code.html" },
+    { "source": "/results", "destination": "/schemematch_ai_match_results_dashboard/code.html" },
+    { "source": "/schemematch_ai_match_results_dashboard", "destination": "/schemematch_ai_match_results_dashboard/code.html" },
+    { "source": "/details", "destination": "/schemematch_ai_scheme_details_ai_assistant/code.html" },
+    { "source": "/schemematch_ai_scheme_details_ai_assistant", "destination": "/schemematch_ai_scheme_details_ai_assistant/code.html" }
+  ]
+}

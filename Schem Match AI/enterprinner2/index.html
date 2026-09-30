@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SchemeMatch AI — Enterprise MSME Intelligence Platform</title>
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#00163d',
+            },
+            accent: {
+              teal: '#006a61',
+              emerald: '#059669',
+            }
+          },
+          boxShadow: {
+            'pill': '0 10px 30px -5px rgba(37, 99, 235, 0.15), 0 4px 12px -2px rgba(0, 0, 0, 0.05)',
+            'hero-card': '0 25px 50px -12px rgba(0, 22, 61, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+            'glow': '0 0 40px -10px rgba(37, 99, 235, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .material-symbols-filled {
+      font-variation-settings: 'FILL' 1, 'wght' 400;
+    }
+    /* Smooth floating animation */
+    @keyframes float-subtle {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float {
+      animation: float-subtle 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 selection:bg-blue-600 selection:text-white relative overflow-x-hidden">
+
+  <!-- Ambient Top Gradient Glow matching SchemeMatch AI theme -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-blue-100/60 via-blue-50/30 to-transparent blur-3xl pointer-events-none -z-10"></div>
+
+  <!-- FLOATING PILL NAVBAR (Inspired directly by user photo UI) -->
+  <div class="fixed top-6 left-0 right-0 z-50 px-4 flex justify-center">
+    <header class="w-full max-w-5xl bg-white/85 backdrop-blur-xl border border-slate-200/80 shadow-pill rounded-full px-4 md:px-6 h-14 flex items-center justify-between transition-all">
+      
+      <!-- Brand Logo -->
+      <a href="/index.html" class="flex items-center gap-2.5 group">
+        <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-lg">account_balance</span>
+        </div>
+        <span class="font-display font-bold text-base md:text-lg text-slate-900 tracking-tight flex items-center gap-1.5">
+          SchemeMatch AI <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">MSME Platform</span>
+        </span>
+      </a>
+
+      <!-- Center Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-600">
+        <a href="#platform" class="hover:text-blue-600 transition-colors">Platform</a>
+        <a href="#how-it-works" class="hover:text-blue-600 transition-colors">How It Works</a>
+        <a href="#modules" class="hover:text-blue-600 transition-colors">Solutions</a>
+        <a href="#analytics" class="hover:text-blue-600 transition-colors">Analytics</a>
+        <a href="/schemematch_ai_admin_blockchain_portal/code.html" class="text-purple-700 hover:text-purple-900 transition-colors flex items-center gap-1 font-bold bg-purple-50 px-2.5 py-1 rounded-full border border-purple-200 shadow-sm">
+          <span class="material-symbols-outlined text-sm text-purple-600">enhanced_encryption</span> Admin Ledger
+        </a>
+        <a href="/schemematch_ai_ai_voice_assistant/code.html" class="hover:text-blue-600 transition-colors flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> Voice AI
+        </a>
+      </nav>
+
+      <!-- Right Action & Profile Avatar Trigger -->
+      <div class="flex items-center gap-2.5">
+        
+        <!-- Sign In Button (Triggers Login Modal) -->
+        <button id="btn-open-login" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors cursor-pointer border border-slate-200">
+          <span class="material-symbols-outlined text-sm text-slate-500">lock</span>
+          <span>Sign In</span>
+        </button>
+
+        <!-- R.Vishnu Vardhan Avatar & Pointer Hover Preview Card -->
+        <div class="relative group cursor-pointer" onclick="window.location.href='/schemematch_ai_entrepreneur_profile_eligibility/code.html'">
+          <div class="w-8 h-8 rounded-full ring-2 ring-blue-600 ring-offset-1 overflow-hidden shrink-0 shadow">
+            <img src="/assets/msme_entrepreneur_portrait.png" alt="R.Vishnu Vardhan" class="w-full h-full object-cover">
+          </div>
+          <!-- Pointer Hover Preview Card (Opens when pointer is pointed at Profile) -->
+          <div class="absolute right-0 top-10 w-64 bg-white border border-slate-200 p-3 rounded-2xl shadow-2xl z-50 hidden group-hover:block transition-all text-left">
+            <div class="flex items-center gap-2.5 mb-2 pb-2 border-b border-slate-100">
+              <img src="/assets/msme_entrepreneur_portrait.png" class="w-9 h-9 rounded-full object-cover border border-blue-600">
+              <div>
+                <h4 class="font-bold text-xs text-slate-900 leading-tight">R.Vishnu Vardhan</h4>
+                <span class="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[12px] material-symbols-filled">verified</span> Verified Entrepreneur
+                </span>
+              </div>
+            </div>
+            <div class="text-[11px] space-y-1 text-slate-600">
+              <div class="flex justify-between"><span>Profile Progress:</span><strong class="text-emerald-600">85% Complete</strong></div>
+              <div class="flex justify-between"><span>Location:</span><strong class="text-slate-900">Nashik Agro Zone</strong></div>
+              <div class="flex justify-between"><span>Subsidy Match:</span><strong class="text-blue-600 font-bold">35% PMEGP Grant</strong></div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-100 text-center">
+              <span class="text-[10px] font-bold text-blue-600 flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-[12px]">touch_app</span> Open Full Profile Page
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary CTA Pill Button -->
+        <a href="/schemematch_ai_ai_voice_assistant/code.html" class="inline-flex items-center gap-2 px-4 md:px-5 py-2 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs transition-all shadow-md shadow-blue-500/20 active:scale-95">
+          <span>Start Analyzing Now</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+
+    </header>
+  </div>
+
+  <!-- HERO SECTION -->
+  <main id="platform" class="flex-1 max-w-6xl w-full mx-auto px-4 pt-32 pb-16 space-y-20">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      
+      <!-- Left Column: Typography & Action CTA -->
+      <div class="lg:col-span-6 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-semibold text-blue-700">
+          <span class="material-symbols-outlined text-sm text-blue-600">auto_awesome</span>
+          <span>Next-Gen Enterprise MSME Intelligence</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+          Planetary scale <br>
+          <span class="text-brand-600 bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-500 bg-clip-text text-transparent">intelligence.</span>
+        </h1>
+
+        <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-lg">
+          The national standard for enterprise MSME scheme analysis. Seamlessly query government subsidies, automate document eligibility, and integrate predictive models directly into your business workflows.
+        </p>
+
+        <div class="pt-2 flex flex-wrap items-center gap-4">
+          <!-- Primary Pill Button -->
+          <button onclick="openLoginModal()" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-pill hover:shadow-glow transition-all active:scale-95 cursor-pointer">
+            <span>Sign In & Start Analyzing Now</span>
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </button>
+
+          <!-- Secondary Pill Button -->
+          <a href="/schemematch_ai_home_discovery/code.html" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-slate-100 text-slate-700 font-semibold text-sm border border-slate-200 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-base text-slate-500">explore</span>
+            <span>Explore Discovery Portal</span>
+          </a>
+        </div>
+
+        <!-- Quick metrics row -->
+        <div class="pt-4 flex items-center gap-6 border-t border-slate-200/80 text-xs text-slate-500">
+          <div>
+            <strong class="block text-slate-900 text-sm font-bold">500+ Central Schemes</strong>
+            <span>myScheme & MSME Sync</span>
+          </div>
+          <div class="w-px h-8 bg-slate-200"></div>
+          <div>
+            <strong class="block text-slate-900 text-sm font-bold">35% Subsidy Rate</strong>
+            <span>Max Rural Capital Grant</span>
+          </div>
+          <div class="w-px h-8 bg-slate-200"></div>
+          <div>
+            <strong class="block text-emerald-600 text-sm font-bold">12 Dialects</strong>
+            <span>Marathi, Hindi & English</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Glass Hero Image Card -->
+      <div class="lg:col-span-6 relative">
+        <div class="absolute -inset-4 bg-gradient-to-r from-blue-600 to-teal-500 rounded-3xl opacity-20 blur-2xl -z-10"></div>
+        
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 bg-slate-950 group cursor-pointer" onclick="openLoginModal()">
+          <img src="/assets/voice_ai_banner.png" alt="Planetary Scale Intelligence" class="w-full h-80 md:h-[380px] object-cover group-hover:scale-105 transition-transform duration-700 opacity-90">
+          
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2.5 py-1 rounded-full bg-emerald-500 text-white font-bold text-[11px] shadow-sm">
+                Live Verification
+              </span>
+              <span class="px-2.5 py-1 rounded-full bg-white/20 backdrop-blur text-white text-[11px] font-medium border border-white/20">
+                Applicant: R.Vishnu Vardhan
+              </span>
+            </div>
+            
+            <h3 class="text-white text-xl font-bold font-display">PMEGP Agro-Food Processing Unit</h3>
+            <p class="text-slate-300 text-xs mt-1">94% Automated AI Scheme Match • ₹17.5 Lakhs Non-refundable Capital Subsidy Cap</p>
+
+            <div class="mt-4 pt-3 border-t border-white/15 flex items-center justify-between text-xs text-blue-300 font-semibold">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Connected to Nodal Agency API
+              </span>
+              <span class="flex items-center gap-1 text-white hover:underline">
+                Log In & Launch App <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CENTERED SECTION -->
+    <div id="how-it-works" class="text-center space-y-3 pt-10">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+        From profile metrics to <span class="text-brand-600">actionable intelligence.</span>
+      </h2>
+      <p class="text-slate-600 text-sm md:text-base max-w-2xl mx-auto">
+        Our proprietary MSME VLM architecture reduces subsidy analysis workflows from days to seconds with real-time speech interaction.
+      </p>
+    </div>
+
+    <!-- VISUAL BAR CHART SECTION -->
+    <div id="analytics" class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/80 shadow-sm space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">
+            <span class="material-symbols-outlined text-base">bar_chart</span>
+            Regional Capital Grant Analytics
+          </div>
+          <h3 class="text-xl font-bold text-slate-900">District Capital Subsidy Bar Chart & Funding Distribution</h3>
+          <p class="text-xs text-slate-500">Comparative breakdown of maximum government capital subsidy caps across top industrial zones</p>
+        </div>
+        <div class="flex items-center gap-4 text-xs font-semibold">
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-emerald-600 inline-block"></span> 35% Rural Subsidy</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-teal-500 inline-block"></span> 30% Marine/Port SEZ</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-blue-600 inline-block"></span> 25% Urban/Auto Cluster</span>
+        </div>
+      </div>
+
+      <!-- Animated Bar Chart Graphics -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 pt-2">
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 flex flex-col items-center justify-end h-60 relative group hover:border-emerald-500 hover:shadow-md transition-all">
+          <span class="text-xs font-bold text-emerald-700 mb-2">₹17.5 Lakhs</span>
+          <div class="w-14 bg-emerald-600 rounded-t-xl transition-all duration-700 group-hover:bg-emerald-500 shadow-md flex items-center justify-center text-white text-xs font-bold py-1" style="height: 85%;">
+            35%
+          </div>
+          <span class="text-xs font-bold text-slate-900 mt-3">Nashik</span>
+          <span class="text-[10px] text-slate-500">Agro Belt</span>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 flex flex-col items-center justify-end h-60 relative group hover:border-emerald-500 hover:shadow-md transition-all">
+          <span class="text-xs font-bold text-emerald-700 mb-2">₹17.5 Lakhs</span>
+          <div class="w-14 bg-emerald-600 rounded-t-xl transition-all duration-700 group-hover:bg-emerald-500 shadow-md flex items-center justify-center text-white text-xs font-bold py-1" style="height: 85%;">
+            35%
+          </div>
+          <span class="text-xs font-bold text-slate-900 mt-3">Sambhajinagar</span>
+          <span class="text-[10px] text-slate-500">MIDC Rural</span>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 flex flex-col items-center justify-end h-60 relative group hover:border-teal-500 hover:shadow-md transition-all">
+          <span class="text-xs font-bold text-teal-700 mb-2">₹15.0 Lakhs</span>
+          <div class="w-14 bg-teal-500 rounded-t-xl transition-all duration-700 group-hover:bg-teal-400 shadow-md flex items-center justify-center text-white text-xs font-bold py-1" style="height: 72%;">
+            30%
+          </div>
+          <span class="text-xs font-bold text-slate-900 mt-3">Visakhapatnam</span>
+          <span class="text-[10px] text-slate-500">Port SEZ</span>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 flex flex-col items-center justify-end h-60 relative group hover:border-blue-500 hover:shadow-md transition-all">
+          <span class="text-xs font-bold text-blue-700 mb-2">₹12.5 Lakhs</span>
+          <div class="w-14 bg-blue-600 rounded-t-xl transition-all duration-700 group-hover:bg-blue-500 shadow-md flex items-center justify-center text-white text-xs font-bold py-1" style="height: 60%;">
+            25%
+          </div>
+          <span class="text-xs font-bold text-slate-900 mt-3">Pune</span>
+          <span class="text-[10px] text-slate-500">Auto Cluster</span>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 flex flex-col items-center justify-end h-60 relative group hover:border-indigo-500 hover:shadow-md transition-all">
+          <span class="text-xs font-bold text-indigo-700 mb-2">₹10.0 Lakhs</span>
+          <div class="w-14 bg-indigo-600 rounded-t-xl transition-all duration-700 group-hover:bg-indigo-500 shadow-md flex items-center justify-center text-white text-xs font-bold py-1" style="height: 48%;">
+            20%
+          </div>
+          <span class="text-xs font-bold text-slate-900 mt-3">Hyderabad</span>
+          <span class="text-[10px] text-slate-500">Tech Zone</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIRECT MODULE SOLUTIONS GRID -->
+    <div id="modules" class="space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-2">
+        <div>
+          <h3 class="text-2xl font-bold text-slate-900">Platform Modules & Solutions</h3>
+          <p class="text-xs text-slate-500">Direct HTTP links to launch every interactive section of SchemeMatch AI</p>
+        </div>
+        <span class="text-xs font-semibold text-purple-700 flex items-center gap-1 bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
+          <span class="w-2 h-2 rounded-full bg-purple-600 animate-pulse"></span> All 6 Enterprise Modules Online
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <a href="/schemematch_ai_admin_blockchain_portal/code.html" class="group bg-gradient-to-br from-slate-900 to-slate-950 rounded-3xl p-6 border border-purple-500/30 shadow-xl hover:shadow-2xl hover:border-purple-500 transition-all flex flex-col justify-between text-white relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-purple-600/10 rounded-full blur-2xl pointer-events-none"></div>
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-purple-900/60 border border-purple-400/40 text-purple-300 flex items-center justify-center font-bold group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-2xl">enhanced_encryption</span>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">
+                Blockchain + AI Voice
+              </span>
+            </div>
+            <h4 class="font-bold text-white text-lg mb-1 group-hover:text-purple-300 transition-colors">Admin Blockchain Audit & Voice AI</h4>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">Enterprise SHA-256 immutable ledger, scheme allotment records, rejection reasons audit trail, and speech AI assistant.</p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-purple-300">
+            <span class="flex items-center gap-1">Launch Admin Portal <span class="material-symbols-outlined text-sm">lock</span></span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <a href="/schemematch_ai_ai_voice_assistant/code.html" class="group bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-blue-500 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-2xl">record_voice_over</span>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-teal-50 text-teal-700 border border-teal-200">
+                Working Voice AI
+              </span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-lg mb-1 group-hover:text-blue-600 transition-colors">AI Voice Assistant & Live Session</h4>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">Real-time speech recognition, voice synthesis, live audio visualization, and interactive Q&A in Marathi, Hindi & English.</p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Launch Voice Assistant</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <a href="/schemematch_ai_home_discovery/code.html" class="group bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-blue-500 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-2xl">explore</span>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                Discovery Landing
+              </span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-lg mb-1 group-hover:text-blue-600 transition-colors">Home & Scheme Discovery</h4>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">Browse 500+ MSME schemes, process workflow pipeline, and government subsidy statistics.</p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Explore Schemes</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <a href="/schemematch_ai_entrepreneur_profile_eligibility/code.html" class="group bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-blue-500 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-2xl">person_outline</span>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                Profile Form
+              </span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-lg mb-1 group-hover:text-blue-600 transition-colors">Entrepreneur Profile & Eligibility</h4>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">Interactive multi-step form with category rules, financial turnover sliders, and eligibility analysis.</p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Open Profile Page</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <a href="/schemematch_ai_match_results_dashboard/code.html" class="group bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-blue-500 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-2xl">verified</span>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Results Hub
+              </span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-lg mb-1 group-hover:text-blue-600 transition-colors">Match Results Dashboard</h4>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">87% overall match meter, factor breakdown, ranked scheme cards, and floating WhatsApp AI assistant widget.</p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>View Match Results</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <a href="/schemematch_ai_scheme_details_ai_assistant/code.html" class="group bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-blue-500 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-2xl">description</span>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200">
+                Scheme Details
+              </span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-lg mb-1 group-hover:text-blue-600 transition-colors">Scheme Details & AI Call Modal</h4>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">Detailed PMEGP grant breakdown, 5 of 7 document checklist, DPR generator trigger, and Voice Call modal UI.</p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>View Scheme Details</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <div class="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-3xl p-6 text-white shadow-lg flex flex-col justify-between relative overflow-hidden group">
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center font-bold">
+                <span class="material-symbols-outlined text-2xl text-white">chat</span>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-white text-emerald-800 shadow">
+                WhatsApp AI
+              </span>
+            </div>
+            <h4 class="font-bold text-white text-lg mb-1">WhatsApp AI Direct Assistance</h4>
+            <p class="text-xs text-emerald-100 leading-relaxed mb-4">Connect directly to WhatsApp AI for instant query resolution for R.Vishnu Vardhan.</p>
+          </div>
+          <div class="relative z-10 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-bold">
+            <a href="https://wa.me/919876543210?text=Hi%20SchemeMate%20AI%2C%20I%20am%20R.Vishnu%20Vardhan." target="_blank" class="hover:underline flex items-center gap-1">
+              <span>Redirect to WhatsApp</span>
+              <span class="material-symbols-outlined text-base">open_in_new</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- INTERACTIVE LOGIN / AUTHENTICATION MODAL OVERLAY -->
+  <div id="login-modal-overlay" class="fixed inset-0 bg-slate-950/70 backdrop-blur-md z-50 flex items-center justify-center p-4 transition-all opacity-0 pointer-events-none hidden">
+    
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 md:p-8 shadow-2xl border border-slate-200 relative transform transition-all scale-95" id="login-modal-card">
+      
+      <!-- Close Button -->
+      <button onclick="closeLoginModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors">
+        <span class="material-symbols-outlined text-lg">close</span>
+      </button>
+
+      <!-- Header branding -->
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-md">
+          <span class="material-symbols-outlined text-2xl">account_balance</span>
+        </div>
+        <div>
+          <h3 class="font-display font-bold text-lg text-slate-900">SchemeMatch AI Login</h3>
+          <p class="text-xs text-slate-500 font-medium">Enterprise MSME Intelligence Portal</p>
+        </div>
+      </div>
+
+      <!-- Verified User Card (Fake Login Details) -->
+      <div class="bg-blue-50/70 border border-blue-200/80 rounded-2xl p-3.5 mb-5 flex items-center gap-3">
+        <img src="/assets/msme_entrepreneur_portrait.png" class="w-10 h-10 rounded-full object-cover border-2 border-blue-600">
+        <div>
+          <h4 class="font-bold text-xs text-slate-900">R.Vishnu Vardhan</h4>
+          <p class="text-[11px] text-blue-700 font-semibold">Pre-filled Account • Nashik Agro Zone</p>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="space-y-4" onsubmit="handleLoginSubmit(event)">
+        
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">
+            Mobile Number / Udyam ID <span class="text-blue-600">*</span>
+          </label>
+          <div class="relative">
+            <input type="text" id="login-mobile" value="+91 98765 43210" required class="w-full h-11 pl-10 pr-3 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-slate-400 text-lg">smartphone</span>
+          </div>
+          <span class="text-[10px] text-slate-500 mt-1 block">Pre-filled with working fake test mobile number</span>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">
+            4-Digit OTP / PIN <span class="text-blue-600">*</span>
+          </label>
+          <div class="relative">
+            <input type="password" id="login-otp" value="5678" maxlength="6" required class="w-full h-11 pl-10 pr-3 rounded-xl border border-slate-300 text-sm font-bold text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none tracking-widest">
+            <span class="material-symbols-outlined absolute left-3 top-3 text-slate-400 text-lg">lock</span>
+          </div>
+          <span class="text-[10px] text-emerald-600 font-semibold mt-1 block flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs material-symbols-filled">verified</span> OTP Verified for R.Vishnu Vardhan
+          </span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="btn-submit-login" class="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-98">
+          <span id="login-btn-text">Sign In & Redirect to Main App →</span>
+          <span id="login-btn-spinner" class="hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+        </button>
+
+      </form>
+
+      <!-- Status Notification Message -->
+      <div id="login-status-msg" class="hidden mt-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800 text-center">
+        Authentication Successful! Redirecting to Main App...
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs">
+          <span class="material-symbols-outlined text-sm">account_balance</span>
+        </div>
+        <span class="font-bold text-slate-900">SchemeMatch AI • MSME Intelligence Platform</span>
+      </div>
+      <div>
+        Running locally on <strong class="text-slate-800">http://localhost:8999/</strong>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LOGIN MODAL INTERACTIVE SCRIPT -->
+  <script>
+    const loginOverlay = document.getElementById('login-modal-overlay');
+    const loginModalCard = document.getElementById('login-modal-card');
+    const loginBtnOpen = document.getElementById('btn-open-login');
+    const loginStatusMsg = document.getElementById('login-status-msg');
+    const loginBtnText = document.getElementById('login-btn-text');
+    const loginBtnSpinner = document.getElementById('login-btn-spinner');
+
+    function openLoginModal() {
+      if (loginOverlay) {
+        loginOverlay.classList.remove('hidden');
+        setTimeout(() => {
+          loginOverlay.classList.remove('opacity-0', 'pointer-events-none');
+          if (loginModalCard) loginModalCard.classList.remove('scale-95');
+        }, 10);
+      }
+    }
+
+    function closeLoginModal() {
+      if (loginOverlay) {
+        loginOverlay.classList.add('opacity-0', 'pointer-events-none');
+        if (loginModalCard) loginModalCard.classList.add('scale-95');
+        setTimeout(() => {
+          loginOverlay.classList.add('hidden');
+        }, 200);
+      }
+    }
+
+    if (loginBtnOpen) {
+      loginBtnOpen.addEventListener('click', openLoginModal);
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const mobileVal = document.getElementById('login-mobile').value;
+      
+      // Show Spinner state
+      if (loginBtnText) loginBtnText.textContent = "Authenticating R.Vishnu Vardhan...";
+      if (loginBtnSpinner) loginBtnSpinner.classList.remove('hidden');
+      
+      setTimeout(() => {
+        if (loginBtnText) loginBtnText.textContent = "Authenticated! Launching App...";
+        if (loginBtnSpinner) loginBtnSpinner.classList.add('hidden');
+        if (loginStatusMsg) loginStatusMsg.classList.remove('hidden');
+
+        // Store login session
+        sessionStorage.setItem('userLoggedIn', 'true');
+        sessionStorage.setItem('userName', 'R.Vishnu Vardhan');
+        sessionStorage.setItem('userMobile', mobileVal);
+
+        // Smooth redirect to main interface after 800ms
+        setTimeout(() => {
+          window.location.href = "/schemematch_ai_home_discovery/code.html";
+        }, 800);
+      }, 700);
+    }
+  </script>
+
+</body>
+</html>
